@@ -1,9 +1,22 @@
+import { useContext } from "react"
 import { useState } from "react"
 import { NavLink } from "react-router-dom"
+import { AuthContext } from "../../providers/AuthProvider"
 
 
 const Navbar = () => {
-  const [isToggleOpen, setIsToggleOpen] = useState(false)
+  const {user, logout} = useContext(AuthContext);
+  const [isToggleOpen, setIsToggleOpen] = useState(false);
+
+  const handleLogOut = () => {
+    logout()
+    .then(()=>{
+        console.log('logout successfully')
+    })
+    .catch(()=> {
+        console.log('unsuccesful logout')
+    })
+  }
   return (
     <>
       <div className="border-b border-slate-200 bg-slate-100">
@@ -235,7 +248,27 @@ const Navbar = () => {
               </li>
             </ul>
             {/*      <!-- Actions --> */}
+            {/* login and logout */}
             <div className="ml-auto flex items-center justify-end px-6 lg:ml-0 lg:flex-1 lg:p-0">
+              {
+                user ? <>                
+                  <button onClick={handleLogOut} className="inline-flex items-center justify-center h-8 gap-2 px-4 text-xs font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-emerald-500 hover:bg-emerald-600 focus:bg-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none">
+                    <span>Logout</span>
+                  </button>
+                </> : <>
+                  <li role="none" className="flex items-stretch">
+                    <NavLink to='/login'
+                      role="menuitem"
+                      aria-haspopup="false"
+                      className="flex items-center ms-2 gap-2 py-4 transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600 focus:outline-none focus-visible:outline-none lg:px-8"
+                      href="javascript:void(0)"
+                    >
+                      <span>Login</span>
+                    </NavLink>
+                  </li>
+                </>
+              }
+              {/* login and logout end */}
               <a
                 href="#"
                 className="relative inline-flex h-10 w-10 items-center justify-center rounded-full text-lg text-emerald-500"
@@ -262,28 +295,10 @@ const Navbar = () => {
                   2<span className="sr-only"> new emails </span>
                 </span>
               </a>
-              {/* login and logout */}
-              <li role="none" className="flex items-stretch">
-                <NavLink to='/login'
-                  role="menuitem"
-                  aria-haspopup="false"
-                  className="flex items-center ms-2 gap-2 py-4 transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600 focus:outline-none focus-visible:outline-none lg:px-8"
-                  href="javascript:void(0)"
-                >
-                  <span>Login</span>
-                </NavLink>
-              </li>
-              <li role="none" className="flex items-stretch">
-                <NavLink to='/signup'
-                  role="menuitem"
-                  aria-haspopup="false"
-                  className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600 focus:outline-none focus-visible:outline-none lg:px-8"
-                  href="javascript:void(0)"
-                >
-                  <span>Sign Up</span>
-                </NavLink>
-              </li>
-              {/* login and logout end */}
+              
+              
+              
+              
             </div>
           </nav>
         </div>

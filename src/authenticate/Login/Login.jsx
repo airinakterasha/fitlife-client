@@ -1,29 +1,76 @@
-import { Link } from "react-router-dom"
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom"
+import { toast } from 'react-toastify';
+import { AuthContext } from "../../providers/AuthProvider";
+import axios from "axios";
+
 
 const Login = () => {
+  const {login} = useContext(AuthContext)
+  const navigate = useNavigate();
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+
+    login(email, password)
+    .then(result => {
+      console.log(result.user)
+      const loggedInUser = result.user;
+      console.log(loggedInUser);
+      const user = {email}
+      
+      // get access token
+      axios.post('http://localhost:5555/jwt', user, {withCredentials: true})
+      .then(res=>{
+          console.log(res.data)
+          if(res.data.success){
+              navigate('/')
+              toast(`Logged in successfully`)
+          }
+      })
+    })
+    .catch(error => {
+      console.log(error)
+      toast(`Sorry! email and password did not match`)
+    })
+  }
+
   return (
     <div>
       <div className="">
-        <div className="w-1/2 mx-auto">
+        <div className="md:w-1/2 mx-auto">
           {/*  */}
             <div className="w-full  p-4 rounded-md shadow sm:p-8 dark:bg-gray-50 dark:text-gray-800">
               <h2 className="mb-3 text-3xl font-semibold text-center">Login to your account</h2>
               
-              <form noValidate="" action="" className="space-y-8">
+              <form onSubmit={handleLogin} className="space-y-8">
                 <div className="space-y-4">
                   <div className="space-y-2">
                     <label htmlFor="email" className="block text-sm">Email address</label>
-                    <input type="email" name="email" id="email" placeholder="leroy@jenkins.com" className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
+                    <input type="email" name="email" id="email" placeholder="email address" className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
                   </div>
                   <div className="space-y-2">
                     <div className="flex justify-between">
                       <label htmlFor="password" className="text-sm">Password</label>
                       <a rel="noopener noreferrer" href="#" className="text-xs hover:underline dark:text-gray-600">Forgot password?</a>
                     </div>
-                    <input type="password" name="password" id="password" placeholder="*****" className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
+                    <input type="password" name="password" id="password" placeholder="******" className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
                   </div>
                 </div>
-                <button type="button" className="w-full px-8 py-3 font-semibold rounded-md dark:bg-violet-600 dark:text-gray-50">Sign in d</button>
+
+              <div className="text-center">
+                <input 
+                  type="submit" 
+                  value="Sign in" 
+                  className="inline-flex items-center justify-center h-12 gap-2 px-6 text-sm font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-emerald-500 hover:bg-emerald-600 focus:bg-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none"
+                />
+              </div>
+                
+                
               </form>
               <div className="flex items-center w-full my-4">
                 <hr  className="w-full dark:text-gray-600" />
