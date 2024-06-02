@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { useState } from "react"
-import { NavLink } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import { AuthContext } from "../../providers/AuthProvider"
 
 
@@ -251,7 +251,35 @@ const Navbar = () => {
             {/* login and logout */}
             <div className="ml-auto flex items-center justify-end px-6 lg:ml-0 lg:flex-1 lg:p-0">
               {
-                user ? <>                
+                user ? <>  
+                  {/*<!-- Component: Rounded full lg sized image avatar with tooltips --> */}
+                  <Link
+                    className="relative inline-flex items-center justify-center w-12 h-12 text-white rounded-full me-6"
+                  >
+                    <span
+                      className="relative overflow-hidden cursor-pointer group hover:overflow-visible"
+                      aria-describedby="tooltip-05"
+                    >
+                      {/*    <!-- Start Tooltip trigger --> */}
+                      <img
+                        src={user?.photoURL}
+                        alt="User's Name"
+                        title="User's Name aaa"
+                        className="max-w-full rounded-full w-12 h-12"
+                      />
+                      {/*    <!-- End Tooltip trigger --> */}
+                      <span
+                        role="tooltip"
+                        id="tooltip-05"
+                        className="invisible absolute bottom-full left-1/2 z-10 mb-2 w-[89px] -translate-x-1/2 rounded bg-slate-700 p-2 text-xs text-white opacity-0 transition-all before:invisible before:absolute before:left-1/2 before:top-full before:z-10 before:mb-2 before:-ml-1 before:border-x-4 before:border-t-4 before:border-x-transparent before:border-t-slate-700 before:opacity-0 before:transition-all before:content-[''] group-hover:visible group-hover:block group-hover:opacity-100 group-hover:before:visible group-hover:before:opacity-100"
+                      >
+                        {user?.displayName}
+                      </span>
+                    </span>
+                  </Link>
+                  {/*<!-- End Rounded lg sized image avatar with tooltips --> */}
+
+             
                   <button onClick={handleLogOut} className="inline-flex items-center justify-center h-8 gap-2 px-4 text-xs font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-emerald-500 hover:bg-emerald-600 focus:bg-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none">
                     <span>Logout</span>
                   </button>
