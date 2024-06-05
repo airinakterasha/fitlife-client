@@ -5,9 +5,10 @@ import ErrorPage from "../ErrorPage/ErrorPage";
 
 import AllTrainers from "../pages/AllTrainers/AllTrainers";
 import AllClasses from "../pages/AllClasses/AllClasses";
-import Dashboard from "../dashboard/Dashboard/Dashboard";
+import Dashboard from "../layout/Dashboard";
 import Login from "../authenticate/Login/Login";
 import SignUp from "../authenticate/SignUp/SignUp";
+import BeTrainer from "../pages/AllTrainers/BeTrainer/BeTrainer";
 
 const router = createBrowserRouter([
     {
@@ -28,10 +29,6 @@ const router = createBrowserRouter([
           element: <AllClasses></AllClasses>
         },
         {
-          path: '/dashboard',
-          element: <Dashboard></Dashboard>
-        },
-        {
           path: '/login',
           element: <Login></Login>
         },
@@ -41,6 +38,17 @@ const router = createBrowserRouter([
         },
       ]
     },
+    {
+      path: "dashboard",
+      element: <Dashboard></Dashboard>,
+      errorElement: <ErrorPage></ErrorPage>,
+      children: [
+        {
+          path: 'be-a-trainer',
+          element: <BeTrainer></BeTrainer>
+        },
+      ]
+    }
 ]);
 
 export default router

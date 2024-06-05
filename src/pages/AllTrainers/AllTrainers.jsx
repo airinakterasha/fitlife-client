@@ -1,8 +1,16 @@
-
+import AllTrainerComp from "./AllTrainerComp"
 
 const AllTrainers = () => {
   return (
-    <div>AllTrainers</div>
+    <>
+      <div className="">
+        <div className="">
+          <div className="">
+            <AllTrainerComp></AllTrainerComp>
+          </div>
+        </div>
+      </div>
+    </>
   )
 }
 
