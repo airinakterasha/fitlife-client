@@ -1,7 +1,7 @@
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import app from "../firebase/firebase.config";
 import { createContext, useEffect, useState } from "react";
-import axios from "axios";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 
 const auth = getAuth(app);
@@ -13,6 +13,9 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const axiosPublic = useAxiosPublic();
+
+
 
     const createUser = (email, password) => {
         setLoading(true)
@@ -41,30 +44,30 @@ const AuthProvider = ({children}) => {
         return signOut(auth)
     }
 
-    useEffect(()=>{
-        const unSubscribe = onAuthStateChanged(auth, currentUser => {
-            const userEmail = currentUser?.email || user?.email;
-            const loggedUser = {email: userEmail};
-            setUser(currentUser);
-            console.log(currentUser);
-            setLoading(false);
-            //if user exists then issue a token
-            if(currentUser){
-                axios.post('http://localhost:5555/jwt', loggedUser, {withCredentials: true})
-                .then(res => {
-                console.log('token response', res.data);
-                })
-            } else {
-                axios.post('http://localhost:5555/logout', loggedUser, {withCredentials: true})
-                .then(res => {
-                console.log(res.data);
-                })
-            }
+    useEffect(() => {
+        const unsubscribe =  onAuthStateChanged(auth, (currentUser) => {
+          console.log('aaaaaaaaaaaaaaa');
+          setUser(currentUser);
+          console.log('current user', currentUser);
+          if(currentUser){
+            // get token and store client
+            const userInfo = {email: currentUser.email};
+            axiosPublic.post('/jwt', userInfo)
+            .then(res => {
+              if(res.data.token){
+                localStorage.setItem('access-token', res.data.token);
+              }
+            })
+          } else {
+            // remove token (if token stored in the client side: Local storage, caching, in memory)
+            localStorage.removeItem('access-token');
+          }
+          setLoading(false);
         });
         return () => {
-            unSubscribe();
+          return unsubscribe()
         }
-    }, [user?.email])
+      }, [axiosPublic])
     
     const authInfo = {
         user,

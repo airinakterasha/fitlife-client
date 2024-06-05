@@ -1,12 +1,12 @@
 
 
-const TitleSection = (heading, subHeading) => {
+const TitleSection = ({heading, subHeading}) => {
   return (
     <>
-        <div className="">
-            <div className="">
-                <h3 className="text-4xl">{heading}</h3>
-                <p className="text-2xl">{subHeading}</p>
+        <div className="p-5">
+            <div className="text-center space-y-2">
+              <p className="text-xl capitalize">--- {subHeading} ---</p>
+              <h3 className="text-3xl uppercase font-bold text-[#F23B3F]">{heading}</h3> 
             </div>
         </div>
     </>
