@@ -12,10 +12,10 @@ const PrivateRoute = ({ children }) => {
 
     if (loading){
         return <> <div className="text-center m-20">
-            <span className="loading loading-infinity loading-lg"></span>
-            <span className="loading loading-infinity loading-lg"></span>
-            <span className="loading loading-infinity loading-lg"></span>
-            <span className="loading loading-infinity loading-lg"></span>
+                <span className="loading loading-infinity loading-lg"></span>
+                <span className="loading loading-infinity loading-lg"></span>
+                <span className="loading loading-infinity loading-lg"></span>
+                <span className="loading loading-infinity loading-lg"></span>
             </div>
         </> 
     }

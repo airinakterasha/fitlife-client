@@ -10,6 +10,7 @@ import Login from "../authenticate/Login/Login";
 import SignUp from "../authenticate/SignUp/SignUp";
 import BeTrainer from "../pages/AllTrainers/BeTrainer/BeTrainer";
 import AppliedTrainer from "../pages/AllTrainers/AppliedTrainer/AppliedTrainer";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -46,7 +47,7 @@ const router = createBrowserRouter([
       children: [
         {
           path: 'be-a-trainer',
-          element: <BeTrainer></BeTrainer>
+          element: <PrivateRoute><BeTrainer></BeTrainer></PrivateRoute>
         },
         {
           path: 'applied-trainer',

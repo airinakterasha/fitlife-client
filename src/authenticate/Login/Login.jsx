@@ -1,13 +1,14 @@
-import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import { toast } from 'react-toastify';
-import { AuthContext } from "../../providers/AuthProvider";
-import axios from "axios";
+import useAuth from "../../hooks/useAuth";
+import Swal from 'sweetalert2';
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 
 const Login = () => {
-  const {login, loginByGoogle} = useContext(AuthContext)
+  const {login, loginByGoogle} = useAuth();
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic()
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -18,20 +19,16 @@ const Login = () => {
 
     login(email, password)
     .then(result => {
-      console.log(result.user)
       const loggedInUser = result.user;
       console.log(loggedInUser);
-      const user = {email}
-      
-      // get access token
-      axios.post('http://localhost:5555/jwt', user, {withCredentials: true})
-      .then(res=>{
-          console.log(res.data)
-          if(res.data.success){
-              navigate('/')
-              toast(`Logged in successfully`)
-          }
-      })
+      Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Logged in successfully",
+          showConfirmButton: false,
+          timer: 1500
+      });
+      navigate('/')
     })
     .catch(error => {
       console.log(error)
@@ -43,13 +40,22 @@ const Login = () => {
   const handleGoogleLogin = () => {
     loginByGoogle()
     .then(result => {
-        navigate('/')
-        toast('Logged in by google successfully')
-        console.log(result.user);
+      console.log(result.user);
+      const userInfo = {
+          name: result.user?.displayName,
+          email: result.user?.email,
+          photo: result.user?.photoURL,
+          createAt: result.user?.metadata?.creationTime,
+          role: 'user',
+      }
+      axiosPublic.post('/users', userInfo)
+      .then(res => {
+          console.log(res.data);
+          navigate('/');
+      })
     })
     .catch(error => {
-        toast('Sorry! Unsuccessful logged in')
-        console.log(error);
+        console.log(error)
     })
   }
 

@@ -1,18 +1,20 @@
-import { useContext } from "react";
 import { useForm } from "react-hook-form"
-import { AuthContext } from "../../providers/AuthProvider";
 import Swal from 'sweetalert2';
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useAuth from "../../hooks/useAuth";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 
   
 
 const SignUp = () => {
-  const {createUser, updateUserProfile} = useContext(AuthContext);
+  const {createUser, updateUserProfile} = useAuth();
   const navigate = useNavigate();
   const {register, handleSubmit, reset, formState: { errors } } = useForm();
+  const axiosPublic = useAxiosPublic()
+
   const onSubmit = (data) => {
     console.log(data)
     createUser(data.email, data.password)
@@ -24,30 +26,30 @@ const SignUp = () => {
       const name = data.name;
       const email = data.email;
       const photo = data.photo;
-      const user = {name, email, photo, createAt}
+      const role = 'user';
+      const user = {name, email, photo, createAt, role}
       updateUserProfile(data.name, data.photo)
       .then(()=>{
-          fetch('http://localhost:5555/users', {
-              method: 'POST',
-              headers: {
-                  'content-type': 'application/json'
-              },
-              body: JSON.stringify(user)
-          })
-          .then(res => res.json())
-          .then(data => {
-              console.log(data);
-              reset();
-              if (data.insertedId){
-                  Swal.fire({
-                      title: 'Success!',
-                      text: 'You have been created your account',
-                      icon: 'success',
-                      confirmButtonText: 'Great',
-                  })
-                  navigate('/')
-              }
-          })
+        const userInfo = user
+        axiosPublic.post('/users', userInfo)
+        .then(res => {
+          console.log(res.data);
+          if(res.data.insertedId){
+            console.log('User profile info updated to database')
+            reset();
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "User created successfully",
+                showConfirmButton: false,
+                timer: 1500
+            });
+            navigate('/')
+
+        }
+        // if end
+        }) 
+     
       })
       .catch(error => console.log(error))
     })
