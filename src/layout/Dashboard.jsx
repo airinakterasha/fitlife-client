@@ -30,7 +30,7 @@ const Dashboard = () => {
                     <p className="capitalize">All Trainers</p>
                   </li>
                 </NavLink>
-                <NavLink to='/dashboard/be-a-trainer'>
+                <NavLink to='/dashboard/applied-trainer'>
                   <li className="flex mb-2">
                     <div className="p-1 mr-1">
                       <FaUserCog></FaUserCog>

@@ -9,6 +9,7 @@ import Dashboard from "../layout/Dashboard";
 import Login from "../authenticate/Login/Login";
 import SignUp from "../authenticate/SignUp/SignUp";
 import BeTrainer from "../pages/AllTrainers/BeTrainer/BeTrainer";
+import AppliedTrainer from "../pages/AllTrainers/AppliedTrainer/AppliedTrainer";
 
 const router = createBrowserRouter([
     {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
         {
           path: 'be-a-trainer',
           element: <BeTrainer></BeTrainer>
+        },
+        {
+          path: 'applied-trainer',
+          element: <AppliedTrainer></AppliedTrainer>
         },
       ]
     }
