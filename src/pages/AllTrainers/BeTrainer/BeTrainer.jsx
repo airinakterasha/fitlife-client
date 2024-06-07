@@ -2,16 +2,41 @@ import TitleSection from "../../../components/TitleSection/TitleSection"
 import { useForm } from "react-hook-form"
 import useAuth from "../../../hooks/useAuth";
 import { Helmet } from "react-helmet-async"
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const BeTrainer = () => {
   const {user} = useAuth();
   console.log(user);
-  const {register, handleSubmit, formState: { errors } } = useForm();
+  const {register, handleSubmit, reset, formState: { errors } } = useForm();
+  const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate()
   const onSubmit = (data) => {
     console.log(data);
-    const {name, email, age, profileImage, skill, role='trainer', dayName, availableTime, status='pending'} = data;
+    const {name, email=`${user?.email}`, age, profileImage, skill, role='trainer', dayName, availableTime, status='pending'} = data;
     const beATrainer = {name, email, age, profileImage, skill, role, dayName, availableTime, status};
     console.log(beATrainer);
+    axiosSecure.post('/betrainer', beATrainer)
+    .then((res)=>{
+      console.log(res.data);
+      if(res.data.insertedId){
+        console.log('User profile info updated to database')
+        reset();
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "You submition is pending. Please wait for a while for approved by admin",
+            showConfirmButton: false,
+            timer: 2500
+        });
+        navigate('/')
+
+    }
+    // if end
+    })
+    
+
   }
 
   return (

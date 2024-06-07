@@ -1,6 +1,8 @@
+import useAxiosSecure from "../../hooks/useAxiosSecure"
 import AllTrainerComp from "./AllTrainerComp"
 
 const AllTrainers = () => {
+  
   return (
     <>
       <div className="">
