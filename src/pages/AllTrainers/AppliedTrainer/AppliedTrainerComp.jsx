@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const AppliedTrainerComp = ({trainer}) => {
-    const {_id, name, email, age, profileImage, skill, dayName, availableTime} = trainer;
+    const {_id, name, email, age, profileImage, skills, availableDay, availableTime} = trainer;
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
 
@@ -103,12 +103,28 @@ const AppliedTrainerComp = ({trainer}) => {
                                 <h3 className="font-bold text-md">{email}</h3>
                                 <div className="flex justify-around my-4">
                                     <div className="text-start space-y-2">
-                                        <p className="capitalize"><span className="font-bold">Available day:</span> {dayName}</p>
                                         <p className="capitalize"><span className="font-bold">Available Time:</span> {availableTime}</p>
+                                        <p className="capitalize"><span className="font-bold">Available day:</span> </p>
+                                        {/* <p className="capitalize">
+                                            <span className="font-bold">Available day:</span>
+                                            {
+                                                availableDay.map(availday => <span key={availday.value} className="px-3 py-1 mr-1 bg-emerald-500 rounded text-white">
+                                                    {availday.label}
+                                                </span>)
+                                            }
+                                        </p> */}
                                     </div>
                                     <div className="text-start  space-y-2">
-                                        <p className="capitalize"><span className="font-bold">Skill:</span> {skill} years</p>
                                         <p className="capitalize"><span className="font-bold">Age:</span> {age} years</p>
+                                        <p className="capitalize">
+                                            <span className="font-bold">Skills:</span>
+                                            {
+                                                skills.map(skill => <span key={skill.value} className="px-3 py-1 mr-1 bg-emerald-500 rounded text-white">
+                                                    {skill.label}
+                                                </span>)
+                                            }
+                                        </p>
+                                        
                                     </div>
                                 </div>
                                 <div className="space-x-5">

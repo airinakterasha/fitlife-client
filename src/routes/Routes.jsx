@@ -11,10 +11,12 @@ import SignUp from "../authenticate/SignUp/SignUp";
 import BeTrainer from "../pages/AllTrainers/BeTrainer/BeTrainer";
 import AppliedTrainer from "../pages/AllTrainers/AppliedTrainer/AppliedTrainer";
 import PrivateRoute from "./PrivateRoute";
-import AllUsers from "../dashboard/Dashboard/AllUsers";
+import AllUsers from "../dashboard/Dashboard/AdminArea/AllUsers";
 import Trainers from "../dashboard/Trainers/Trainers";
 import Balance from "../dashboard/Dashboard/AdminArea/Balance";
 import AddNewClass from "../dashboard/Dashboard/AdminArea/AddNewClass";
+import ManageSlot from "../dashboard/Dashboard/TrainerArea/ManageSlot";
+import AddNewSlot from "../dashboard/Dashboard/TrainerArea/AddNewSlot";
 
 
 const router = createBrowserRouter([
@@ -57,6 +59,14 @@ const router = createBrowserRouter([
         {
           path: 'applied-trainer',
           element: <AppliedTrainer></AppliedTrainer>
+        },
+        {
+          path: 'manage-slot',
+          element: <ManageSlot></ManageSlot>
+        },
+        {
+          path: 'add-new-slot',
+          element: <AddNewSlot></AddNewSlot>
         },
         // admin routes
         {

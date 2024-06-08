@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query"
-import TitleSection from "../../components/TitleSection/TitleSection";
+import TitleSection from "../../../components/TitleSection/TitleSection";
 import { FaTrashAlt, FaUsers } from "react-icons/fa";
 import Swal from "sweetalert2";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { Helmet } from "react-helmet-async";
 
 

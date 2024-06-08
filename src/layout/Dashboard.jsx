@@ -72,7 +72,7 @@ const Dashboard = () => {
                 </> : <>
                   {/* Trainer links start */}
                     <ul className="py-10"> 
-                      <NavLink to='/dashboard/be-a-trainer'>
+                      <NavLink to='/dashboard/manage-slot'>
                         <li className="flex mb-2">
                           <div className="p-1 mr-1">
                             <FaUserCog></FaUserCog>
@@ -80,7 +80,7 @@ const Dashboard = () => {
                           <p className="capitalize">Manage slot</p>
                         </li>
                       </NavLink>
-                      <NavLink to='/dashboard/be-a-trainer'>
+                      <NavLink to='/dashboard/add-new-slot'>
                         <li className="flex mb-2">
                           <div className="p-1 mr-1">
                             <FaUserCog></FaUserCog>

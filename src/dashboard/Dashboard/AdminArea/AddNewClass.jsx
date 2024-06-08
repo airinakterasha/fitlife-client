@@ -12,6 +12,24 @@ const AddNewClass = () => {
     const navigate = useNavigate()
     const onSubmit = (data) => {
         console.log(data);
+        axiosSecure.post('/class', data)
+        .then(res=>{
+          console.log(res.data)
+          if(res.data.insertedId){
+            reset();
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Class has beed added",
+                showConfirmButton: false,
+                timer: 2500
+            });
+            navigate('/')
+          }
+        })
+        .catch(err=>{
+          console.log(err)
+        })
     }
 
   return (
@@ -31,21 +49,21 @@ const AddNewClass = () => {
                       <div className="label">
                         <span className="label-text capitalize">Class name</span>
                       </div>
-                      <input type="text" {...register("className", { required: true })} placeholder="Your name" className="input input-bordered w-full" />
+                      <input type="text" {...register("className", { required: true })} placeholder="Class name" className="input input-bordered w-full" />
                       { errors.className && <p className="text-red-500 capitalize">Class name required</p>}
                     </label>
                     <label className="form-control w-full">
                       <div className="label">
                         <span className="label-text capitalize">Class Image</span>
                       </div>
-                      <input type="text" {...register("classImage", { required: true })} placeholder="Your age" className="input input-bordered w-full" />
+                      <input type="text" {...register("classImage", { required: true })} placeholder="Class image" className="input input-bordered w-full" />
                       { errors.classImage && <p className="text-red-500 capitalize">Class Image required</p>}
                     </label>
                     <label className="form-control w-full">
                       <div className="label">
                         <span className="label-text capitalize">Class Details</span>
                       </div>
-                      <input type="text" {...register("classDetails", { required: true })} placeholder="Your age" className="input input-bordered w-full" />
+                      <input type="text" {...register("classDetails", { required: true })} placeholder="Class details" className="input input-bordered w-full" />
                       { errors.classDetails && <p className="text-red-500 capitalize">Class Image required</p>}
                     </label>
                     <input type="submit" value="Add Class" className="btn bg-[#F23B3F] text-white mt-5 w-full" />

@@ -1,21 +1,44 @@
 import TitleSection from "../../../components/TitleSection/TitleSection"
-import { useForm } from "react-hook-form"
+import { Controller, useForm } from "react-hook-form"
 import useAuth from "../../../hooks/useAuth";
 import { Helmet } from "react-helmet-async"
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+// react select
+import React from 'react'
+import Select from 'react-select'
+import makeAnimated from 'react-select/animated';
+
+const skills = [
+  { value: 'yoga', label: 'Yoga' },
+  { value: 'gym', label: 'Gym' },
+  { value: 'vanilla', label: 'Vanilla' }
+]
+
+const availableDay = [
+  { value: 'saturday', label: 'Saturday' },
+  { value: 'sunday', label: 'Sunday' },
+  { value: 'monday', label: 'Monday' },
+  { value: 'tuesday', label: 'Tuesday' },
+  { value: 'wednesday', label: 'Wednesday' },
+  { value: 'thursday', label: 'Thursday' },
+  { value: 'friday', label: 'Friday' },
+]
+
+
+
 
 const BeTrainer = () => {
   const {user} = useAuth();
   console.log(user);
-  const {register, handleSubmit, reset, formState: { errors } } = useForm();
+  const {register, handleSubmit, reset, control, formState: { errors } } = useForm();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate()
   const onSubmit = (data) => {
     console.log(data);
-    const {name, email=`${user?.email}`, age, profileImage, skill, role='pending', dayName, availableTime, status='pending'} = data;
-    const beATrainer = {name, email, age, profileImage, skill, role, dayName, availableTime, status};
+    const {name, email=`${user?.email}`, age, profileImage, skills, role='pending', availableDay, availableTime, status='pending'} = data;
+    const beATrainer = {name, email, age, profileImage, skills, role, availableDay, availableTime, status};
     console.log(beATrainer);
     axiosSecure.post('/betrainer', beATrainer)
     .then((res)=>{
@@ -81,22 +104,57 @@ const BeTrainer = () => {
                       <input type="text" defaultValue={user?.photoURL} {...register("profileImage", { required: !user?.photoURL })} placeholder="Your age" className="input input-bordered w-full" />
                       {!user?.photoURL && errors.profileImage && <p className="text-red-500 capitalize">Profile Image required</p>}
                   </label>
+
+                 
+
                   <div className="flex gap-5">
+
+                     {/* react select */}
+                    {/* <label className="form-control w-full">
+                        <div className="label">
+                          <span className="label-text capitalize">Skills</span>
+                        </div>
+                        <Controller
+                          name="skills"
+                          control={control}
+                          defaultValue={[]}
+                          rules={{ required: true }}
+                          render={({ field }) => (
+                            <Select
+                              {...field}
+                              options={skills}
+                              isMulti
+                              placeholder='Select skills'
+                              isSearchable
+                              autoFocus
+                            />
+                          )}
+                        />
+                    </label> */}
+
                     <label className="form-control w-full">
-                      <div className="label">
-                        <span className="label-text">Select your skill</span>
-                      </div>
-                      <select defaultValue='default' {...register("skill" , { required: true })} className="select select-bordered">
-                      <option disabled value='default'>Select A Skill</option>
-                        <option value="salad">Salad</option>
-                        <option>Star Wars</option>
-                        <option>Harry Potter</option>
-                        <option>Lord of the Rings</option>
-                        <option>Planet of the Apes</option>
-                        <option>Star Trek</option>
-                      </select>
+                        <div className="label">
+                          <span className="label-text capitalize">Available Day</span>
+                        </div>
+                        <Controller
+                          name="availableDay"
+                          control={control}
+                          defaultValue={[]}
+                          rules={{ required: true }}
+                          render={({ availableField }) => (
+                            <Select
+                              {...field}
+                              options={availableDay}
+                              isMulti
+                              placeholder='Select Available Day'
+                              isSearchable
+                              autoFocus
+                            />
+                          )}
+                        />
                     </label>
-                    <label className="form-control w-full">
+                    {/* react select */}
+                    {/* <label className="form-control w-full">
                       <div className="label">
                         <span className="label-text">Pick the day suitable for you</span>
                       </div>
@@ -110,7 +168,7 @@ const BeTrainer = () => {
                         <option value="friday">Friday</option>
                         <option value="saturday">Saturday</option>
                       </select>
-                    </label>
+                    </label> */}
                   </div>
                   <label className="form-control w-full">
                       <div className="label">
