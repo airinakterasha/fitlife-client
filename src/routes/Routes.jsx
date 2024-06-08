@@ -11,6 +11,11 @@ import SignUp from "../authenticate/SignUp/SignUp";
 import BeTrainer from "../pages/AllTrainers/BeTrainer/BeTrainer";
 import AppliedTrainer from "../pages/AllTrainers/AppliedTrainer/AppliedTrainer";
 import PrivateRoute from "./PrivateRoute";
+import AllUsers from "../dashboard/Dashboard/AllUsers";
+import Trainers from "../dashboard/Trainers/Trainers";
+import Balance from "../dashboard/Dashboard/AdminArea/Balance";
+import AddNewClass from "../dashboard/Dashboard/AdminArea/AddNewClass";
+
 
 const router = createBrowserRouter([
     {
@@ -52,6 +57,23 @@ const router = createBrowserRouter([
         {
           path: 'applied-trainer',
           element: <AppliedTrainer></AppliedTrainer>
+        },
+        // admin routes
+        {
+          path: 'users',
+          element: <AllUsers></AllUsers>
+        },
+        {
+          path: 'alltrainers-dash',
+          element: <Trainers></Trainers>
+        },
+        {
+          path: 'balance',
+          element: <Balance></Balance>
+        },
+        {
+          path: 'add-new-class',
+          element: <AddNewClass></AddNewClass>
         },
       ]
     }

@@ -1,10 +1,49 @@
 import { RiPassPendingFill } from "react-icons/ri";
 import { FaEye } from "react-icons/fa";
 import { TbPlayerEjectFilled } from "react-icons/tb";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 
 const AppliedTrainerComp = ({trainer}) => {
-    const {_id, name, email, age, profileImage, skill, role, dayName, availableTime, status} = trainer;
+    const {_id, name, email, age, profileImage, skill, dayName, availableTime} = trainer;
+    const axiosSecure = useAxiosSecure();
+    const navigate = useNavigate();
+
+    const handleConfirm = () => {
+        axiosSecure.get(`/betrainer/${_id}`)
+        .then((response)=>{
+            console.log(response.data);
+            console.log(response.data.status);
+            axiosSecure.patch(`/betrainer/${_id}`)
+            .then(res => {
+                console.log(res, 'update');
+                if(res.data.modifiedCount > 0){
+                    console.log('User profile info updated to database')
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: `${name} approved as a trainer`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    navigate('/dashboard/applied-trainer')
+                }
+            
+            })
+            .catch()
+        })
+        .catch ((error)=> {
+            console.error("Failed to update trainer status:", error);
+        })
+    };
+
+    // const handleReject = () => {
+    //     ///delete function will here.
+    // }
+
+
     return (
         <>
             <div className="">
@@ -59,7 +98,7 @@ const AppliedTrainerComp = ({trainer}) => {
                                 <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                             </form>
                             <div className="">
-                                <img src={profileImage} alt="" />
+                                <img src={profileImage} className="w-24 h-20" alt="" />
                                 <h2 className="font-bold text-xl">{name}</h2>
                                 <h3 className="font-bold text-md">{email}</h3>
                                 <div className="flex justify-around my-4">
@@ -74,6 +113,7 @@ const AppliedTrainerComp = ({trainer}) => {
                                 </div>
                                 <div className="space-x-5">
                                     <button 
+                                    onClick={handleConfirm}
                                     className="inline-flex h-10 flex-1 items-center justify-center gap-2 whitespace-nowrap rounded bg-emerald-500 px-5 text-sm font-medium tracking-wide text-white transition duration-300 hover:bg-emerald-600 focus:bg-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none">
                                         <span className="order-2">Confirm</span>
                                         <span className="relative only:-mx-5">

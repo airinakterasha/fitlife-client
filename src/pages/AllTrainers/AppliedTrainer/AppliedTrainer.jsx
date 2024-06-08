@@ -6,7 +6,8 @@ import { Helmet } from "react-helmet-async"
 const AppliedTrainer = () => {
   const [betrainer] = useTrainer();
   const appliedTrainer = betrainer.filter(trainer => trainer.status === 'pending');
-  console.log(appliedTrainer)
+  console.log(appliedTrainer);
+
 
   return (
     <>
