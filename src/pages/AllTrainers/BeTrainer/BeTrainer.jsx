@@ -10,11 +10,11 @@ import React from 'react'
 import Select from 'react-select'
 import makeAnimated from 'react-select/animated';
 
-const skills = [
+const skillsOptions = [
   { value: 'yoga', label: 'Yoga' },
   { value: 'gym', label: 'Gym' },
   { value: 'vanilla', label: 'Vanilla' }
-]
+];
 
 const availableDay = [
   { value: 'saturday', label: 'Saturday' },
@@ -25,8 +25,6 @@ const availableDay = [
   { value: 'thursday', label: 'Thursday' },
   { value: 'friday', label: 'Friday' },
 ]
-
-
 
 
 const BeTrainer = () => {
@@ -110,27 +108,22 @@ const BeTrainer = () => {
                   <div className="flex gap-5">
 
                      {/* react select */}
-                    {/* <label className="form-control w-full">
+                     <label className="form-control w-full">
                         <div className="label">
                           <span className="label-text capitalize">Skills</span>
                         </div>
-                        <Controller
-                          name="skills"
-                          control={control}
-                          defaultValue={[]}
-                          rules={{ required: true }}
-                          render={({ field }) => (
-                            <Select
-                              {...field}
-                              options={skills}
-                              isMulti
-                              placeholder='Select skills'
-                              isSearchable
-                              autoFocus
-                            />
-                          )}
-                        />
-                    </label> */}
+                        {
+                          skillsOptions.map((skill) => (
+                            <div key={skill.value} className="flex items-center">
+                              <input type="checkbox" value={skill.value} {...register("skills", { required: true })} className="mr-2" />
+                              <label>{skill.label}</label>
+                            </div>
+                          ))
+                        }
+                        {errors.skills && <p className="text-red-500 capitalize">Skills required</p>}
+
+
+                    </label>
 
                     <label className="form-control w-full">
                         <div className="label">
@@ -141,7 +134,7 @@ const BeTrainer = () => {
                           control={control}
                           defaultValue={[]}
                           rules={{ required: true }}
-                          render={({ availableField }) => (
+                          render={({ field }) => (
                             <Select
                               {...field}
                               options={availableDay}
@@ -154,21 +147,7 @@ const BeTrainer = () => {
                         />
                     </label>
                     {/* react select */}
-                    {/* <label className="form-control w-full">
-                      <div className="label">
-                        <span className="label-text">Pick the day suitable for you</span>
-                      </div>
-                      <select defaultValue='default' {...register("dayName" , { required: true })} className="select select-bordered">
-                      <option disabled value='default'>Pick A Day</option>
-                        <option value="sunday">Sunday</option>
-                        <option value="monday">Monday</option>
-                        <option value="tuesday">Tuesday</option>
-                        <option value="wednesday">Wednesday</option>
-                        <option value="thursday">Thursday</option>
-                        <option value="friday">Friday</option>
-                        <option value="saturday">Saturday</option>
-                      </select>
-                    </label> */}
+
                   </div>
                   <label className="form-control w-full">
                       <div className="label">

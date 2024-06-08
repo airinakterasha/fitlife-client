@@ -101,26 +101,25 @@ const AppliedTrainerComp = ({trainer}) => {
                                 <img src={profileImage} className="w-24 h-20" alt="" />
                                 <h2 className="font-bold text-xl">{name}</h2>
                                 <h3 className="font-bold text-md">{email}</h3>
-                                <div className="flex justify-around my-4">
+                                <div className=" my-8 space-y-2">
                                     <div className="text-start space-y-2">
                                         <p className="capitalize"><span className="font-bold">Available Time:</span> {availableTime}</p>
-                                        <p className="capitalize"><span className="font-bold">Available day:</span> </p>
-                                        {/* <p className="capitalize">
-                                            <span className="font-bold">Available day:</span>
+                                        <p className="capitalize">
+                                            <span className="font-bold mr-5">Available day:</span>
                                             {
                                                 availableDay.map(availday => <span key={availday.value} className="px-3 py-1 mr-1 bg-emerald-500 rounded text-white">
                                                     {availday.label}
                                                 </span>)
                                             }
-                                        </p> */}
+                                        </p>
                                     </div>
                                     <div className="text-start  space-y-2">
                                         <p className="capitalize"><span className="font-bold">Age:</span> {age} years</p>
                                         <p className="capitalize">
-                                            <span className="font-bold">Skills:</span>
+                                            <span className="font-bold mr-5">Skills:</span>
                                             {
                                                 skills.map(skill => <span key={skill.value} className="px-3 py-1 mr-1 bg-emerald-500 rounded text-white">
-                                                    {skill.label}
+                                                    {skill}
                                                 </span>)
                                             }
                                         </p>
