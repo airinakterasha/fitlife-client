@@ -1,4 +1,7 @@
 import { Helmet } from "react-helmet-async"
+import Banner from "./Banner/Banner"
+import Featured from "./Featured/Featured"
+import AboutUs from "./AboutUs/AboutUs"
 
 const Home = () => {
   return (
@@ -6,7 +9,22 @@ const Home = () => {
       <Helmet>
             <title>FitLife | Home</title>
       </Helmet>
-      <div className="">Home</div>
+      {/* banner section */}
+      <section>
+          <Banner></Banner>
+      </section>
+      {/* banner section */}
+
+      {/* featured section */}
+      <section>
+        <Featured></Featured>
+      </section>
+      {/* featured section end */}
+      <section>
+        <AboutUs></AboutUs>
+      </section>
+      
+
     </>
   )
 }

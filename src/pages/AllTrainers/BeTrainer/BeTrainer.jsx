@@ -6,9 +6,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 // react select
-import React from 'react'
 import Select from 'react-select'
-import makeAnimated from 'react-select/animated';
 
 const skillsOptions = [
   { value: 'yoga', label: 'Yoga' },
