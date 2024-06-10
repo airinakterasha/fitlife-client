@@ -17,6 +17,7 @@ import Balance from "../dashboard/Dashboard/AdminArea/Balance";
 import AddNewClass from "../dashboard/Dashboard/AdminArea/AddNewClass";
 import ManageSlot from "../dashboard/Dashboard/TrainerArea/ManageSlot";
 import AddNewSlot from "../dashboard/Dashboard/TrainerArea/AddNewSlot";
+import AddNewSlotTrainer from "../dashboard/Dashboard/TrainerArea/AddNewSlotTrainer";
 
 
 const router = createBrowserRouter([
@@ -66,7 +67,11 @@ const router = createBrowserRouter([
         },
         {
           path: 'add-new-slot',
-          element: <AddNewSlot></AddNewSlot>
+          element: <AddNewSlot></AddNewSlot>,
+        },
+        {
+          path: 'add-new-slot-trainer',
+          element: <AddNewSlotTrainer></AddNewSlotTrainer>,
         },
         // admin routes
         {

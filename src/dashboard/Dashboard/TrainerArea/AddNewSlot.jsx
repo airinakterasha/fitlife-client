@@ -4,9 +4,12 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useTrainer from "../../../hooks/useTrainer";
 import useClass from "../../../hooks/useClass";
 import Select from 'react-select'
+import useAuth from "../../../hooks/useAuth";
 
 
 const AddNewSlot = () => {
+  const {user} = useAuth();
+  console.log(user);
   const {register, handleSubmit, reset, control, formState: { errors } } = useForm();
   const axiosSecure = useAxiosSecure();
 
@@ -16,21 +19,17 @@ const AddNewSlot = () => {
   const [classes] = useClass();
   // console.log(betrainer);
   // console.log(classes);
+
+  // axiosSecure.get(`http://localhost:5555/trainer/${email}`)
+  // .then(res => {
+  //   console.log(res)
+  //   console.log(res.data)
+  // })
   
 
   const onSubmit = (data) => {
-    const slotData = {
-      ...data,
-      trainerId: _id,
-    };
+    console.log(data);
 
-    axiosSecure.post('/slot', slotData)
-    .then(res => {
-      console.log(res.data);
-    })
-    .catch(err=>{
-      console.log(err);
-    })
   }
 
   return (
@@ -44,32 +43,38 @@ const AddNewSlot = () => {
                 {/* trainer Information */}
                 <div className="">
                   <form onSubmit={handleSubmit(onSubmit)} className="p-10">
-                    {/*  */}
+                    <div className="">
+                      <h1 className="text-2xl text-[#F23B3F]">Trainer Information</h1>
+                    </div>
                     <div className="flex gap-5">
                       <label className="form-control w-full">
                         <div className="label">
                           <span className="label-text capitalize">Full name</span>
                         </div>
-                        <input type="text" defaultValue={name} {...register("name")} className="input input-bordered w-full" />
+                        {/* {
+                          user.email === betrainer.email && 
+                        } */}
+                        <input type="text" defaultValue={user?.displayName}  {...register("name")} placeholder="name" className="input input-bordered w-full" />
+                        {/* <input type="text"  {...register("name")} className="input input-bordered w-full" /> */}
                       </label>
                       <label className="form-control w-full">
                         <div className="label">
                           <span className="label-text capitalize">Email</span>
                         </div>
-                        <input type="email" defaultValue={email} disabled {...register("email")} placeholder="email address" className="input input-bordered w-full" />
+                        <input type="email"  disabled {...register("email")} placeholder="email address" className="input input-bordered w-full" />
                       </label>
                       <label className="form-control w-full">
                         <div className="label">
                           <span className="label-text capitalize">Age</span>
                         </div>
-                        <input type="number" defaultValue={age} readOnly {...register("age")} placeholder="Your age" className="input input-bordered w-full" />
+                        <input type="number"  readOnly {...register("age")} placeholder="Your age" className="input input-bordered w-full" />
                       </label>
                     </div>
                     <label className="form-control w-full">
                         <div className="label">
                           <span className="label-text capitalize">Profile Image</span>
                         </div>
-                        <input type="text" defaultValue={profileImage} {...register("profileImage")} placeholder="Your age" className="input input-bordered w-full" />
+                        <input type="text"  {...register("profileImage")} placeholder="Your age" className="input input-bordered w-full" />
                     </label>
 
                   
@@ -121,12 +126,61 @@ const AddNewSlot = () => {
                         <div className="label">
                           <span className="label-text capitalize">Your Available time</span>
                         </div>
-                        <input type="text" defaultValue={profileImage} {...register("availableTime")} className="input input-bordered w-full" />
+                        <input type="text"  {...register("availableTime")} className="input input-bordered w-full" />
                     </label>
                     
-                    <input type="submit" value="Applied For Be A Trainer" className="btn bg-[#F23B3F] text-white mt-5 w-full" />
+                    <div className="">
+                      
+                      <div className="">
+                        <h1 className="text-2xl text-[#F23B3F]">Slot Information</h1>
+                      </div>
+                      <div className="">
+                        <label className="form-control w-full">
+                            <div className="label">
+                              <span className="label-text capitalize">Slot name</span>
+                            </div>
+                            <input type="text"  {...register("slotName")} className="input input-bordered w-full" />
+                        </label>
+                        <label className="form-control w-full">
+                            <div className="label">
+                              <span className="label-text capitalize">Slot Time</span>
+                            </div>
+                            <input type="text"  {...register("slotTime")} className="input input-bordered w-full" />
+                        </label>
+                      </div>
+
+                    </div>
                     
                     {/*  */}
+                    <div className="">
+                      <div className="">
+                        <h1 className="text-2xl text-[#F23B3F]">Class Information</h1>
+                      </div>
+                      {/* class infor mation */}
+                      <label className="form-control w-full">
+                        <div className="label">
+                          <span className="label-text capitalize">Class Name</span>
+                        </div>
+                        <input type="text" defaultValue={profileImage} {...register("className")} className="input input-bordered w-full" />
+                      </label>
+
+                      <label className="form-control w-full">
+                        <div className="label">
+                          <span className="label-text capitalize">Class Image</span>
+                        </div>
+                        <input type="text" defaultValue={profileImage} {...register("classImage")} className="input input-bordered w-full" />
+                      </label>
+
+                      <label className="form-control w-full">
+                        <div className="label">
+                          <span className="label-text capitalize">Class Description</span>
+                        </div>
+                        <input type="text" defaultValue={profileImage} {...register("classdes")} className="input input-bordered w-full" />
+                      </label>
+
+                      <input type="submit" value="Applied For Be A Trainer" className="btn bg-[#F23B3F] text-white mt-5 w-full" />
+
+                    </div>
                   </form>
                   
                 </div>

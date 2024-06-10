@@ -11,7 +11,13 @@ import Select from 'react-select'
 const skillsOptions = [
   { value: 'yoga', label: 'Yoga' },
   { value: 'gym', label: 'Gym' },
-  { value: 'vanilla', label: 'Vanilla' }
+  { value: 'box class', label: 'Box Class' },
+  { value: 'dance cardio', label: 'Dance Cardio' },
+  { value: 'strength training workshop', label: 'Strength Training Workshop' },
+  { value: 'cardio tone', label: 'Cardio Tone' },
+  { value: 'trampoline', label: 'Trampoline' },
+  { value: 'tone', label: 'Tone' },
+  { value: 'low impact cardio', label: 'Low Impact Cardio' },
 ];
 
 const availableDay = [

@@ -88,6 +88,14 @@ const Dashboard = () => {
                           <p className="capitalize">Add new slot</p>
                         </li>
                       </NavLink>
+                      <NavLink to='/dashboard/add-new-slot-trainer'>
+                        <li className="flex mb-2">
+                          <div className="p-1 mr-1">
+                            <FaUserCog></FaUserCog>
+                          </div>
+                          <p className="capitalize">Add new slot trainer</p>
+                        </li>
+                      </NavLink>
                       <NavLink to='/dashboard/be-a-trainer'>
                         <li className="flex mb-2">
                           <div className="p-1 mr-1">
