@@ -18,6 +18,7 @@ import AddNewClass from "../dashboard/Dashboard/AdminArea/AddNewClass";
 import ManageSlot from "../dashboard/Dashboard/TrainerArea/ManageSlot";
 import AddNewSlot from "../dashboard/Dashboard/TrainerArea/AddNewSlot";
 import AddNewSlotTrainer from "../dashboard/Dashboard/TrainerArea/AddNewSlotTrainer";
+import TrainerDetails from "../pages/AllTrainers/TrainerDetails";
 
 
 const router = createBrowserRouter([
@@ -33,6 +34,11 @@ const router = createBrowserRouter([
         {
           path: '/all-trainers',
           element: <AllTrainers></AllTrainers>
+        },
+        {
+          path: '/all-trainers/:id',
+          element: <TrainerDetails></TrainerDetails>,
+          loader: ({params}) => fetch(`http://localhost:5555/betrainer/${params.id}`)
         },
         {
           path: '/all-classes',

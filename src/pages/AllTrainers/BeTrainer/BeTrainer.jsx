@@ -39,8 +39,8 @@ const BeTrainer = () => {
   const navigate = useNavigate()
   const onSubmit = (data) => {
     console.log(data);
-    const {name, email=`${user?.email}`, age, profileImage, skills, role='pending', availableDay, availableTime, status='pending'} = data;
-    const beATrainer = {name, email, age, profileImage, skills, role, availableDay, availableTime, status};
+    const {name, email=`${user?.email}`, age, profileImage, trainerDetails, skills, role='pending', availableDay, availableTime, status='pending'} = data;
+    const beATrainer = {name, email, age, profileImage, trainerDetails, skills, role, availableDay, availableTime, status};
     console.log(beATrainer);
     axiosSecure.post('/betrainer', beATrainer)
     .then((res)=>{
@@ -103,8 +103,15 @@ const BeTrainer = () => {
                       <div className="label">
                         <span className="label-text capitalize">Profile Image</span>
                       </div>
-                      <input type="text" defaultValue={user?.photoURL} {...register("profileImage", { required: !user?.photoURL })} placeholder="Your age" className="input input-bordered w-full" />
+                      <input type="text" defaultValue={user?.photoURL} {...register("profileImage", { required: !user?.photoURL })} placeholder="Years of experience" className="input input-bordered w-full" />
                       {!user?.photoURL && errors.profileImage && <p className="text-red-500 capitalize">Profile Image required</p>}
+                  </label>
+                  <label className="form-control w-full">
+                      <div className="label">
+                        <span className="label-text capitalize">details about yourself</span>
+                      </div>
+                      <input type="text" {...register("trainerDetails", { required: true })} placeholder="write a little more about yourself" className="input input-bordered w-full"  />
+                      {errors.trainerDetails && <p className="text-red-500 capitalize">trainer Details required</p>}
                   </label>
 
                  

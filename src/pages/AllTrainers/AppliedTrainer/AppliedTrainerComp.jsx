@@ -107,7 +107,7 @@ const AppliedTrainerComp = ({trainer}) => {
                                         <p className="capitalize">
                                             <span className="font-bold mr-5">Available day:</span>
                                             {
-                                                availableDay.map(availday => <span key={availday.value} className="px-3 py-1 mr-1 bg-emerald-500 rounded text-white">
+                                                availableDay.map(availday => <span key={availday.value} className="px-3 py-1 mr-1 my-2 bg-emerald-500 rounded text-white">
                                                     {availday.label}
                                                 </span>)
                                             }
