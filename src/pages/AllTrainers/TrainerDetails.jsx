@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 import { useLoaderData } from "react-router-dom"
 import TitleSection from "../../components/TitleSection/TitleSection";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
@@ -8,11 +9,13 @@ import { useEffect, useState } from "react";
 
 const TrainerDetails = () => {
   const [trainerSlot, setTrainerSlot] = useState([]);
+  const [slotTotal, setSlotTotal] = useState(0);
   const detailsTrainer = useLoaderData();
   const {name, email, age, profileImage, trainerDetails, skills, role, availableDay, availableTime, status} = detailsTrainer;
   console.log(skills);
   console.log(detailsTrainer);
   const axiosPublic = useAxiosPublic();
+
 
   useEffect(() => {
     axiosPublic.get(`http://localhost:5555/trainerlot/${email}`)
@@ -23,6 +26,10 @@ const TrainerDetails = () => {
       console.log(data, 'inside');
       // const {slotName, slotTime} = data
       // console.log(slotName, 'inside data');
+
+      const slotTotalCount = data.reduce((slotingTime,item) => slotingTime + parseInt(item.slotTime), 0);
+      console.log(slotTotalCount, 'slottime');
+      setSlotTotal(slotTotalCount);
 
     })
     .catch(error =>{
@@ -80,30 +87,47 @@ const TrainerDetails = () => {
                 </div>
                 {/* Trainer Information end */}
               </div>
+              {/* Trainer Information end */}
+              {/* slot Information start */}
               <div className="col-span-5">
                 Slot details
                 {/* slot details will here */}
-                <div className="bg-green-500">
-                  {
-                    trainerSlot.map(slotTrainer => <div key={slotTrainer._id} className="">
-                      <p>{slotTrainer.slotName}</p>
-                      <p>{slotTrainer.slotTime}</p>
-                      <p>
-                        {
-                          slotTrainer.classes.map((slotClass, index) => <span key={index}>{slotClass.label}</span>)
-                        }
-                      </p>
-                      <p>
-                        {
-                          slotTrainer.availableDay.map((slotDay, index) => <span key={index}>{slotDay.label}</span>)
-                        }
-                      </p>
-                      
-                    </div>)
-                  }
-                  
+                <div className="space-y-5 mb-10">
+                  <div className="bg-green-500">
+                    {
+                      trainerSlot.map(slotTrainer => <div key={slotTrainer._id} className="">
+                        <p>Available Slot time: {slotTrainer.slotName}</p>
+                        <p>Available Slot: 
+                          <Link to={`/booked-trainers/${slotTrainer._id}`}>
+                            <button className="btn btn-md">{slotTrainer.slotTime}</button> 
+                          </Link>
+                        </p>
+                        {/* <p>{slotTrainer.slotTime.length}</p> */}
+                        <p>
+                          {
+                            slotTrainer.classes.map((slotClass, index) => <span key={index}>{slotClass.label}</span>)
+                          }
+                        </p>
+                        <p>
+                          {
+                            slotTrainer.availableDay.map((slotDay, index) => <span key={index}>{slotDay.label}</span>)
+                          }
+                        </p>
+                        
+                      </div>)
+                    }
+                    
+                  </div>
+                  <div className="">
+                    <h3 className="capitalize">Available total slot: {slotTotal}</h3>
+                  </div>
+                  {/* <div className="">{slotTotal}</div> */}
                 </div>
+                <button className="btn bg-[#F23B3F] text-white mt-5">Applied For Be A Trainer</button>
+
+                {/* end */}
               </div>
+              {/* slot Information end */}
             </div>
         </div>
     </>

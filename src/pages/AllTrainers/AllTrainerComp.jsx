@@ -2,9 +2,34 @@ import { FaFacebookF } from "react-icons/fa";
 import { IoLogoTwitter } from "react-icons/io";
 import { FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+
 
 const AllTrainerComp = ({trainer}) => {
+    const [trainerSlot, setTrainerSlot] = useState([]);
+    console.log(trainerSlot);
     const {_id, name, email, age, profileImage, skills,  availableDay, availableTime, status} = trainer;
+    const axiosPublic = useAxiosPublic();
+    const [slotTotal, setSlotTotal] = useState(0);
+
+    useEffect(() => {
+        axiosPublic.get(`http://localhost:5555/trainerlot/${email}`)
+        .then(res=>{
+          console.log(res.data);
+          const data = res.data;
+          setTrainerSlot(data);
+          console.log(data, 'inside');
+          console.log(data.slotTime, 'inside time');
+          //var total = data.reduce((accum,item) => accum + item.Marks, 0)
+          const slotTotalCount = data.reduce((slotingTime,item) => slotingTime + parseInt(item.slotTime), 0);
+          console.log(slotTotalCount, 'slottime');
+          setSlotTotal(slotTotalCount)  
+        })
+        .catch(error =>{
+          console.log(error);
+        })
+      }, [email])
     
     return (
         <>
@@ -42,6 +67,7 @@ const AllTrainerComp = ({trainer}) => {
                                     <FaGoogle />
                                 </button>
                             </div>
+                            <div className="">Available Slot: {slotTotal} </div>
                         </div>
                     </div>
                     <Link to={`/all-trainers/${_id}`}>
