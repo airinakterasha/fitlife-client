@@ -39,12 +39,12 @@ const router = createBrowserRouter([
         {
           path: '/all-trainers/:id',
           element: <TrainerDetails></TrainerDetails>,
-          loader: ({params}) => fetch(`http://localhost:5555/betrainer/${params.id}`)
+          loader: ({params}) => fetch(`https://fitlife-server.vercel.app/${params.id}`)
         },
         {
           path: '/booked-trainers/:id',
           element: <BookedTrainer></BookedTrainer>,
-          loader: ({params}) => fetch(`http://localhost:5555/slot/${params.id}`)
+          loader: ({params}) => fetch(`https://fitlife-server.vercel.app/${params.id}`)
         },
         {
           path: '/all-classes',

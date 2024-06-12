@@ -18,7 +18,7 @@ const TrainerDetails = () => {
 
 
   useEffect(() => {
-    axiosPublic.get(`http://localhost:5555/trainerlot/${email}`)
+    axiosPublic.get(`fitlife-server.vercel.apptrainerlot/${email}`)
     .then(res=>{
       console.log(res.data);
       const data = res.data;
@@ -96,13 +96,13 @@ const TrainerDetails = () => {
                   <div className="bg-green-500">
                     {
                       trainerSlot.map(slotTrainer => <div key={slotTrainer._id} className="">
-                        <p>Available Slot time: {slotTrainer.slotName}</p>
-                        <p>Available Slot: 
+                        
+                        <button>
+                          
                           <Link to={`/booked-trainers/${slotTrainer._id}`}>
-                            <button className="btn btn-md">{slotTrainer.slotTime}</button> 
+                            <button className="btn btn-md capitalize">Available Slot: {slotTrainer.slotName} - {slotTrainer.slotTime}</button> 
                           </Link>
-                        </p>
-                        {/* <p>{slotTrainer.slotTime.length}</p> */}
+                        </button>
                         <p>
                           {
                             slotTrainer.classes.map((slotClass, index) => <span key={index}>{slotClass.label}</span>)

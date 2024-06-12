@@ -14,7 +14,7 @@ const AllTrainerComp = ({trainer}) => {
     const [slotTotal, setSlotTotal] = useState(0);
 
     useEffect(() => {
-        axiosPublic.get(`http://localhost:5555/trainerlot/${email}`)
+        axiosPublic.get(`fitlife-server.vercel.apptrainerlot/${email}`)
         .then(res=>{
           console.log(res.data);
           const data = res.data;

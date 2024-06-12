@@ -20,7 +20,7 @@ const AddNewSlot = () => {
   // console.log(betrainer);
   // console.log(classes);
 
-  // axiosSecure.get(`http://localhost:5555/trainer/${email}`)
+  // axiosSecure.get(`fitlife-server.vercel.apptrainer/${email}`)
   // .then(res => {
   //   console.log(res)
   //   console.log(res.data)
