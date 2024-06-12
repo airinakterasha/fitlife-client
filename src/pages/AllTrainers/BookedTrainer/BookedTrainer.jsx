@@ -10,10 +10,16 @@ const BookedTrainer = () => {
   const {user, packageone, setPackage} = useAuth();
   console.log(bookingTrainer);
   const {_id, trainerName, slotName, trainerImage, slotTime, classes, email, age, profileImage, skills, role, availableDay, availableTime, status} = bookingTrainer;
+
+  const handleBasicPackage = () => {
+    
+  }
+
+
   return (
     <>
         <Helmet>
-              <title>FitLife | Booked {name}</title>
+              <title>FitLife | Booked {trainerName}</title>
         </Helmet>
         <div className="">
             <div className="">
@@ -29,7 +35,6 @@ const BookedTrainer = () => {
                     <div className="flex flex-col space-y-4">
                       <div>
                         <h2 className="text-2xl font-semibold">{trainerName}</h2>
-                        <span className="text-sm dark:text-gray-600">General manager</span>
                       </div>
                       <div className="space-y-1">
                         <span className="flex items-center space-x-2">
@@ -39,16 +44,16 @@ const BookedTrainer = () => {
                           <span className="dark:text-gray-600 capitalize">Available Slot: {slotName} - {slotTime}</span>
                         </span>
 
-                        <span className="flex items-center space-x-2">
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="Phonenumber" className="w-4 h-4">
-                            <path fill="currentColor" d="M449.366,89.648l-.685-.428L362.088,46.559,268.625,171.176l43,57.337a88.529,88.529,0,0,1-83.115,83.114l-57.336-43L46.558,362.088l42.306,85.869.356.725.429.684a25.085,25.085,0,0,0,21.393,11.857h22.344A327.836,327.836,0,0,0,461.222,133.386V111.041A25.084,25.084,0,0,0,449.366,89.648Zm-20.144,43.738c0,163.125-132.712,295.837-295.836,295.837h-18.08L87,371.76l84.18-63.135,46.867,35.149h5.333a120.535,120.535,0,0,0,120.4-120.4v-5.333l-35.149-46.866L371.759,87l57.463,28.311Z"></path>
-                          </svg>
-                          <p>
+                       
+                        <div className="">
+                          <div className="flex gap-3">
+                          <p className="py-3">Classes: </p>
                             {
-                              classes.map((slotClass, index) => <span key={index}>{slotClass.label}</span>)
+                              classes.map((slotClass, index) => <p key={index} className="btn">{slotClass.label}</p>)
                             }
-                          </p>
-                        </span>
+                          </div>
+                        </div>
+                       
                       </div>
                     </div>
                   </div>
@@ -62,10 +67,6 @@ const BookedTrainer = () => {
                       <div className="mb-16 space-y-4 text-center">
                         <h1 className="text-4xl font-semibold leading-tight">Pricing</h1>
                         <p className="px-4 sm:px-8 lg:px-24">Sunt suscipit eaque qui iure unde labore numquam iusto alias explicabo, pariatur ipsam, cupiditate aliquid modi?</p>
-                        <div>
-                          <button className="px-4 py-1 font-semibold border rounded-l-lg dark:bg-violet-600 dark:border-violet-600 dark:text-gray-50">Monthly</button>
-                          <button className="px-4 py-1 border rounded-r-lg dark:border-violet-600">Annually</button>
-                        </div>
                       </div>
                       <div className="grid max-w-md grid-cols-1 gap-6 mx-auto auto-rows-fr lg:max-w-full lg:gap-2 xl:gap-6 lg:grid-cols-3">
                         <div className="relative z-0 flex flex-col items-center p-8 border rounded-md">
@@ -97,7 +98,11 @@ const BookedTrainer = () => {
                               <span>Lumet consectetur adipisicing</span>
                             </li>
                           </ul>
-                          <button className="px-4 py-2 mt-4 font-semibold uppercase border rounded-lg md:mt-12 sm:py-3 sm:px-8 dark:border-violet-600">Subscribe price $30</button>
+                          <button 
+                          className="px-4 py-2 mt-4 font-semibold uppercase border rounded-lg md:mt-12 sm:py-3 sm:px-8 dark:border-violet-600"
+                          >
+                            Subscribe price $10
+                          </button>
                         </div>
                         <div className="relative flex flex-col items-center p-8 border-2 rounded-md dark:border-violet-600 dark:bg-gray-100">
                           <span className="absolute top-0 px-6 pt-1 pb-2 font-medium rounded-b-lg dark:bg-violet-600 dark:text-gray-50">Professional</span>
