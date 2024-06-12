@@ -9,12 +9,12 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 const AllTrainerComp = ({trainer}) => {
     const [trainerSlot, setTrainerSlot] = useState([]);
     console.log(trainerSlot);
-    const {_id, name, email, age, profileImage, skills,  availableDay, availableTime, status} = trainer;
+    const {_id, trainerName, email, age, profileImage} = trainer;
     const axiosPublic = useAxiosPublic();
     const [slotTotal, setSlotTotal] = useState(0);
 
     useEffect(() => {
-        axiosPublic.get(`fitlife-server.vercel.apptrainerlot/${email}`)
+        axiosPublic.get(`/availslot/${email}`)
         .then(res=>{
           console.log(res.data);
           const data = res.data;
@@ -29,7 +29,7 @@ const AllTrainerComp = ({trainer}) => {
         .catch(error =>{
           console.log(error);
         })
-      }, [email])
+      }, [axiosPublic, email])
     
     return (
         <>
@@ -39,7 +39,7 @@ const AllTrainerComp = ({trainer}) => {
                     <div className="flex items-center justify-between p-3">
                         <div className="flex items-center space-x-2">
                             <div className="-space-y-1">
-                                <h2 className="text-sm font-semibold leading-none">{name}</h2>
+                                <h2 className="text-sm font-semibold leading-none">{trainerName}</h2>
                                 <span className="inline-block text-xs leading-none dark:text-gray-600 capitalize">{age} years experience</span>
                             </div>
                         </div>

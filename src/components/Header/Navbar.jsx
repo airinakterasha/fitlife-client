@@ -217,6 +217,7 @@ const Navbar = () => {
                   <span>All Classes</span>
                 </NavLink>
               </li>
+              {/* dashboard start */}
               <li role="none" className="flex items-stretch">
                 <NavLink to='/dashboard'
                   role="menuitem"
@@ -225,6 +226,17 @@ const Navbar = () => {
                   href="javascript:void(0)"
                 >
                   <span>Dashboard</span>
+                </NavLink>
+              </li>
+              {/* dashboard end */}
+              <li role="none" className="flex items-stretch">
+                <NavLink to='/community'
+                  role="menuitem"
+                  aria-haspopup="false"
+                  className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600 focus:outline-none focus-visible:outline-none lg:px-8"
+                  href="javascript:void(0)"
+                >
+                  <span>Community</span>
                 </NavLink>
               </li>
             </ul>
@@ -244,8 +256,8 @@ const Navbar = () => {
                       {/*    <!-- Start Tooltip trigger --> */}
                       <img
                         src={user?.photoURL}
-                        alt="User's Name"
-                        title="User's Name aaa"
+                        alt={user?.displayName}
+                        title={user?.displayName}
                         className="max-w-full rounded-full w-12 h-12"
                       />
                       {/*    <!-- End Tooltip trigger --> */}

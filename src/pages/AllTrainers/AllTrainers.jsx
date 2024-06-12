@@ -28,7 +28,7 @@ const AllTrainers = () => {
     })
     .catch()
 
-  }, [])
+  }, [axiosPublic, betrainer.email, trainerSlot])
 
   
 

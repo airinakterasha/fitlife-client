@@ -39,9 +39,10 @@ const BeTrainer = () => {
   const navigate = useNavigate()
   const onSubmit = (data) => {
     console.log(data);
-    const {name, email=`${user?.email}`, age, profileImage, trainerDetails, skills, role='pending', availableDay, availableTime, status='pending'} = data;
-    const beATrainer = {name, email, age, profileImage, trainerDetails, skills, role, availableDay, availableTime, status};
+    const {trainerName=(data.NameTrainer ? data.NameTrainer : user?.displayName), email=`${user?.email}`, age, profileImage, trainerDetails, skills, role='pending', availableDay, availableTime, status='pending'} = data;
+    const beATrainer = {trainerName, email, age, profileImage, trainerDetails, skills, role, availableDay, availableTime, status};
     console.log(beATrainer);
+
     axiosSecure.post('/betrainer', beATrainer)
     .then((res)=>{
       console.log(res.data);
@@ -59,6 +60,9 @@ const BeTrainer = () => {
 
     }
     // if end
+    })
+    .catch(errors=> {
+      console.log(errors);
     })
     
 
@@ -82,8 +86,8 @@ const BeTrainer = () => {
                       <div className="label">
                         <span className="label-text capitalize">Full name</span>
                       </div>
-                      <input type="text" defaultValue={user?.displayName} {...register("name", { required: !user?.displayName })} placeholder="Your name" className="input input-bordered w-full" />
-                      {user?.displayName && errors.name && <p className="text-red-500 capitalize">name required</p>}
+                      <input type="text" defaultValue={user?.displayName} {...register("NameTrainer", { required: !user?.displayName })} placeholder="Your name" className="input input-bordered w-full" />
+                      {user?.displayName && errors.NameTrainer && <p className="text-red-500 capitalize">name required</p>}
                     </label>
                     <label className="form-control w-full">
                       <div className="label">
@@ -95,8 +99,8 @@ const BeTrainer = () => {
                       <div className="label">
                         <span className="label-text capitalize">Age</span>
                       </div>
-                      <input type="number" {...register("age", { required: true })} placeholder="Your age" className="input input-bordered w-full" />
-                      {errors.age && <p className="text-red-500 capitalize">age required</p>}
+                      <input type="number" {...register("age", { required: true })} placeholder="Your experience age" className="input input-bordered w-full" />
+                      {errors.age && <p className="text-red-500 capitalize">experience age required</p>}
                     </label>
                   </div>
                   <label className="form-control w-full">

@@ -13,8 +13,8 @@ import { useNavigate } from "react-router-dom";
 const AddNewSlotTrainer = () => {
   const [trainerOne] = useTrainerByEmail();
   console.log(trainerOne);
-  const {name, email, profileImage, availableDay} = trainerOne
-  const {register, handleSubmit, reset, control, formState: { errors } } = useForm();
+  const {trainerName, email, profileImage, availableDay} = trainerOne
+  const {register, handleSubmit, reset, control } = useForm();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
 
@@ -33,8 +33,8 @@ const AddNewSlotTrainer = () => {
 
   const onSubmit = (data) => {
     console.log(data);
-    const {name=name, email=email, trainerImage=profileImage, slotName, slotTime, classes, availableDay } = data;
-    const slotTrainer =  {name, email, trainerImage, slotName, slotTime, classes, availableDay };
+    const {trainerName=trainerName, email=email, trainerImage=profileImage, slotName, slotTime, classes, availableDay } = data;
+    const slotTrainer =  {trainerName, email, trainerImage, slotName, slotTime, classes, availableDay };
 
     axiosSecure.post('/slot', slotTrainer)
     .then(res => {
@@ -77,7 +77,7 @@ const AddNewSlotTrainer = () => {
                             <div className="label">
                               <span className="label-text capitalize">Trainer name {name}</span>
                             </div>
-                            <input type="text" defaultValue={name} readOnly  {...register("name")} className="input input-bordered w-full" />
+                            <input type="text" defaultValue={trainerName} readOnly  {...register("trainerName")} className="input input-bordered w-full" />
                         </label>
                         <label className="form-control w-full">
                             <div className="label">
@@ -95,7 +95,7 @@ const AddNewSlotTrainer = () => {
                         </label>
                         <label className="form-control w-full">
                             <div className="label">
-                              <span className="label-text capitalize">Slot Time</span>
+                              <span className="label-text capitalize">Available Slot hour </span>
                             </div>
                             <input type="number"  {...register("slotTime")} className="input input-bordered w-full" placeholder="Slot Time"/>
                         </label>

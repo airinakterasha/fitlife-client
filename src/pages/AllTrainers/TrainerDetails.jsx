@@ -11,14 +11,14 @@ const TrainerDetails = () => {
   const [trainerSlot, setTrainerSlot] = useState([]);
   const [slotTotal, setSlotTotal] = useState(0);
   const detailsTrainer = useLoaderData();
-  const {name, email, age, profileImage, trainerDetails, skills, role, availableDay, availableTime, status} = detailsTrainer;
+  const {_id, trainerName, email, age, profileImage, trainerDetails, skills} = detailsTrainer;
   console.log(skills);
   console.log(detailsTrainer);
   const axiosPublic = useAxiosPublic();
 
 
   useEffect(() => {
-    axiosPublic.get(`fitlife-server.vercel.apptrainerlot/${email}`)
+    axiosPublic.get(`/trainerlot/${email}`)
     .then(res=>{
       console.log(res.data);
       const data = res.data;
@@ -35,7 +35,7 @@ const TrainerDetails = () => {
     .catch(error =>{
       console.log(error);
     })
-  }, [email])
+  }, [axiosPublic, email])
 
 
   
@@ -43,11 +43,11 @@ const TrainerDetails = () => {
   return (
     <>
         <Helmet>
-              <title>FitLife | about {name}</title>
+              <title>FitLife | about {trainerName}</title>
         </Helmet>
         <div className="container mx-auto">
             <div className="py-10">
-              <TitleSection heading={`About ${name}`} subHeading={`know details about our trainer`}></TitleSection>
+              <TitleSection heading={`About ${trainerName}`} subHeading={`know details about our trainer`}></TitleSection>
             </div>
             <div className="grid grid-cols-12">
               <div className="col-span-7 md:px-20">
@@ -58,7 +58,7 @@ const TrainerDetails = () => {
                     <img
                       src={profileImage}
                       alt="card image"
-                      className="aspect-video w-full"
+                      className="aspect-video w-full h-auto"
                     />
                   </figure>
                   {/*  <!-- Body--> */}
@@ -70,19 +70,31 @@ const TrainerDetails = () => {
                       <p className="text-sm text-slate-400"> {email}</p>
                       <p className="text-sm text-slate-400"> {age} years experience</p>
                     </header>
-                    <div className="">
 
-                      <p className="space-x-3">
-                        <span className="font-bold capitalize">Expertise: </span>
-                        {
-                          skills.map((skill, index) => <span key={index} className="btn btn-sm bg-[#F23B3F] text-white rounded-3 ">{skill}</span>)
-                        }
-                      </p>
-                    </div>
                     <p> 
                       <span className="font-bold capitalize">Details : </span>
                       {trainerDetails}.
                     </p>
+                    <div className="">
+
+                      <div className="space-x-3">
+                        <span className="font-bold capitalize">Expertise: </span>
+                        {
+                          skills.map((skill, index) => <p key={index} 
+                          className=" my-1 inline-flex h-10 flex-1 items-center justify-center gap-2 justify-self-center whitespace-nowrap rounded bg-emerald-50 px-5 text-sm font-medium tracking-wide text-emerald-500 transition duration-300 hover:bg-emerald-100 hover:text-emerald-600 focus:bg-emerald-200 focus:text-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-100 disabled:text-emerald-400 disabled:shadow-none"
+                          >
+                            {skill}
+                          </p>)
+                        }
+                      </div>
+                    </div>
+                    {/* be a trainer */}
+                    <div className="">
+                      <Link to='/be-a-trainer'>
+                        <button className="btn bg-[#F23B3F] text-white mt-5"> Be A Trainer</button>
+                      </Link>
+                    </div>
+                    {/* be a trainer */}
                   </div>
                 </div>
                 {/* Trainer Information end */}
@@ -90,40 +102,53 @@ const TrainerDetails = () => {
               {/* Trainer Information end */}
               {/* slot Information start */}
               <div className="col-span-5">
-                Slot details
+                <span className="font-bold">Slot details:</span>
                 {/* slot details will here */}
-                <div className="space-y-5 mb-10">
-                  <div className="bg-green-500">
-                    {
+                {
                       trainerSlot.map(slotTrainer => <div key={slotTrainer._id} className="">
-                        
-                        <button>
+                        <div className="space-y-5 my-10">
+                          <div className="overflow-hidden rounded bg-white text-slate-500 shadow-md shadow-slate-200">
+                            <header className="mb-4 space-y-2 md:ps-10 py-5">
+                              <h3 className="text-xl font-medium text-slate-700">
+                                <span>Classes: </span>
+                                {
+                                  slotTrainer.classes.map((slotClass, index) => <span key={index}>{slotClass.label} || </span>)
+                                }
+                              </h3>
+                              <p className=" text-slate-400"> 
+                                <span>Available Day: </span>
+                                {
+                                  slotTrainer.availableDay.map((slotDay, index) => <span key={index}>{slotDay.label}, </span>)
+                                }
+                              </p>
+                              <div className="">
+                                <Link to={`/booked-trainers/${slotTrainer._id}`}>
+                                  <button
+                                  className="capitalize inline-flex h-10 flex-1 items-center justify-center gap-2 whitespace-nowrap rounded bg-emerald-500 px-5 text-sm font-medium tracking-wide text-white transition duration-300 hover:bg-emerald-600 focus:bg-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none"
+                                  >
+                                    Available Slot: {slotTrainer.slotName} - {slotTrainer.slotTime}
+                                  </button>
+                                </Link>
+                              </div>
+                            </header>
+                          </div>
+                        </div>
                           
-                          <Link to={`/booked-trainers/${slotTrainer._id}`}>
-                            <button className="btn btn-md capitalize">Available Slot: {slotTrainer.slotName} - {slotTrainer.slotTime}</button> 
-                          </Link>
-                        </button>
-                        <p>
-                          {
-                            slotTrainer.classes.map((slotClass, index) => <span key={index}>{slotClass.label}</span>)
-                          }
-                        </p>
-                        <p>
-                          {
-                            slotTrainer.availableDay.map((slotDay, index) => <span key={index}>{slotDay.label}</span>)
-                          }
-                        </p>
-                        
                       </div>)
-                    }
-                    
-                  </div>
+                }
+                <div className="space-y-5 my-10">
                   <div className="">
                     <h3 className="capitalize">Available total slot: {slotTotal}</h3>
                   </div>
                   {/* <div className="">{slotTotal}</div> */}
                 </div>
-                <button className="btn bg-[#F23B3F] text-white mt-5">Applied For Be A Trainer</button>
+                <div className="">
+                  <p>Want to become a trainer?</p>
+                  <Link to='/be-a-trainer'>
+                    <button className="btn bg-[#F23B3F] text-white mt-5"> Be A Trainer</button>
+                  </Link>
+                </div>
+                
 
                 {/* end */}
               </div>
