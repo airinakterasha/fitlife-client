@@ -12,7 +12,6 @@ import BeTrainer from "../pages/AllTrainers/BeTrainer/BeTrainer";
 import AppliedTrainer from "../pages/AllTrainers/AppliedTrainer/AppliedTrainer";
 import PrivateRoute from "./PrivateRoute";
 import AllUsers from "../dashboard/Dashboard/AdminArea/AllUsers";
-import Trainers from "../dashboard/Trainers/Trainers";
 import Balance from "../dashboard/Dashboard/AdminArea/Balance";
 import AddNewClass from "../dashboard/Dashboard/AdminArea/AddNewClass";
 import ManageSlot from "../dashboard/Dashboard/TrainerArea/ManageSlot";
@@ -22,6 +21,8 @@ import TrainerDetails from "../pages/AllTrainers/TrainerDetails";
 import BookedTrainer from "../pages/AllTrainers/BookedTrainer/BookedTrainer";
 import Community from "../pages/Community/Community";
 import PaymentPage from "../pages/PaymentPage/PaymentPage";
+import AddForum from "../dashboard/Dashboard/Forum/AddForum";
+
 
 
 const router = createBrowserRouter([
@@ -104,16 +105,17 @@ const router = createBrowserRouter([
           element: <AllUsers></AllUsers>
         },
         {
-          path: 'alltrainers-dash',
-          element: <Trainers></Trainers>
-        },
-        {
           path: 'balance',
           element: <Balance></Balance>
         },
         {
           path: 'add-new-class',
           element: <AddNewClass></AddNewClass>
+        },
+        // forum start
+        {
+          path: 'add-forum',
+          element: <AddForum></AddForum>
         },
       ]
     }

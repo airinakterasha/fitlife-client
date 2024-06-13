@@ -96,7 +96,7 @@ const Dashboard = () => {
                           <p className="capitalize">Add new slot trainer</p>
                         </li>
                       </NavLink>
-                      <NavLink to='/dashboard/be-a-trainer'>
+                      <NavLink to='/dashboard/add-forum'>
                         <li className="flex mb-2">
                           <div className="p-1 mr-1">
                             <FaUserCog></FaUserCog>
