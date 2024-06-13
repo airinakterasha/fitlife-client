@@ -15,7 +15,7 @@ const BookedTrainer = () => {
   const {user} = useAuth();
   const bookingTrainer = useLoaderData();
   //console.log(bookingTrainer);
-  const {trainerName, slotName, trainerImage, slotTime, classes} = bookingTrainer;
+  const {trainerName, email, slotName, trainerImage, slotTime, classes} = bookingTrainer;
   const [packages, setPackages] = useState([]);
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [selectedPackageId, setSelectedPackageId] = useState(null);
@@ -48,14 +48,16 @@ const BookedTrainer = () => {
         
         // send cart item to the database.
         const cartItem = {
-          userName: user.displayName,
-          email: user.email,
+          clientName: user.displayName,
+          clientEmail: user.email,
           trainerImage: trainerImage,
           trainerName: trainerName,
+          trainerEmail: email,
+          training: 'booked',
           slotName: slotName,
           pacageId: selectedPackage._id,
           packName: selectedPackage.pkgName,
-          packPrice: selectedPackage.pkgPrice,
+          packPrice: selectedPackage.pkgPrice,          
         }
         axiosSecure.post('/carts', cartItem)
           .then(res => {

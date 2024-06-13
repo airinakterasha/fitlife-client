@@ -1,6 +1,9 @@
+import useCart from "../../hooks/useCart"
 
 
 const PaymentPage = () => {
+    const [cart] = useCart();
+    console.log(cart);
 
     return (
         <>

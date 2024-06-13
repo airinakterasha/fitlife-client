@@ -14,13 +14,13 @@ const AllTrainerComp = ({trainer}) => {
     const [slotTotal, setSlotTotal] = useState(0);
 
     useEffect(() => {
-        axiosPublic.get(`/availslot/${email}`)
+        axiosPublic.get(`/trainerlot/${email}`)
         .then(res=>{
-          console.log(res.data);
+          console.log(res.data, 'from axios');
           const data = res.data;
           setTrainerSlot(data);
-          console.log(data, 'inside');
-          console.log(data.slotTime, 'inside time');
+          //console.log(data, 'inside');
+          //console.log(data.slotTime, 'inside time');
           //var total = data.reduce((accum,item) => accum + item.Marks, 0)
           const slotTotalCount = data.reduce((slotingTime,item) => slotingTime + parseInt(item.slotTime), 0);
           console.log(slotTotalCount, 'slottime');
