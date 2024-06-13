@@ -11,7 +11,7 @@ const TrainerDetails = () => {
   const [trainerSlot, setTrainerSlot] = useState([]);
   const [slotTotal, setSlotTotal] = useState(0);
   const detailsTrainer = useLoaderData();
-  const {_id, trainerName, email, age, profileImage, trainerDetails, skills} = detailsTrainer;
+  const {trainerName, email, age, profileImage, trainerDetails, skills} = detailsTrainer;
   console.log(skills);
   console.log(detailsTrainer);
   const axiosPublic = useAxiosPublic();
@@ -49,7 +49,7 @@ const TrainerDetails = () => {
             <div className="py-10">
               <TitleSection heading={`About ${trainerName}`} subHeading={`know details about our trainer`}></TitleSection>
             </div>
-            <div className="grid grid-cols-12">
+            <div className="grid grid-cols-1 md:grid-cols-12">
               <div className="col-span-7 md:px-20">
                 {/* Trainer Information */}
                 <div className="overflow-hidden rounded bg-white text-slate-500 shadow-md shadow-slate-200">
@@ -58,14 +58,14 @@ const TrainerDetails = () => {
                     <img
                       src={profileImage}
                       alt="card image"
-                      className="aspect-video w-full h-auto"
+                      className="aspect-video w-full h-[500px] lg:w-2/3 lg:h-[700px]"
                     />
                   </figure>
                   {/*  <!-- Body--> */}
                   <div className="p-6">
                     <header className="mb-4">
                       <h3 className="text-xl font-medium text-slate-700">
-                        {name}
+                        {trainerName}
                       </h3>
                       <p className="text-sm text-slate-400"> {email}</p>
                       <p className="text-sm text-slate-400"> {age} years experience</p>
@@ -102,13 +102,16 @@ const TrainerDetails = () => {
               {/* Trainer Information end */}
               {/* slot Information start */}
               <div className="col-span-5">
-                <span className="font-bold">Slot details:</span>
+                <div className="p-10">
+                  <span className="font-bold">Slot details:</span>
+                </div>
+                
                 {/* slot details will here */}
                 {
                       trainerSlot.map(slotTrainer => <div key={slotTrainer._id} className="">
                         <div className="space-y-5 my-10">
                           <div className="overflow-hidden rounded bg-white text-slate-500 shadow-md shadow-slate-200">
-                            <header className="mb-4 space-y-2 md:ps-10 py-5">
+                            <header className="mb-4 space-y-2 ps-10 py-5">
                               <h3 className="text-xl font-medium text-slate-700">
                                 <span>Classes: </span>
                                 {
@@ -137,12 +140,12 @@ const TrainerDetails = () => {
                       </div>)
                 }
                 <div className="space-y-5 my-10">
-                  <div className="">
+                  <div className="ps-10">
                     <h3 className="capitalize">Available total slot: {slotTotal}</h3>
                   </div>
                   {/* <div className="">{slotTotal}</div> */}
                 </div>
-                <div className="">
+                <div className="ps-10">
                   <p>Want to become a trainer?</p>
                   <Link to='/be-a-trainer'>
                     <button className="btn bg-[#F23B3F] text-white mt-5"> Be A Trainer</button>

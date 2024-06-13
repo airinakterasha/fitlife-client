@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 const AddNewSlotTrainer = () => {
   const [trainerOne] = useTrainerByEmail();
   console.log(trainerOne);
-  const {trainerName, email, profileImage, availableDay} = trainerOne
+  const {_id, trainerName, email, profileImage, availableDay} = trainerOne
   const {register, handleSubmit, reset, control } = useForm();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
@@ -34,7 +34,7 @@ const AddNewSlotTrainer = () => {
   const onSubmit = (data) => {
     console.log(data);
     const {trainerName=trainerName, email=email, trainerImage=profileImage, slotName, slotTime, classes, availableDay } = data;
-    const slotTrainer =  {trainerName, email, trainerImage, slotName, slotTime, classes, availableDay };
+    const slotTrainer =  {trainerId:_id, trainerName, email, trainerImage, slotName, slotTime, classes, availableDay };
 
     axiosSecure.post('/slot', slotTrainer)
     .then(res => {

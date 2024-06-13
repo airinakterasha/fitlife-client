@@ -13,7 +13,7 @@ const AllClasses = () => {
       </Helmet>
       <div className="">
           <div className="py-10">
-            <TitleSection heading={`Booked `} subHeading={`Book the trainer`}></TitleSection>
+            <TitleSection heading={`All Class`} subHeading={`Classes we are providing`}></TitleSection>
           </div>
           <div className="grid grid-col-1 md:grid-cols-3">
             {
