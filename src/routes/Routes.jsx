@@ -55,9 +55,8 @@ const router = createBrowserRouter([
           element: <PrivateRoute><BeTrainer></BeTrainer></PrivateRoute>
         },
         {
-          path: '/payment/:id',
+          path: '/payment',
           element: <PaymentPage></PaymentPage>,
-          loader: ({params}) => fetch(`http://localhost:5555/slot/${params.id}`)
         },
         {
           path: '/all-classes',
