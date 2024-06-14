@@ -9,16 +9,21 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const ManageSlot = () => {
   const {user} = useAuth();
-  const [slots, refetch] = useSlot();
+  const [slots, loading, refetch] = useSlot();
   const [cartAll] = useCartAll()
   console.log(cartAll);
   const axiosSecure = useAxiosSecure();
 
   const mySlots = slots.filter(slotMine => slotMine.email === user?.email );
-  const mySelectedSlots = cartAll.filter(bookedSlot => bookedSlot.trainerEmail === user?.email );
-
   console.log(mySlots);
+
+
+  const mySelectedSlots = cartAll.filter(bookedSlot => bookedSlot.trainerEmail === user?.email && bookedSlot.slotId === mySlots._id);
+
+  
   console.log(mySelectedSlots);
+  console.log(mySelectedSlots.clientName);
+  
 
   const handleDeleteSlot = (mySlots) => {
     Swal.fire({
@@ -61,10 +66,12 @@ const ManageSlot = () => {
                   <thead>
                     <tr>
                       <th></th>
-                      <th>Name</th>
+                      <th>Slot Id</th>                   
+                      <th>Class</th>
                       <th>Slot Name</th>
-                      <th>Slot hr</th>
-                      <th>Booked Slot</th>
+                      <th>Slot hr</th>  
+                      <th>Slot booked</th>  
+                      <th>Client name</th>  
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -72,11 +79,19 @@ const ManageSlot = () => {
                     {
                       mySlots.map((mySlot, index) => <tr key={mySlot._id}>
                         <th>{index + 1}</th>
-                        <td>Cy Ganderton</td>
+                        <td>{mySlot._id}</td>
+                        <td>
+                          {
+                            mySlot.classes.map((myclass, index) => <button key={index} className="mr-1 btn btn-sm">{myclass.label}</button>)
+                          }
+                        </td>
                         <td>{mySlot.slotName}</td>
                         <td>{mySlot.slotTime}</td>
                         <td>
                           client name
+                        </td>
+                        <td>
+                          Slot booked
                         </td>
                         <td>
                           <button onClick={() => handleDeleteSlot(mySlot)} className="btn btn-sm">Delete</button>

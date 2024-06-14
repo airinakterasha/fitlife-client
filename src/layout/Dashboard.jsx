@@ -80,20 +80,13 @@ const Dashboard = () => {
                           <p className="capitalize">Manage slot</p>
                         </li>
                       </NavLink>
-                      <NavLink to='/dashboard/add-new-slot'>
-                        <li className="flex mb-2">
-                          <div className="p-1 mr-1">
-                            <FaUserCog></FaUserCog>
-                          </div>
-                          <p className="capitalize">Add new slot</p>
-                        </li>
-                      </NavLink>
+
                       <NavLink to='/dashboard/add-new-slot-trainer'>
                         <li className="flex mb-2">
                           <div className="p-1 mr-1">
                             <FaUserCog></FaUserCog>
                           </div>
-                          <p className="capitalize">Add new slot trainer</p>
+                          <p className="capitalize">Add new slot</p>
                         </li>
                       </NavLink>
                       <NavLink to='/dashboard/add-forum'>
@@ -133,7 +126,7 @@ const Dashboard = () => {
                     <div className="p-1 mr-1">
                       <FaUserCog></FaUserCog>
                     </div>
-                    <p className="capitalize">recommended classes page</p>
+                    <p className="capitalize">Booked Trainer page</p>
                   </li>
                 </NavLink>
                 <NavLink to='/dashboard/be-a-trainer'>

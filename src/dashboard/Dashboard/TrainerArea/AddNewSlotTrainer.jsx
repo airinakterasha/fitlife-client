@@ -44,7 +44,7 @@ const AddNewSlotTrainer = () => {
         Swal.fire({
             position: "top-end",
             icon: "success",
-            title: "You submition is pending. Please wait for a while for approved by admin",
+            title: "Your slot added successfully",
             showConfirmButton: false,
             timer: 2500
         });
@@ -75,7 +75,7 @@ const AddNewSlotTrainer = () => {
                       <div className="flex gap-5">
                         <label className="form-control w-full">
                             <div className="label">
-                              <span className="label-text capitalize">Trainer name {name}</span>
+                              <span className="label-text capitalize">Trainer name </span>
                             </div>
                             <input type="text" defaultValue={trainerName} readOnly  {...register("trainerName")} className="input input-bordered w-full" />
                         </label>
@@ -155,7 +155,7 @@ const AddNewSlotTrainer = () => {
 
                 
 
-               <input type="submit" value="Applied For Be A Trainer" className="btn bg-[#F23B3F] text-white mt-5 w-full" />
+               <input type="submit" value="Add New Slot" className="btn bg-[#F23B3F] text-white mt-5 w-full" />
 
               </form>
             </div>

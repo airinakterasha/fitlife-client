@@ -15,7 +15,7 @@ const BookedTrainer = () => {
   const {user} = useAuth();
   const bookingTrainer = useLoaderData();
   //console.log(bookingTrainer);
-  const {trainerName, email, slotName, trainerImage, slotTime, classes} = bookingTrainer;
+  const {_id, trainerName, email, slotName, trainerImage, slotTime, classes} = bookingTrainer;
   const [packages, setPackages] = useState([]);
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [selectedPackageId, setSelectedPackageId] = useState(null);
@@ -54,7 +54,9 @@ const BookedTrainer = () => {
           trainerName: trainerName,
           trainerEmail: email,
           training: 'booked',
+          slotId: _id,
           slotName: slotName,
+          
           pacageId: selectedPackage._id,
           packName: selectedPackage.pkgName,
           packPrice: selectedPackage.pkgPrice,          
@@ -66,7 +68,7 @@ const BookedTrainer = () => {
                   Swal.fire({
                       position: "top-end",
                       icon: "success",
-                      title: `${selectedPackage.pkgName} added to your cart`,
+                      title: `Selected package added to your cart`,
                       showConfirmButton: false,
                       timer: 1500
                   });
@@ -115,7 +117,7 @@ const BookedTrainer = () => {
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="Email address" className="w-4 h-4">
                             <path fill="currentColor" d="M274.6,25.623a32.006,32.006,0,0,0-37.2,0L16,183.766V496H496V183.766ZM464,402.693,339.97,322.96,464,226.492ZM256,51.662,454.429,193.4,311.434,304.615,256,268.979l-55.434,35.636L57.571,193.4ZM48,226.492,172.03,322.96,48,402.693ZM464,464H48V440.735L256,307.021,464,440.735Z"></path>
                           </svg>
-                          <span className="dark:text-gray-600 capitalize">Available Slot: {slotName} - {slotTime}</span>
+                          <span className="dark:text-gray-600 capitalize">Available Slot: {slotName} - {slotTime} </span>
                         </span>
 
                        
@@ -154,7 +156,7 @@ const BookedTrainer = () => {
                             className="absolute top-0 px-6 pt-1 pb-2 font-medium rounded-b-lg dark:bg-violet-600 dark:text-gray-50 capitalize mt-5">
                               {packagePrice.packageName} - {packagePrice.price}
                             </span>
-                            <p className="my-6 text-4xl font-bold dark:text-violet-600 capitalize">{packagePrice.packageName}</p>
+                            <p className="my-6 text-4xl font-bold dark:text-violet-600 capitalize">{packagePrice.packageName} - {packagePrice.timeDuration} hr</p>
                             <div className="text-start">
                               <ul className="flex-1 space-y-2">
                                 {

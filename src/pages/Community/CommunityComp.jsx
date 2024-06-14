@@ -36,21 +36,24 @@ const CommunityComp = ({forum}) => {
                         </a>
                         <div>
                             <h3 className="text-xl font-medium text-slate-700">
-                                {forumTitle}
+                                {frumAuthor}
                             </h3>
                             <p className="text-sm text-slate-400"> {forumCreated}</p>
                         </div>
                         
                     </header>
-                    <p className="mt-8">
-                        {truncatedDescription}
-                    </p>
-                    <div className="flex justify-around mt-2">
+                    <div className="mt-8">
+                        <h2 className="text-3xl">{forumTitle}</h2>
+                        <p className="">
+                            {truncatedDescription}
+                        </p>
+                    </div>
+                    <div className="flex justify-around mt-5">
                         <div className="">
-                            <button> up-vote</button>
+                            <button className="btn bg-emerald-500 "> up-vote</button>
                         </div>
                         <div className="">
-                            <button>  down-vote</button>
+                            <button className="btn bg-emerald-500 ">down-vote</button>
                         </div>
                     </div>
                 </div>
