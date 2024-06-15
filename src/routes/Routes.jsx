@@ -22,6 +22,7 @@ import Community from "../pages/Community/Community";
 import PaymentPage from "../pages/PaymentPage/PaymentPage";
 import AddForum from "../dashboard/Dashboard/Forum/AddForum";
 import Profile from "../dashboard/Dashboard/Profile/Profile";
+import AllTrainersDash from "../dashboard/Dashboard/AdminArea/AllTrainersDash";
 
 
 
@@ -101,6 +102,10 @@ const router = createBrowserRouter([
           element: <AllUsers></AllUsers>
         },
         {
+          path: 'trainers',
+          element: <AllTrainersDash></AllTrainersDash>
+        },
+        {
           path: 'balance',
           element: <Balance></Balance>
         },
@@ -111,7 +116,7 @@ const router = createBrowserRouter([
         // forum start
         {
           path: 'add-forum',
-          element: <AddForum></AddForum>
+          element: <PrivateRoute><AddForum></AddForum></PrivateRoute>
         },
         // profile
         {

@@ -4,6 +4,7 @@ import { TbPlayerEjectFilled } from "react-icons/tb";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 
 const AppliedTrainerComp = ({trainer}) => {
@@ -30,13 +31,11 @@ const AppliedTrainerComp = ({trainer}) => {
                     });
                     navigate('/dashboard/applied-trainer')
                 }
-                axiosSecure.patch(`/rowuser/${_id}`)
-                .then(()=>{
-                    console.log('user to trainer updated')
-                })
             
             })
-            .catch()
+            .catch(err=> {
+                console.log(err)
+            })
         })
         .catch ((error)=> {
             console.error("Failed to update trainer status:", error);
@@ -54,6 +53,7 @@ const AppliedTrainerComp = ({trainer}) => {
 
     return (
         <>
+           
             <div className="">
                 <div className="overflow-hidden rounded bg-white text-center text-slate-500 shadow-md shadow-slate-200">
                     {/*  <!-- Image --> */}

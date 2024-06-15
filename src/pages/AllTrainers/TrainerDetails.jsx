@@ -109,6 +109,7 @@ const TrainerDetails = () => {
                 {/* slot details will here */}
                 {
                       trainerSlot.map(slotTrainer => <div key={slotTrainer._id} className="">
+
                         <div className="space-y-5 my-10">
                           <div className="overflow-hidden rounded bg-white text-slate-500 shadow-md shadow-slate-200">
                             <header className="mb-4 space-y-2 ps-10 py-5">

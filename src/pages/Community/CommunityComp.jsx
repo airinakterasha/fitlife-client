@@ -66,14 +66,13 @@ const CommunityComp = ({forum}) => {
                         <div className="">
                             <button 
                             onClick={() =>handleVotingUpdate("upvote")}
-                            className="btn bg-emerald-500 "> up-vote {upVote}</button>
+                            className="btn bg-emerald-500 text-white"> Up-vote {upVote}</button>
    
                         </div>
                         <div className="">
-                            
                             <button 
                             onClick={() =>handleVotingUpdate("downvote")}
-                            className="btn bg-emerald-500 ">down-vote {downVote}</button>
+                            className="btn bg-emerald-500 text-white">Down-vote {downVote}</button>
                         </div>
                     </div>
                 </div>
