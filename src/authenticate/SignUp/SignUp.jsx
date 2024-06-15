@@ -27,7 +27,8 @@ const SignUp = () => {
       const email = data.email;
       const photo = data.photo;
       const role = 'member';
-      const user = {name, email, photo, createAt, role}
+      const status='defaultUser';
+      const user = {name, email, photo, createAt, role, status}
       updateUserProfile(data.name, data.photo)
       .then(()=>{
         const userInfo = user

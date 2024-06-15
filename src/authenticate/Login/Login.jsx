@@ -47,6 +47,7 @@ const Login = () => {
           photo: result.user?.photoURL,
           createAt: result.user?.metadata?.creationTime,
           role: 'member',
+          status:'defaultUser',
       }
       axiosPublic.post('/users', userInfo)
       .then(res => {

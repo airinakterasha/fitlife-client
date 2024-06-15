@@ -1,11 +1,25 @@
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 
 const CommunityComp = ({forum}) => {
-    const { frumAuthor, frumAuthorImage, forumTitle, forumImage, forumDescription, forumCreated } = forum;
+    const {_id, frumAuthor, frumAuthorImage, forumTitle, forumImage, forumDescription, forumCreated, upVote, downVote } = forum;
 
     const descriptionWords = forumDescription.split(' ');
     const shortDescription = descriptionWords.slice(0, 15).join(' ');
     const truncatedDescription = descriptionWords.length > 15 ? `${shortDescription}...` : shortDescription;
+    const axiosSecure = useAxiosSecure()
+
+    const handleVotingUpdate = (vote) => {
+        axiosSecure.patch(`/voting/${_id}`, {vote})
+        .then(res => {
+            console.log(res, 'voting')
+        })
+        .catch(err =>{
+            console.log(err);
+        })
+
+
+    }
 
     return (
         <>
@@ -50,10 +64,16 @@ const CommunityComp = ({forum}) => {
                     </div>
                     <div className="flex justify-around mt-5">
                         <div className="">
-                            <button className="btn bg-emerald-500 "> up-vote</button>
+                            <button 
+                            onClick={() =>handleVotingUpdate("upvote")}
+                            className="btn bg-emerald-500 "> up-vote {upVote}</button>
+   
                         </div>
                         <div className="">
-                            <button className="btn bg-emerald-500 ">down-vote</button>
+                            
+                            <button 
+                            onClick={() =>handleVotingUpdate("downvote")}
+                            className="btn bg-emerald-500 ">down-vote {downVote}</button>
                         </div>
                     </div>
                 </div>

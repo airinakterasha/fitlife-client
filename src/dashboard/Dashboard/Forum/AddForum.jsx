@@ -25,7 +25,9 @@ const AddForum = () => {
             forumTitle: data.forumTitle,
             forumImage: data.forumImage,
             forumDescription: data.forumDesc,
-            forumCreated: new Date()
+            forumCreated: new Date(),
+            upVote: 0,
+            downVote: 0
         }
 
         axiosSecure.post('/forum', forumInfo)

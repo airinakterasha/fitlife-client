@@ -24,12 +24,16 @@ const AppliedTrainerComp = ({trainer}) => {
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
-                        title: `${name} approved as a trainer`,
+                        title: `${trainerName} approved as a trainer`,
                         showConfirmButton: false,
                         timer: 1500
                     });
                     navigate('/dashboard/applied-trainer')
                 }
+                axiosSecure.patch(`/rowuser/${_id}`)
+                .then(()=>{
+                    console.log('user to trainer updated')
+                })
             
             })
             .catch()
@@ -39,9 +43,13 @@ const AppliedTrainerComp = ({trainer}) => {
         })
     };
 
-    // const handleReject = () => {
-    //     ///delete function will here.
-    // }
+    const handleReject = () => {
+        axiosSecure.get(`/betrainer/${_id}`)
+        .then()
+        .catch()
+    }
+
+
 
 
     return (
@@ -140,6 +148,7 @@ const AppliedTrainerComp = ({trainer}) => {
                                             </span>
                                         </button>
                                         <button 
+                                        onClick={handleReject}
                                         className="inline-flex h-10 flex-1 items-center justify-center gap-2 justify-self-center whitespace-nowrap rounded bg-emerald-50 px-5 text-sm font-medium tracking-wide text-emerald-500 transition duration-300 hover:bg-emerald-100 hover:text-emerald-600 focus:bg-emerald-200 focus:text-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-100 disabled:text-emerald-400 disabled:shadow-none">
                                             <span className="order-2">Reject</span>
                                             <span className="relative only:-mx-5">

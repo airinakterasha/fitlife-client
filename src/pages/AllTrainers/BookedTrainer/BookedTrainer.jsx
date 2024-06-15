@@ -35,8 +35,8 @@ const BookedTrainer = () => {
     })
   }, [axiosPublic, setPackages])
 
-  const handleSelect = (pkgName, pkgPrice, packageId) => {
-    setSelectedPackage(pkgName, pkgPrice);
+  const handleSelect = (pkgName, pkgPrice, packageId, packageHr) => {
+    setSelectedPackage(pkgName, pkgPrice, packageHr);
     setSelectedPackageId(packageId);
     console.log(pkgName, pkgPrice, packageId);
   };
@@ -59,7 +59,8 @@ const BookedTrainer = () => {
           
           pacageId: selectedPackage._id,
           packName: selectedPackage.pkgName,
-          packPrice: selectedPackage.pkgPrice,          
+          packPrice: selectedPackage.pkgPrice, 
+          packHour: selectedPackage.timeDuration,      
         }
         axiosSecure.post('/carts', cartItem)
           .then(res => {
@@ -185,7 +186,7 @@ const BookedTrainer = () => {
                             </ul>
                             
                             <button 
-                            onClick={() => handleSelect(packagePrice.packageName, packagePrice.price, packagePrice._id)}
+                            onClick={() => handleSelect(packagePrice.packageName, packagePrice.price, packagePrice._id, packagePrice.timeDuration)}
                             className="px-4 py-2 mt-4 font-semibold uppercase border rounded-lg md:mt-12 sm:py-3 sm:px-8 dark:border-violet-600"
                             >
                                 Subscribe price {packagePrice.price}

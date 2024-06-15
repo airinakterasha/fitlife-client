@@ -21,6 +21,7 @@ import BookedTrainer from "../pages/AllTrainers/BookedTrainer/BookedTrainer";
 import Community from "../pages/Community/Community";
 import PaymentPage from "../pages/PaymentPage/PaymentPage";
 import AddForum from "../dashboard/Dashboard/Forum/AddForum";
+import Profile from "../dashboard/Dashboard/Profile/Profile";
 
 
 
@@ -111,6 +112,11 @@ const router = createBrowserRouter([
         {
           path: 'add-forum',
           element: <AddForum></AddForum>
+        },
+        // profile
+        {
+          path: 'profile',
+          element: <Profile></Profile>
         },
       ]
     }

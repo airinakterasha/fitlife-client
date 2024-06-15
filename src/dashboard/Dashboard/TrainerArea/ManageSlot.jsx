@@ -10,12 +10,13 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 const ManageSlot = () => {
   const {user} = useAuth();
   const [slots, loading, refetch] = useSlot();
+
   const [cartAll] = useCartAll()
   console.log(cartAll);
   const axiosSecure = useAxiosSecure();
 
   const mySlots = slots.filter(slotMine => slotMine.email === user?.email );
-  console.log(mySlots);
+  console.log({mySlots});
 
 
   const mySelectedSlots = cartAll.filter(bookedSlot => bookedSlot.trainerEmail === user?.email && bookedSlot.slotId === mySlots._id);
