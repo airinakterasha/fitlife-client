@@ -8,6 +8,9 @@ import useCart from "../../../hooks/useCart";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
+import { FaCheckToSlot } from "react-icons/fa6";
+import { LuCalendarDays } from "react-icons/lu";
+import { BsBookHalf } from "react-icons/bs";
 
 
 
@@ -15,7 +18,7 @@ const BookedTrainer = () => {
   const {user} = useAuth();
   const bookingTrainer = useLoaderData();
   //console.log(bookingTrainer);
-  const {_id, trainerName, email, slotName, trainerImage, slotTime, classes} = bookingTrainer;
+  const {_id, nameTrainer, email, slotName, slotDuration, trainerImage, slotTime, classes, availableDay} = bookingTrainer;
   const [packages, setPackages] = useState([]);
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [selectedPackageId, setSelectedPackageId] = useState(null);
@@ -51,7 +54,7 @@ const BookedTrainer = () => {
           clientName: user.displayName,
           clientEmail: user.email,
           trainerImage: trainerImage,
-          trainerName: trainerName,
+          trainerName: nameTrainer,
           trainerEmail: email,
           training: 'booked',
           slotId: _id,
@@ -96,12 +99,12 @@ const BookedTrainer = () => {
   return (
     <>
         <Helmet>
-              <title>FitLife | Booked {trainerName}</title>
+              <title>FitLife | Booked {nameTrainer}</title>
         </Helmet>
         <div className="">
             <div className="">
                 <div className="py-10">
-                  <TitleSection heading={`Booked ${trainerName}`} subHeading={`Book the trainer`}></TitleSection>
+                  <TitleSection heading={`Booked ${nameTrainer}`} subHeading={`Book the trainer`}></TitleSection>
                 </div>
                 {/* profile */}
                 <div className="flex justify-center">
@@ -109,25 +112,30 @@ const BookedTrainer = () => {
                     <div className="flex-shrink-0 w-full mb-6 h-44 sm:h-32 sm:w-32 sm:mb-0">
                       <img src={trainerImage} alt="" className="object-cover object-center w-full h-full rounded dark:bg-gray-500" />
                     </div>
-                    <div className="flex flex-col space-y-4">
+                    <div className="flex flex-col">
                       <div>
-                        <h2 className="text-2xl font-semibold">{trainerName}</h2>
+                        <h2 className="text-2xl font-semibold">{nameTrainer}</h2>
                       </div>
-                      <div className="space-y-1">
+                      <div className="space-y-2">
                         <span className="flex items-center space-x-2">
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="Email address" className="w-4 h-4">
-                            <path fill="currentColor" d="M274.6,25.623a32.006,32.006,0,0,0-37.2,0L16,183.766V496H496V183.766ZM464,402.693,339.97,322.96,464,226.492ZM256,51.662,454.429,193.4,311.434,304.615,256,268.979l-55.434,35.636L57.571,193.4ZM48,226.492,172.03,322.96,48,402.693ZM464,464H48V440.735L256,307.021,464,440.735Z"></path>
-                          </svg>
-                          <span className="dark:text-gray-600 capitalize">Available Slot: {slotName} - {slotTime} </span>
+                          <FaCheckToSlot />
+                          <span className="dark:text-gray-600 capitalize">Available Slot: {slotName} - {slotDuration} - {slotTime} Slots available</span>
                         </span>
-
+                        <div className="flex gap-3">
+                          <span className="mt-1"><LuCalendarDays /></span>
+                          <p className="">Available Day: </p>
+                            {
+                              availableDay.map((availday, index) => <p key={index} className="btn btn-sm">{availday.label}</p>)
+                            }
+                          </div>
                        
                         <div className="">
                           <div className="flex gap-3">
-                          <p className="py-3">Classes: </p>
-                            {
-                              classes.map((slotClass, index) => <p key={index} className="btn">{slotClass.label}</p>)
-                            }
+                          <span className="mt-1"><BsBookHalf /></span>
+                            <p className="">Classes: </p>
+                              {
+                                classes.map((slotClass, index) => <p key={index} className="btn btn-sm">{slotClass.label}</p>)
+                              }
                           </div>
                         </div>
                        

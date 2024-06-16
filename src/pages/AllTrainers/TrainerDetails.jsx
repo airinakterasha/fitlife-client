@@ -11,7 +11,7 @@ const TrainerDetails = () => {
   const [trainerSlot, setTrainerSlot] = useState([]);
   const [slotTotal, setSlotTotal] = useState(0);
   const detailsTrainer = useLoaderData();
-  const {trainerName, email, age, profileImage, trainerDetails, skills} = detailsTrainer;
+  const {trainerName, email, age, experience, profileImage, trainerDetails, skills} = detailsTrainer;
   console.log(skills);
   console.log(detailsTrainer);
   const axiosPublic = useAxiosPublic();
@@ -58,7 +58,7 @@ const TrainerDetails = () => {
                     <img
                       src={profileImage}
                       alt="card image"
-                      className="aspect-video w-full h-[500px] lg:w-2/3 lg:h-[700px]"
+                      className="aspect-video w-full"
                     />
                   </figure>
                   {/*  <!-- Body--> */}
@@ -68,7 +68,8 @@ const TrainerDetails = () => {
                         {trainerName}
                       </h3>
                       <p className="text-sm text-slate-400"> {email}</p>
-                      <p className="text-sm text-slate-400"> {age} years experience</p>
+                      <p className="text-sm text-slate-400"> {age} years old</p>
+                      <p className="text-sm text-slate-400"> {experience} years experience</p>
                     </header>
 
                     <p> 
@@ -130,7 +131,7 @@ const TrainerDetails = () => {
                                   <button
                                   className="capitalize inline-flex h-10 flex-1 items-center justify-center gap-2 whitespace-nowrap rounded bg-emerald-500 px-5 text-sm font-medium tracking-wide text-white transition duration-300 hover:bg-emerald-600 focus:bg-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none"
                                   >
-                                    Available Slot: {slotTrainer.slotName} - {slotTrainer.slotTime}
+                                    Available Slot: {slotTrainer.slotName}- {slotTrainer.slotDuration} - {slotTrainer.slotTime} Slots.
                                   </button>
                                 </Link>
                               </div>

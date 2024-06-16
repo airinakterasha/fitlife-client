@@ -46,14 +46,14 @@ const Profile = () => {
                       <div className="label">
                         <span className="label-text capitalize">Role</span>
                       </div>
-                      <input type="text" defaultValue={user?.metadata.lastSignInTime} disabled {...register("lastLogin", { required: !user?.metadata.lastSignInTime })} placeholder="Years of experience" className="input input-bordered w-full" />
-                      {!user?.metadata.lastSignInTime && errors.lastLogin && <p className="text-red-500 capitalize">Profile Image required</p>}
+                      <input type="text" defaultValue={user?.role} disabled {...register("role", { required: !user?.role })} className="input input-bordered w-full" />
+                      {!user?.role && errors.role && <p className="text-red-500 capitalize">Role required</p>}
                     </label>
                     <label className="form-control w-full">
                       <div className="label">
                         <span className="label-text capitalize">Last Login time</span>
                       </div>
-                      <input type="text" defaultValue={user?.metadata.lastSignInTime} disabled {...register("lastLogin", { required: !user?.metadata.lastSignInTime })} placeholder="Years of experience" className="input input-bordered w-full" />
+                      <input type="text" defaultValue={user?.metadata.lastSignInTime} disabled {...register("lastLogin", { required: !user?.metadata.lastSignInTime })}  className="input input-bordered w-full" />
                       {!user?.metadata.lastSignInTime && errors.lastLogin && <p className="text-red-500 capitalize">Profile Image required</p>}
                     </label>
                     

@@ -4,10 +4,10 @@ import { TbPlayerEjectFilled } from "react-icons/tb";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 
 
-const AppliedTrainerComp = ({trainer}) => {
+
+const AppliedTrainerComp = ({trainer, refetch}) => {
     const {_id, trainerName, email, age, profileImage, skills, availableDay, availableTime} = trainer;
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
@@ -17,10 +17,11 @@ const AppliedTrainerComp = ({trainer}) => {
         .then((response)=>{
             console.log(response.data);
             console.log(response.data.status);
-            axiosSecure.patch(`/betrainer/${_id}`)
+            axiosSecure.patch(`/betrainer/${_id}`, {"userEmail":email})
             .then(res => {
                 console.log(res, 'update');
                 if(res.data.modifiedCount > 0){
+                    refetch()
                     console.log('User profile info updated to database')
                     Swal.fire({
                         position: "top-end",

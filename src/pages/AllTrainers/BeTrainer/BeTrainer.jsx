@@ -39,8 +39,8 @@ const BeTrainer = () => {
   const navigate = useNavigate()
   const onSubmit = (data) => {
     console.log(data);
-    const {trainerName=(data.NameTrainer ? data.NameTrainer : user?.displayName), email=`${user?.email}`, age, profileImage, trainerDetails, skills, role='pending', availableDay, availableTime, status='pending'} = data;
-    const beATrainer = {trainerName, email, age, profileImage, trainerDetails, skills, role, availableDay, availableTime, status};
+    const {trainerName=(data.NameTrainer ? data.NameTrainer : user?.displayName), email=`${user?.email}`, age, experience, profileImage, trainerDetails, skills, role='pending', availableDay, availableTimeSlot, status='pending'} = data;
+    const beATrainer = {trainerName, email, age, experience, profileImage, trainerDetails, skills, role, availableDay, availableTimeSlot, status};
     console.log(beATrainer);
 
     axiosSecure.post('/betrainer', beATrainer)
@@ -99,8 +99,15 @@ const BeTrainer = () => {
                       <div className="label">
                         <span className="label-text capitalize">Age</span>
                       </div>
-                      <input type="number" {...register("age", { required: true })} placeholder="Your experience age" className="input input-bordered w-full" />
-                      {errors.age && <p className="text-red-500 capitalize">experience age required</p>}
+                      <input type="number" {...register("age", { required: true })} placeholder="Your age" className="input input-bordered w-full" />
+                      {errors.age && <p className="text-red-500 capitalize">age required</p>}
+                    </label>
+                    <label className="form-control w-full">
+                      <div className="label">
+                        <span className="label-text capitalize">years of Experience</span>
+                      </div>
+                      <input type="number" {...register("experience", { required: true })} placeholder="Your years of experience" className="input input-bordered w-full" />
+                      {errors.experience && <p className="text-red-500 capitalize">years experience is required</p>}
                     </label>
                   </div>
                   <label className="form-control w-full">
@@ -166,10 +173,10 @@ const BeTrainer = () => {
                   </div>
                   <label className="form-control w-full">
                       <div className="label">
-                        <span className="label-text capitalize">Your Available time</span>
+                        <span className="label-text capitalize">Your Available time Slot</span>
                       </div>
-                      <input type="text" {...register("availableTime", { required: true })} placeholder="Which time you are available" className="input input-bordered w-full" />
-                      {errors.availableTime && <p className="text-red-500 capitalize">time required</p>}
+                      <input type="text" {...register("availableTimeSlot", { required: true })} placeholder="Which time you are available" className="input input-bordered w-full" />
+                      {errors.availableTimeSlot && <p className="text-red-500 capitalize">Available time slot is required</p>}
                   </label>
                   
                   <input type="submit" value="Applied For Be A Trainer" className="btn bg-[#F23B3F] text-white mt-5 w-full" />

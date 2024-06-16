@@ -4,7 +4,7 @@ import AppliedTrainerComp from "./AppliedTrainerComp";
 import { Helmet } from "react-helmet-async"
 
 const AppliedTrainer = () => {
-  const [betrainer] = useTrainer();
+  const [betrainer, loading, refetch] = useTrainer();
   const appliedTrainer = betrainer.filter(trainer => trainer.status === 'pending');
   console.log(appliedTrainer);
 
@@ -20,7 +20,7 @@ const AppliedTrainer = () => {
                     <TitleSection heading={'Applied trainer'} subHeading={'All applied trainer are here'}></TitleSection>
                     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
                       {
-                        appliedTrainer.map(trainer =><AppliedTrainerComp key={trainer._id} trainer={trainer}></AppliedTrainerComp>)
+                        appliedTrainer.map(trainer =><AppliedTrainerComp key={trainer._id} trainer={trainer} refetch={refetch}></AppliedTrainerComp>)
                       }
                       
                     </div>

@@ -22,8 +22,6 @@ const AllTrainers = () => {
       if(res.data.email === betrainer.email){
         settrainerSlot(trainerSlot);
         console.log(trainerSlot);
-        console.log('aa');
-
       }
     })
     .catch()

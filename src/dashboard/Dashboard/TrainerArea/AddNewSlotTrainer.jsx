@@ -10,33 +10,45 @@ import { useNavigate } from "react-router-dom";
 
 
 
+
 const AddNewSlotTrainer = () => {
-  const [trainerOne] = useTrainerByEmail();
+  
+  const [trainerOne, loading, refetch] = useTrainerByEmail();
+  console.log(loading, refetch);
   console.log(trainerOne);
-  const {_id, trainerName, email, profileImage, availableDay} = trainerOne
-  const {register, handleSubmit, reset, control } = useForm();
+  const {trainerName, email, availableDay } = trainerOne ;
+  
+  
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
 
   const [classes] = useClass();
-  console.log(classes);
-  console.log(classes.className);
+  //console.log(classes);
+  //console.log(classes.className);
   const uniqueClassNames = [...new Set(classes.map(cls => cls.className))].map(className => ({
     label: className,
     value: className
   }));
 
-  // axiosSecure('/slot')
-  // const [trainer, isLoading] = useTrainer()
-  
- 
 
+  const {register, handleSubmit, reset, control, formState: { errors } } = useForm();
+ 
   const onSubmit = (data) => {
     console.log(data);
-    const {trainerName=trainerName, email=email, trainerImage=profileImage, slotName, slotTime, classes, availableDay } = data;
-    const slotTrainer =  {trainerId:_id, trainerName, email, trainerImage, slotName, slotTime, classes, availableDay };
 
-    axiosSecure.post('/slot', slotTrainer)
+    const slotTrainerInfo = {
+      nameTrainer: trainerOne?.trainerName,
+      email: trainerOne?.email,
+      trainerImage:trainerOne?.profileImage,
+      slotName: data.slotName,
+      slotTime: data.slotTime, 
+      slotDuration: data.slotDuration,
+      classes: data.classes, 
+      availableDay: data.availableDay
+    }
+    console.log(slotTrainerInfo)
+   
+    axiosSecure.post('/slot', slotTrainerInfo)
     .then(res => {
       console.log(res.data);
       if(res.data.insertedId){
@@ -48,14 +60,16 @@ const AddNewSlotTrainer = () => {
             showConfirmButton: false,
             timer: 2500
         });
-        navigate('/')
+        
       }
     })
     .catch(error => {
       console.log(error);
     })
-
+    
   }
+
+
 
   return (
     <>
@@ -77,13 +91,13 @@ const AddNewSlotTrainer = () => {
                             <div className="label">
                               <span className="label-text capitalize">Trainer name </span>
                             </div>
-                            <input type="text" defaultValue={trainerName} readOnly  {...register("trainerName")} className="input input-bordered w-full" />
+                            <input type="text" defaultValue={trainerName}  {...register('trainerName')} readOnly className="input input-bordered w-full" placeholder="" />
                         </label>
                         <label className="form-control w-full">
                             <div className="label">
                               <span className="label-text capitalize">Trainer email</span>
                             </div>
-                            <input type="email" defaultValue={email} readOnly  {...register("email")} className="input input-bordered w-full"/>
+                            <input type="email" defaultValue={email} readOnly {...register('email')} className="input input-bordered w-full"/>
                         </label>
                       </div>
                       <div className="flex gap-5">
@@ -92,12 +106,21 @@ const AddNewSlotTrainer = () => {
                               <span className="label-text capitalize">Slot name (example: morning slot)</span>
                             </div>
                             <input type="text"  {...register("slotName")} className="input input-bordered w-full capitalize" placeholder="Morning"/>
+                            {errors.slotName && <p className="text-red-500 capitalize">Slot name required</p>} 
                         </label>
                         <label className="form-control w-full">
                             <div className="label">
                               <span className="label-text capitalize">Available Slot hour </span>
                             </div>
                             <input type="number"  {...register("slotTime")} className="input input-bordered w-full" placeholder="Slot Time"/>
+                            {errors.slotTime && <p className="text-red-500 capitalize">Slot hour required</p>} 
+                        </label>
+                        <label className="form-control w-full">
+                            <div className="label">
+                              <span className="label-text capitalize">Slot duration(Example:10am-11am) </span>
+                            </div>
+                            <input type="text"  {...register("slotDuration")} className="input input-bordered w-full" placeholder="10am - 11am"/>
+                            {errors.slotDuration && <p className="text-red-500 capitalize">Slot duration required</p>} 
                         </label>
                       </div>
                 </div>

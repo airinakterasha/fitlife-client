@@ -23,6 +23,7 @@ import PaymentPage from "../pages/PaymentPage/PaymentPage";
 import AddForum from "../dashboard/Dashboard/Forum/AddForum";
 import Profile from "../dashboard/Dashboard/Profile/Profile";
 import AllTrainersDash from "../dashboard/Dashboard/AdminArea/AllTrainersDash";
+import DashBookedTrainer from "../dashboard/Dashboard/MemberArea/DashBookedTrainer";
 
 
 
@@ -83,7 +84,12 @@ const router = createBrowserRouter([
       element: <Dashboard></Dashboard>,
       errorElement: <ErrorPage></ErrorPage>,
       children: [
-        
+        // member route
+        {
+          path: 'member-booked-trainer',
+          element: <DashBookedTrainer></DashBookedTrainer>
+        },
+        // trainer route
         {
           path: 'applied-trainer',
           element: <AppliedTrainer></AppliedTrainer>
@@ -116,7 +122,8 @@ const router = createBrowserRouter([
         // forum start
         {
           path: 'add-forum',
-          element: <PrivateRoute><AddForum></AddForum></PrivateRoute>
+          element: <PrivateRoute><AddForum></AddForum></PrivateRoute>,
+          // loader: ({params}) => fetch(`http://localhost:5555/allusers/${params.id}`)
         },
         // profile
         {

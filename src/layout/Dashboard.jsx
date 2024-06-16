@@ -67,7 +67,15 @@ const Dashboard = () => {
                           <p className="capitalize">Add new class</p>
                         </li>
                       </NavLink>
-                    </ul>
+                      <NavLink to='/dashboard/add-forum'>
+                        <li className="flex mb-2">
+                          <div className="p-1 mr-1">
+                            <FaUserCog></FaUserCog>
+                          </div>
+                          <p className="capitalize">Add new forum</p>
+                        </li>
+                    </NavLink>
+                    </ul>                   
                     {/* Admin links finished */}
                 </> : <>
                   {/* Trainer links start */}
@@ -121,7 +129,7 @@ const Dashboard = () => {
                     <p className="capitalize">profile page</p>
                   </li>
                 </NavLink>
-                <NavLink to='/dashboard/be-a-trainer'>
+                <NavLink to='/dashboard/member-booked-trainer'>
                   <li className="flex mb-2">
                     <div className="p-1 mr-1">
                       <FaUserCog></FaUserCog>

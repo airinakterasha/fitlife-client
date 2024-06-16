@@ -1,20 +1,34 @@
 import { useForm } from "react-hook-form";
-import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { Helmet } from "react-helmet-async";
 import TitleSection from "../../../components/TitleSection/TitleSection";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
+
+import useAuth from "../../../hooks/useAuth";
+import { useEffect, useState } from "react";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import useUserSingle from "../../../hooks/useUserSingle";
+
 
 
 
 
 const AddForum = () => {
     const {user} = useAuth();
-    console.log(user);
+    const {singleuser} = useUserSingle();
+    //console.log(singleuser);
+
+    const userDetails = user.email === singleuser.email ? singleuser : null;
+    console.log(userDetails);
+    console.log(userDetails.role);
+
+
     const {register, handleSubmit, reset, formState: { errors } } = useForm();
     const navigate = useNavigate()
     const axiosSecure = useAxiosSecure();
+
+
 
     const onSubmit = (data) => {
         console.log(data);
