@@ -1,11 +1,13 @@
 import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { useEffect, useState } from "react";
+import useUserSingle from "../../../hooks/useUserSingle";
 
 
 const Profile = () => {
     const {user} = useAuth();
+    const {singleuser} = useUserSingle();
+    console.log(singleuser);
     console.log(user);
 
     const {register, handleSubmit, reset, control, formState: { errors } } = useForm();
@@ -46,7 +48,7 @@ const Profile = () => {
                       <div className="label">
                         <span className="label-text capitalize">Role</span>
                       </div>
-                      <input type="text" defaultValue={user?.role} disabled {...register("role", { required: !user?.role })} className="input input-bordered w-full" />
+                      <input type="text" defaultValue={singleuser?.role} disabled {...register("role", { required: !user?.role })} className="input input-bordered w-full capitalize" />
                       {!user?.role && errors.role && <p className="text-red-500 capitalize">Role required</p>}
                     </label>
                     <label className="form-control w-full">

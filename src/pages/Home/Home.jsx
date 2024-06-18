@@ -4,6 +4,7 @@ import Featured from "./Featured/Featured"
 import AboutUs from "./AboutUs/AboutUs"
 import TitleSection from "../../components/TitleSection/TitleSection"
 import ForumSec from "./ForumSec/ForumSec"
+import Subscribe from "./Subscribe/Subscribe"
 
 const Home = () => {
   return (
@@ -35,6 +36,17 @@ const Home = () => {
           <ForumSec></ForumSec>
         </div>
       </section>
+
+      {/* subscribe newsletter section */}
+      <section>
+        <div className="py-4 md:py-8">
+            <TitleSection heading={'subscribe to our newsletter'} subHeading={'Our newsletter'}></TitleSection>
+        </div>
+        <div className="">
+            <Subscribe></Subscribe>  
+        </div> 
+      </section>
+      {/* subscribe newsletter section */}
 
     </>
   )

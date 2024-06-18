@@ -6,8 +6,6 @@ import Swal from "sweetalert2";
 import {  useNavigate } from "react-router-dom";
 
 import useAuth from "../../../hooks/useAuth";
-import { useEffect, useState } from "react";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useUserSingle from "../../../hooks/useUserSingle";
 
 
@@ -18,10 +16,9 @@ const AddForum = () => {
     const {user} = useAuth();
     const {singleuser} = useUserSingle();
     //console.log(singleuser);
+    console.log(singleuser.role);
 
-    const userDetails = user.email === singleuser.email ? singleuser : null;
-    console.log(userDetails);
-    console.log(userDetails.role);
+    
 
 
     const {register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -39,6 +36,7 @@ const AddForum = () => {
             forumTitle: data.forumTitle,
             forumImage: data.forumImage,
             forumDescription: data.forumDesc,
+            role: singleuser.role,
             forumCreated: new Date(),
             upVote: 0,
             downVote: 0

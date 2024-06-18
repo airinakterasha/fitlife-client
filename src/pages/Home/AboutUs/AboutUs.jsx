@@ -12,7 +12,7 @@ const AboutUs = () => {
                     <div className="hero-overlay bg-opacity-60"></div>
                     <div className="hero-content text-center text-neutral-content">
                         <div className="max-w-3xl">
-                            <p className="py-20">
+                            <p className="py-32">
                                 We position ourselves as the best training studio. We provide tailor-made training based on your individual goal.
                                 As for the training, there will be no meaningless moves or over-pushing, and you will have no chance to let your determination go astray. Regardless of your level, our experienced trainers make sure that you will be trained and prepared like a real fighter.
                                 To guarantee consistency in the quality of training delivered by each trainer, each of our trainers has completed pad works, bag works and coaching methodologies with our founder and master trainer.
