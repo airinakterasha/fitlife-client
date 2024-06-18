@@ -24,6 +24,7 @@ import AddForum from "../dashboard/Dashboard/Forum/AddForum";
 import Profile from "../dashboard/Dashboard/Profile/Profile";
 import AllTrainersDash from "../dashboard/Dashboard/AdminArea/AllTrainersDash";
 import DashBookedTrainer from "../dashboard/Dashboard/MemberArea/DashBookedTrainer";
+import AllSubscribers from "../dashboard/Dashboard/AdminArea/AllSubscribers";
 
 
 
@@ -103,6 +104,10 @@ const router = createBrowserRouter([
           element: <PrivateRoute><AddNewSlotTrainer></AddNewSlotTrainer></PrivateRoute> ,
         },
         // admin routes
+        {
+          path: 'subscribers',
+          element: <AllSubscribers></AllSubscribers>
+        },
         {
           path: 'users',
           element: <AllUsers></AllUsers>
