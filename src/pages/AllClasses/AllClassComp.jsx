@@ -10,10 +10,6 @@ const AllClassComp = ({singleClass}) => {
     const {classImage, className, classDetails } = singleClass;
     const [trainers, setTrainers] = useState([]);
     console.log(trainers)
-    // const [betrainer] = useTrainer()
-    // const {_id} = betrainer;
-
-    console.log('hello');
 
     const axiosPublic = useAxiosPublic();
     useEffect(()=>{

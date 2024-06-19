@@ -94,7 +94,8 @@ const AppliedTrainerComp = ({trainer, refetch}) => {
                         <button 
                         // onClick={()=>document.getElementById('my_modal_3').showModal()}
                         onClick={()=>document.getElementById(_id).showModal()}
-                        className="inline-flex h-10 flex-1 items-center justify-center gap-2 whitespace-nowrap rounded bg-emerald-500 px-5 text-sm font-medium tracking-wide text-white transition duration-300 hover:bg-emerald-600 focus:bg-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none">
+                        className="inline-flex h-10 flex-1 items-center justify-center gap-2 whitespace-nowrap rounded bg-emerald-500 px-5 text-sm font-medium tracking-wide text-white transition duration-300 hover:bg-emerald-600 focus:bg-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none"
+                        >
                             <span className="order-2">Pending Action</span>
                             <span className="relative only:-mx-5">
                                 <FaEye></FaEye>                        
@@ -148,14 +149,29 @@ const AppliedTrainerComp = ({trainer, refetch}) => {
                                                 <RiPassPendingFill></RiPassPendingFill>
                                             </span>
                                         </button>
+                                        {/* reject button */}
                                         <button 
-                                        onClick={handleReject}
-                                        className="inline-flex h-10 flex-1 items-center justify-center gap-2 justify-self-center whitespace-nowrap rounded bg-emerald-50 px-5 text-sm font-medium tracking-wide text-emerald-500 transition duration-300 hover:bg-emerald-100 hover:text-emerald-600 focus:bg-emerald-200 focus:text-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-100 disabled:text-emerald-400 disabled:shadow-none">
+                                            onClick={handleReject}
+                                            className="inline-flex h-10 flex-1 items-center justify-center gap-2 justify-self-center whitespace-nowrap rounded bg-emerald-50 px-5 text-sm font-medium tracking-wide text-emerald-500 transition duration-300 hover:bg-emerald-100 hover:text-emerald-600 focus:bg-emerald-200 focus:text-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-100 disabled:text-emerald-400 disabled:shadow-none"
+                                        >
                                             <span className="order-2">Reject</span>
                                             <span className="relative only:-mx-5">
                                                 <TbPlayerEjectFilled></TbPlayerEjectFilled>
                                             </span>
                                         </button>
+
+                                        {/* You can open the modal using document.getElementById('ID').showModal() method */}
+                                        <button className="btn" onClick={()=>document.getElementById('my_modal_3').showModal()}>open modal</button>
+                                        <dialog id="my_modal_3" className="modal">
+                                        <div className="modal-box">
+                                            <form method="dialog">
+                                            {/* if there is a button in form, it will close the modal */}
+                                            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                                            </form>
+                                            <h3 className="font-bold text-lg">Hello!</h3>
+                                            <p className="py-4">Press ESC key or click on ✕ button to close</p>
+                                        </div>
+                                        </dialog>
                                     </div>
                                 </div>
                                 
