@@ -25,6 +25,7 @@ import Profile from "../dashboard/Dashboard/Profile/Profile";
 import AllTrainersDash from "../dashboard/Dashboard/AdminArea/AllTrainersDash";
 import DashBookedTrainer from "../dashboard/Dashboard/MemberArea/DashBookedTrainer";
 import AllSubscribers from "../dashboard/Dashboard/AdminArea/AllSubscribers";
+import CommunityDetails from "../pages/Community/CommunityDetails";
 
 
 
@@ -69,6 +70,11 @@ const router = createBrowserRouter([
         {
           path: '/community',
           element: <Community></Community>
+        },
+        {
+          path: '/community/:id',
+          element: <CommunityDetails></CommunityDetails>,
+          loader: ({params}) => fetch(`http://localhost:5555/forum/${params.id}`)
         },
         {
           path: '/login',

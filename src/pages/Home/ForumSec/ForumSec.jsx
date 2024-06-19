@@ -1,12 +1,19 @@
+import useForums from "../../../hooks/useForums";
+import ForumSecSingle from "./ForumSecSingle";
 
 
 const ForumSec = () => {
+  const [forums] = useForums();
   return (
-    <div>ForumSec
+    <>
         <div className="">
-            <div className=""></div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              {
+                forums.map(forum => <ForumSecSingle key={forum._id} forum={forum}></ForumSecSingle>)
+              }
+            </div>
         </div>
-    </div>
+    </>
   )
 }
 

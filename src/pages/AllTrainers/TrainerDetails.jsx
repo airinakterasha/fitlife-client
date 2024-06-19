@@ -46,7 +46,7 @@ const TrainerDetails = () => {
               <title>FitLife | about {trainerName}</title>
         </Helmet>
         <div className="container mx-auto">
-            <div className="py-10">
+            <div className="pt-10">
               <TitleSection heading={`About ${trainerName}`} subHeading={`know details about our trainer`}></TitleSection>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-12">
@@ -58,7 +58,7 @@ const TrainerDetails = () => {
                     <img
                       src={profileImage}
                       alt="card image"
-                      className="aspect-video w-full"
+                      className="aspect-video w-full p-10"
                     />
                   </figure>
                   {/*  <!-- Body--> */}
@@ -103,7 +103,7 @@ const TrainerDetails = () => {
               {/* Trainer Information end */}
               {/* slot Information start */}
               <div className="col-span-5">
-                <div className="p-10">
+                <div className="pt-10">
                   <span className="font-bold">Slot details:</span>
                 </div>
                 
@@ -131,7 +131,7 @@ const TrainerDetails = () => {
                                   <button
                                   className="capitalize inline-flex h-10 flex-1 items-center justify-center gap-2 whitespace-nowrap rounded bg-emerald-500 px-5 text-sm font-medium tracking-wide text-white transition duration-300 hover:bg-emerald-600 focus:bg-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none"
                                   >
-                                    Available Slot: {slotTrainer.slotName}- {slotTrainer.slotDuration} - {slotTrainer.slotTime} Slots.
+                                    Available Slot: {slotTrainer.slotName} - {slotTrainer.slotDuration} - {slotTrainer.slotTime} Slots.
                                   </button>
                                 </Link>
                               </div>
@@ -150,7 +150,7 @@ const TrainerDetails = () => {
                 <div className="ps-10">
                   <p>Want to become a trainer?</p>
                   <Link to='/be-a-trainer'>
-                    <button className="btn bg-[#F23B3F] text-white mt-5"> Be A Trainer</button>
+                    <button className="btn bg-[#F23B3F] text-white mt-5 w-full"> Be A Trainer</button>
                   </Link>
                 </div>
                 

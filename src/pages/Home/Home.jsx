@@ -5,6 +5,7 @@ import AboutUs from "./AboutUs/AboutUs"
 import TitleSection from "../../components/TitleSection/TitleSection"
 import ForumSec from "./ForumSec/ForumSec"
 import Subscribe from "./Subscribe/Subscribe"
+import Team from "./Team/Team"
 
 const Home = () => {
   return (
@@ -32,9 +33,7 @@ const Home = () => {
         <div className="py-4 md:py-8">
             <TitleSection heading={'Latest Community Forum'} subHeading={'Our forums'}></TitleSection>
         </div> 
-        <div className="grid grid-cols-1 md:grid-cols-3">
           <ForumSec></ForumSec>
-        </div>
       </section>
 
       {/* subscribe newsletter section */}
@@ -47,6 +46,15 @@ const Home = () => {
         </div> 
       </section>
       {/* subscribe newsletter section */}
+
+      {/* Team section */}
+      <section className="container mx-auto">
+        <div className="py-4 md:py-8">
+            <TitleSection heading={'We proud with our team'} subHeading={'Our team trainers'}></TitleSection>
+        </div>
+        <Team></Team>
+      </section>
+      {/* Team section end */}
 
     </>
   )

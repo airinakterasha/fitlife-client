@@ -20,8 +20,12 @@ const BookedTrainer = () => {
   //console.log(bookingTrainer);
   const {_id, nameTrainer, email, slotName, slotDuration, trainerImage, slotTime, classes, availableDay} = bookingTrainer;
   const [packages, setPackages] = useState([]);
-  const [selectedPackage, setSelectedPackage] = useState(null);
+
+  const [selectedPackage, setSelectedPackage] = useState();
+  //const [selectedPackage, setSelectedPackage] = useState(null);
+
   const [selectedPackageId, setSelectedPackageId] = useState(null);
+  //const [selectedPackageId, setSelectedPackageId] = useState(null);
   const [, refetch] = useCart();
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
@@ -38,11 +42,18 @@ const BookedTrainer = () => {
     })
   }, [axiosPublic, setPackages])
 
-  const handleSelect = (pkgName, pkgPrice, packageId, packageHr) => {
-    setSelectedPackage(pkgName, pkgPrice, packageHr);
+  const handleSelect = () => {
+    setSelectedPackage(selectedPackage);
     setSelectedPackageId(packageId);
-    console.log(pkgName, pkgPrice, packageId);
+    console.log( packageId);
+    console.log( selectedPackage);
   };
+
+  // const handleSelect = (pkgName, pkgPrice, packageId, packageHr) => {
+  //   setSelectedPackage(pkgName, pkgPrice, packageHr);
+  //   setSelectedPackageId(packageId);
+  //   console.log(pkgName, pkgPrice, packageId);
+  // };
 
   const handleJoinNow = () => {
 
@@ -53,13 +64,18 @@ const BookedTrainer = () => {
         const cartItem = {
           clientName: user.displayName,
           clientEmail: user.email,
-          trainerImage: trainerImage,
+          clientImage: user.photoURL,
           trainerName: nameTrainer,
           trainerEmail: email,
+          trainerImage: trainerImage,          
+          class : classes,
+          availday: availableDay,
+          slotTimeDuration: slotDuration,
+
           training: 'booked',
           slotId: _id,
           slotName: slotName,
-          
+
           pacageId: selectedPackage._id,
           packName: selectedPackage.pkgName,
           packPrice: selectedPackage.pkgPrice, 
@@ -119,7 +135,7 @@ const BookedTrainer = () => {
                       <div className="space-y-2">
                         <span className="flex items-center space-x-2">
                           <FaCheckToSlot />
-                          <span className="dark:text-gray-600 capitalize">Available Slot: {slotName} - {slotDuration} - {slotTime} Slots available</span>
+                          <span className="dark:text-gray-600 capitalize">Available Slot: {slotName} - ({slotDuration}) - {slotTime} Slots available</span>
                         </span>
                         <div className="flex gap-3">
                           <span className="mt-1"><LuCalendarDays /></span>
@@ -194,7 +210,7 @@ const BookedTrainer = () => {
                             </ul>
                             
                             <button 
-                            onClick={() => handleSelect(packagePrice.packageName, packagePrice.price, packagePrice._id, packagePrice.timeDuration)}
+                            onClick={() => handleSelect( packagePrice._id )}
                             className="px-4 py-2 mt-4 font-semibold uppercase border rounded-lg md:mt-12 sm:py-3 sm:px-8 dark:border-violet-600"
                             >
                                 Subscribe price {packagePrice.price}

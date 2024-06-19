@@ -58,21 +58,20 @@ const ManageSlot = () => {
         </Helmet>
         <div className="">
             <div className="mb-10">
-                    <TitleSection heading={'Manage Slots'} subHeading={'Here you will see your all slots'}></TitleSection>
-                </div>
+                <TitleSection heading={'Manage Slots'} subHeading={'Here you will see your all slots'}></TitleSection>
+            </div>
             <div className="">
               <div className="overflow-x-auto">
                 <table className="table table-zebra">
                   {/* head */}
                   <thead>
                     <tr>
-                      <th></th>
-                      <th>Slot Id</th>                   
+                      <th></th>                 
                       <th>Class</th>
                       <th>Slot Name</th>
-                      <th>Slot hr</th>  
-                      <th>Slot booked</th>  
-                      <th>Client name</th>  
+                      <th>Available Slot </th>  
+                      <th>Available Day</th> 
+                      <th>Classes Time</th>  
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -80,19 +79,20 @@ const ManageSlot = () => {
                     {
                       mySlots.map((mySlot, index) => <tr key={mySlot._id}>
                         <th>{index + 1}</th>
-                        <td>{mySlot._id}</td>
                         <td>
                           {
                             mySlot.classes.map((myclass, index) => <button key={index} className="mr-1 btn btn-sm">{myclass.label}</button>)
                           }
                         </td>
-                        <td>{mySlot.slotName}</td>
+                        <td className="capitalize">{mySlot.slotName}</td>
                         <td>{mySlot.slotTime}</td>
                         <td>
-                          client name
+                          {
+                            mySlot.availableDay.map((availday, index) => <button key={index} className="mr-1 btn btn-sm">{availday.label}</button>)
+                          }
                         </td>
                         <td>
-                          Slot booked
+                          {mySlot.slotDuration}
                         </td>
                         <td>
                           <button onClick={() => handleDeleteSlot(mySlot)} className="btn btn-sm">Delete</button>
@@ -104,6 +104,71 @@ const ManageSlot = () => {
                 </table>
               </div>
             </div>
+            {/* Booked slots start */}
+            <div className="mb-5 mt-10">
+                <TitleSection  subHeading={'Booked slots'}></TitleSection>
+            </div>
+            <div className="">
+              <div className="overflow-x-auto">
+                  <table className="table table-zebra">
+                    {/* head */}
+                    <thead>
+                      <tr>
+                        <th></th>                 
+                        <th>Booked By</th>
+                        <th>Class</th>
+                        <th>Slot Name</th>
+                        <th>Available Slot </th>  
+                        <th>Booked Slot </th>  
+                        <th>Available Day</th> 
+                        <th>Classes Time</th>  
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {
+                        mySlots.map((mySlot, index) => <tr key={mySlot._id}>
+                          <th>{index + 1}</th>
+                          <td>
+                            <div className="flex items-center gap-3">
+                              <div className="avatar">
+                                <div className="mask mask-squircle w-12 h-12">
+                                  <img src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
+                                </div>
+                              </div>
+                              <div>
+                                <div className="font-bold">Hart Hagerty</div>
+                                <div className="text-sm opacity-50">United States</div>
+                              </div>
+                            </div>
+                          </td>
+                          <td>
+                            {
+                              mySlot.classes.map((myclass, index) => <button key={index} className="mr-1 btn btn-sm">{myclass.label}</button>)
+                            }
+                          </td>
+                          <td className="capitalize">{mySlot.slotName}</td>
+                          <td>{mySlot.slotTime}</td>
+                          <td></td>
+                          <td>
+                            {
+                              mySlot.availableDay.map((availday, index) => <button key={index} className="mr-1 btn btn-sm">{availday.label}</button>)
+                            }
+                          </td>
+                          <td>
+                            {mySlot.slotDuration}
+                          </td>
+                          <td>
+                            <button onClick={() => handleDeleteSlot(mySlot)} className="btn btn-sm">Delete</button>
+                          </td>
+                        </tr>)
+                      }
+                      
+                    </tbody>
+                  </table>
+              </div>
+            </div>
+            {/* Booked slots start */}
         </div>
     </>
   )
