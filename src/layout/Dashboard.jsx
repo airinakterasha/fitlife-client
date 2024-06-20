@@ -2,11 +2,17 @@ import { Outlet } from "react-router-dom"
 import { NavLink } from "react-router-dom"
 import { FaUserCog } from "react-icons/fa";
 import useAdmin from "../hooks/useAdmin";
+import useAuth from "../hooks/useAuth";
+import useUserSingle from "../hooks/useUserSingle";
+import useTrainerByEmail from "../hooks/useTrainerByEmail";
 
 
 const Dashboard = () => {
   const [isAdmin] = useAdmin();
-  console.log(isAdmin);
+  const {user} = useAuth();
+  const {singleuser} = useUserSingle();
+  const [trainerOne] = useTrainerByEmail();
+  console.log(trainerOne);
   return (
     <>
       <div className="">
@@ -87,7 +93,8 @@ const Dashboard = () => {
                     {/* Admin links finished */}
                 </> : <>
                   {/* Trainer links start */}
-                    <ul className="py-10"> 
+                  {
+                    user && singleuser?.role=='trainer' && <ul className="py-10"> 
                       <NavLink to='/dashboard/trainerHome'>
                         <li className="flex mb-2">
                           <div className="p-1 mr-1">
@@ -104,7 +111,6 @@ const Dashboard = () => {
                           <p className="capitalize">Manage slot</p>
                         </li>
                       </NavLink>
-
                       <NavLink to='/dashboard/add-new-slot-trainer'>
                         <li className="flex mb-2">
                           <div className="p-1 mr-1">
@@ -122,47 +128,47 @@ const Dashboard = () => {
                         </li>
                       </NavLink>
                     </ul>
-                    {/* Trainer links finished */}
-                </>
-              }
-                            
-               {/* Shared links */}
-              <div className="divider">OR</div>
-              <ul className="py-10">
-                <NavLink to='/dashboard/memberHome'>
-                  <li className="flex mb-2">
-                    <div className="p-1 mr-1">
-                      <FaUserCog></FaUserCog>
-                    </div>
-                    <p className="capitalize">Member Home</p>
-                  </li>
-                </NavLink>
-                <NavLink to='/dashboard/activity-logged'>
-                  <li className="flex mb-2">
-                    <div className="p-1 mr-1">
-                      <FaUserCog></FaUserCog>
-                    </div>
-                    <p className="capitalize">Activity log page</p>
-                  </li>
-                </NavLink>
-                <NavLink to='/dashboard/profile'>
-                  <li className="flex mb-2">
-                    <div className="p-1 mr-1">
-                      <FaUserCog></FaUserCog>
-                    </div>
-                    <p className="capitalize">profile page</p>
-                  </li>
-                </NavLink>
-                <NavLink to='/dashboard/member-booked-trainer'>
-                  <li className="flex mb-2">
-                    <div className="p-1 mr-1">
-                      <FaUserCog></FaUserCog>
-                    </div>
-                    <p className="capitalize">Booked Trainer page</p>
-                  </li>
-                </NavLink>
-              </ul>
+                  } 
+                  {/* Trainer links finished */}
 
+                  {
+                    user && singleuser?.role=='member' && <ul className="py-10">
+                      <NavLink to='/dashboard/memberHome'>
+                        <li className="flex mb-2">
+                          <div className="p-1 mr-1">
+                            <FaUserCog></FaUserCog>
+                          </div>
+                          <p className="capitalize">Member Home</p>
+                        </li>
+                      </NavLink>
+                      <NavLink to='/dashboard/activity-logged'>
+                        <li className="flex mb-2">
+                          <div className="p-1 mr-1">
+                            <FaUserCog></FaUserCog>
+                          </div>
+                          <p className="capitalize">Activity log page</p>
+                        </li>
+                      </NavLink>
+                      <NavLink to='/dashboard/profile'>
+                        <li className="flex mb-2">
+                          <div className="p-1 mr-1">
+                            <FaUserCog></FaUserCog>
+                          </div>
+                          <p className="capitalize">profile page</p>
+                        </li>
+                      </NavLink>
+                      <NavLink to='/dashboard/member-booked-trainer'>
+                        <li className="flex mb-2">
+                          <div className="p-1 mr-1">
+                            <FaUserCog></FaUserCog>
+                          </div>
+                          <p className="capitalize">Booked Trainer page</p>
+                        </li>
+                      </NavLink>
+                    </ul>
+                  }
+                </>
+              } 
             </div>
           </div>
           {/* side bar end */}
