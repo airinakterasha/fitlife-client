@@ -73,7 +73,7 @@ const BeTrainer = () => {
         <Helmet>
               <title>FitLife | Be A Trainer</title>
         </Helmet>
-        <div className="">
+        <div className="container mx-auto">
             <div className="">
               <TitleSection heading={'Be a trainer'} subHeading={'If train your passion'}></TitleSection>
             </div>

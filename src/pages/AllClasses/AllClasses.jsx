@@ -4,13 +4,76 @@ import AllClassComp from "./AllClassComp";
 import TitleSection from "../../components/TitleSection/TitleSection";
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import Pagination from "../../components/Pagination/Pagination";
 
 
 const AllClasses = () => {
-  const [classes] = useClass();
+  const [classesall] = useClass();
+  const [classes, setClasses] = useState([]);
+  const axiosPublic = useAxiosPublic();
+
+  // pagination
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(6);
+  const [count, setCount] = useState(0);
+
+
+
+  const numberOfPages = Math.ceil(count / itemsPerPage);
+
+  const pages = [...Array(numberOfPages).keys()];
+
+  useEffect(() => {
+    setClasses(classesall)
+  }, [classesall])
+
+
+  useEffect( () =>{
+    axiosPublic.get('/classCount')
+    .then(res => {
+      console.log(res.data.count)
+      setCount(res.data.count)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }, [axiosPublic])
+
+  useEffect(() => {
+    axiosPublic(`/class?page=${currentPage}&size=${itemsPerPage}`)
+    .then(res => {
+      console.log(res.data)
+      setClasses(res.data)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+      
+  }, [axiosPublic, currentPage, itemsPerPage, classesall]);
+
+  const handleItemsPerPage = e => {
+    const val = parseInt(e.target.value);
+    console.log(val);
+    setItemsPerPage(val);
+    setCurrentPage(0);
+  }
+
+  const handlePrevPage = () => {
+      if (currentPage > 0) {
+          setCurrentPage(currentPage - 1);
+      }
+  }
+
+  const handleNextPage = () => {
+      if (currentPage < pages.length - 1) {
+          setCurrentPage(currentPage + 1);
+      }
+  }
+  // pagination end
+
   //const [classes, setClasses] = useState('');
   //const [search, setSearch] = useState('');
-  const axiosPublic = useAxiosPublic();
+  
 
   // useEffect(() => {
   //   axiosPublic('/class')
@@ -48,6 +111,7 @@ const AllClasses = () => {
     const searchText = e.target.search.value;
     console.log(searchText);
   }
+
   return (
     <>
       <Helmet>
@@ -81,6 +145,18 @@ const AllClasses = () => {
             {
               classes.map(singleClass => <AllClassComp key={singleClass._id} singleClass={singleClass}></AllClassComp>)
             }
+          </div>
+
+          <div className="text-center">
+            <Pagination 
+            pages={pages} 
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            itemsPerPage={itemsPerPage}
+            handleItemsPerPage={handleItemsPerPage} 
+            handlePrevPage={handlePrevPage} 
+            handleNextPage={handleNextPage}
+            ></Pagination>
           </div>
 
       </div>

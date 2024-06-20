@@ -10,6 +10,10 @@ const AllClassComp = ({singleClass}) => {
     const {classImage, className, classDetails } = singleClass;
     const [trainers, setTrainers] = useState([]);
     console.log(trainers)
+    
+    const descriptionWords = classDetails.split(' ');
+    const shortDescription = descriptionWords.slice(0, 15).join(' ');
+    const truncatedDescription = descriptionWords.length > 15 ? `${shortDescription}...` : shortDescription;
 
     const axiosPublic = useAxiosPublic();
     useEffect(()=>{
@@ -46,7 +50,7 @@ const AllClassComp = ({singleClass}) => {
                             <h2 className="text-2xl font-semibold">{className}</h2>
                         </div>
                         <div className="">
-                            <p>{classDetails}</p>
+                            <p>{truncatedDescription}</p>
                         </div>
                         <div className="space-y-1">
                             <p className="font-bold">Relevent Trainers who took this class:</p>
