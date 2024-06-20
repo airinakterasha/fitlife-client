@@ -39,8 +39,8 @@ const BeTrainer = () => {
   const navigate = useNavigate()
   const onSubmit = (data) => {
     console.log(data);
-    const {trainerName=(data.NameTrainer ? data.NameTrainer : user?.displayName), email=`${user?.email}`, age, experience, profileImage, trainerDetails, skills, role='pending', availableDay, availableTimeSlot, status='pending'} = data;
-    const beATrainer = {trainerName, email, age, experience, profileImage, trainerDetails, skills, role, availableDay, availableTimeSlot, status};
+    const {trainerName=(data.NameTrainer ? data.NameTrainer : user?.displayName), email=`${user?.email}`, age, experience, profileImage, trainerDetails, skills, role='pending', availableDay, availableTimeSlot, status='pending', feedback=''} = data;
+    const beATrainer = {trainerName, email, age, experience, profileImage, trainerDetails, skills, role, availableDay, availableTimeSlot, status, feedback};
     console.log(beATrainer);
 
     axiosSecure.post('/betrainer', beATrainer)

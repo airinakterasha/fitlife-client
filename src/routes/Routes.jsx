@@ -26,6 +26,10 @@ import AllTrainersDash from "../dashboard/Dashboard/AdminArea/AllTrainersDash";
 import DashBookedTrainer from "../dashboard/Dashboard/MemberArea/DashBookedTrainer";
 import AllSubscribers from "../dashboard/Dashboard/AdminArea/AllSubscribers";
 import CommunityDetails from "../pages/Community/CommunityDetails";
+import ActivityLogged from "../dashboard/Dashboard/MemberArea/ActivityLogged";
+import AdminHome from "../dashboard/Dashboard/AdminArea/AdminHome";
+import TrainerHome from "../dashboard/Dashboard/TrainerArea/TrainerHome";
+import MemberHome from "../dashboard/Dashboard/MemberArea/MemberHome";
 
 
 
@@ -93,10 +97,22 @@ const router = createBrowserRouter([
       children: [
         // member route
         {
+          path: 'memberHome',
+          element: <MemberHome></MemberHome>
+        },
+        {
+          path: 'activity-logged',
+          element: <ActivityLogged></ActivityLogged>
+        },
+        {
           path: 'member-booked-trainer',
           element: <DashBookedTrainer></DashBookedTrainer>
         },
         // trainer route
+        {
+          path: 'trainerHome',
+          element: <TrainerHome></TrainerHome>
+        },
         {
           path: 'applied-trainer',
           element: <AppliedTrainer></AppliedTrainer>
@@ -110,6 +126,10 @@ const router = createBrowserRouter([
           element: <PrivateRoute><AddNewSlotTrainer></AddNewSlotTrainer></PrivateRoute> ,
         },
         // admin routes
+        {
+          path: 'adminHome',
+          element: <AdminHome></AdminHome>
+        },
         {
           path: 'subscribers',
           element: <AllSubscribers></AllSubscribers>

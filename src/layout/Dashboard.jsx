@@ -19,6 +19,14 @@ const Dashboard = () => {
               {
                 isAdmin ? <>
                     <ul className="py-10">
+                    <NavLink to='/dashboard/adminHome'>
+                        <li className="flex mb-2">
+                          <div className="p-1 mr-1">
+                            <FaUserCog></FaUserCog>
+                          </div>
+                          <p className="capitalize">Admin Home</p>
+                        </li>
+                      </NavLink>
                       <NavLink to='/dashboard/subscribers'>
                         <li className="flex mb-2">
                           <div className="p-1 mr-1">
@@ -80,6 +88,14 @@ const Dashboard = () => {
                 </> : <>
                   {/* Trainer links start */}
                     <ul className="py-10"> 
+                      <NavLink to='/dashboard/trainerHome'>
+                        <li className="flex mb-2">
+                          <div className="p-1 mr-1">
+                            <FaUserCog></FaUserCog>
+                          </div>
+                          <p className="capitalize">Trainer Home</p>
+                        </li>
+                      </NavLink>
                       <NavLink to='/dashboard/manage-slot'>
                         <li className="flex mb-2">
                           <div className="p-1 mr-1">
@@ -113,7 +129,15 @@ const Dashboard = () => {
                {/* Shared links */}
               <div className="divider">OR</div>
               <ul className="py-10">
-                <NavLink to='/dashboard/be-a-trainer'>
+                <NavLink to='/dashboard/memberHome'>
+                  <li className="flex mb-2">
+                    <div className="p-1 mr-1">
+                      <FaUserCog></FaUserCog>
+                    </div>
+                    <p className="capitalize">Member Home</p>
+                  </li>
+                </NavLink>
+                <NavLink to='/dashboard/activity-logged'>
                   <li className="flex mb-2">
                     <div className="p-1 mr-1">
                       <FaUserCog></FaUserCog>
@@ -135,14 +159,6 @@ const Dashboard = () => {
                       <FaUserCog></FaUserCog>
                     </div>
                     <p className="capitalize">Booked Trainer page</p>
-                  </li>
-                </NavLink>
-                <NavLink to='/dashboard/be-a-trainer'>
-                  <li className="flex text-xl mb-2">
-                    <div className="p-1 mr-3 ">
-                      <FaUserCog></FaUserCog>
-                    </div>
-                    <p>Be A Trainer</p>
                   </li>
                 </NavLink>
               </ul>
