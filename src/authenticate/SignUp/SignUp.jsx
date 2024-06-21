@@ -92,7 +92,7 @@ const SignUp = () => {
                     {errors.password && <span className="text-red-600">Password is required</span>}
                   </div>
                 </div>
-                <input type="submit" value="Sign up" className=" btn w-full px-8 py-3 font-semibold rounded-md dark:bg-violet-600 dark:text-gray-50" />
+                <input type="submit" value="Sign up" className="btn bg-[#F23B3F] text-white w-full px-8 py-3 font-semibold rounded-md" />
               </form>
         </div>
           <p className="text-sm text-center dark:text-gray-600">Already have an account? Please 

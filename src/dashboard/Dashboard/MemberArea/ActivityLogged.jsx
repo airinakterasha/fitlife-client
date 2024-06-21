@@ -43,7 +43,7 @@ const ActivityLogged = () => {
                                     </h3>
                                     <p className=" text-slate-400">{role}</p>
                                     <h3 className="text-xl font-medium text-slate-700 capitalize">
-                                        Status: You are <span className="text-[#F23B3F]">{status}</span>
+                                        Status: Your submition is <span className="text-[#F23B3F]">{status}</span>
                                     </h3>
                                 </header>
                                 </div>

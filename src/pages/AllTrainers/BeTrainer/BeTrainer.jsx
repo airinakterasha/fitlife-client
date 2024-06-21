@@ -52,11 +52,11 @@ const BeTrainer = () => {
         Swal.fire({
             position: "top-end",
             icon: "success",
-            title: "You submition is pending. Please wait for a while for approved by admin",
+            title: "Your submition is pending. Please wait for a while for approved by admin",
             showConfirmButton: false,
             timer: 2500
         });
-        navigate('/')
+        navigate('/dashboard/activity-logged')
 
     }
     // if end

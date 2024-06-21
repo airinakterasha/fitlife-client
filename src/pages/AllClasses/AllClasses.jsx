@@ -10,7 +10,10 @@ import Pagination from "../../components/Pagination/Pagination";
 const AllClasses = () => {
   const [classesall] = useClass();
   const [classes, setClasses] = useState([]);
+  const [search, setSearch] = useState('');
   const axiosPublic = useAxiosPublic();
+
+  
 
   // pagination
   const [currentPage, setCurrentPage] = useState(0);
@@ -40,16 +43,26 @@ const AllClasses = () => {
   }, [axiosPublic])
 
   useEffect(() => {
-    axiosPublic(`/class?page=${currentPage}&size=${itemsPerPage}`)
-    .then(res => {
-      console.log(res.data)
-      setClasses(res.data)
-    })
-    .catch(err => {
-      console.log(err)
-    })
-      
-  }, [axiosPublic, currentPage, itemsPerPage, classesall]);
+    if (search) {
+      // If there's a search term, filter locally
+      const filtered = classesall.filter(singleClass =>
+        singleClass.className.toLowerCase().includes(search)
+      );
+      setClasses(filtered);
+    } else {
+      // Otherwise, fetch paginated data
+      axiosPublic(`/class?page=${currentPage}&size=${itemsPerPage}`)
+        .then(res => {
+          console.log(res.data)
+          setClasses(res.data)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
+  }, [axiosPublic, currentPage, itemsPerPage, classesall, search]);
+
+
 
   const handleItemsPerPage = e => {
     const val = parseInt(e.target.value);
@@ -71,46 +84,17 @@ const AllClasses = () => {
   }
   // pagination end
 
-  //const [classes, setClasses] = useState('');
-  //const [search, setSearch] = useState('');
-  
-
-  // useEffect(() => {
-  //   axiosPublic('/class')
-  //     .then(res => {
-  //       setClasses(res.data);
-  //     })
-  //     .catch(err => {
-  //       console.error(err);
-  //     });
-  // }, [axiosPublic, setClasses]);
-
-  // useEffect(() => {
-  //   axiosPublic(`/class&search=${search}`)
-  //   .then(res => {
-  //     setSearch(res.data);
-  //   })
-
-  // }, [axiosPublic, search])
-
-  // const handleSearch = async (e) => {
-  //   e.preventDefault();
-  //   const searchText = e.target.search.value;
-  
-  //   try {
-  //     const res = await axiosPublic(`/class?search=${searchText}`);
-  //     setClasses(res.data);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
-
 
   const handleSearch = (e) => {
     e.preventDefault();
-    const searchText = e.target.search.value;
-    console.log(searchText);
+    const searchText = e.target.search.value.toLowerCase();
+    setSearch(searchText);
   }
+
+  const filteredClasses = classes.filter(singleClass =>
+    singleClass?.className?.toLowerCase().includes(search) || false
+  );
+
 
   return (
     <>
@@ -143,7 +127,7 @@ const AllClasses = () => {
           
           <div className="grid grid-col-1 md:grid-cols-3">
             {
-              classes.map(singleClass => <AllClassComp key={singleClass._id} singleClass={singleClass}></AllClassComp>)
+              filteredClasses.map(singleClass => <AllClassComp key={singleClass._id} singleClass={singleClass}></AllClassComp>)
             }
           </div>
 

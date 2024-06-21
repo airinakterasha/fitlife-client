@@ -62,6 +62,7 @@ const AppliedTrainerComp = ({trainer, refetch}) => {
                     showConfirmButton: false,
                     timer: 2500
                 });
+                navigate('/dashboard/applied-trainer')
             })
             .catch(err=> {
                 console.log(err);
@@ -175,7 +176,8 @@ const AppliedTrainerComp = ({trainer, refetch}) => {
                                         {/* reject button */}
                                         <button 
                                             // onClick={handleReject}
-                                            onClick={()=>document.getElementById('my_modal_5').showModal()}
+                                            //onClick={()=>document.getElementById(`${_id}`).showModal()}
+                                            onClick={()=>document.getElementById(`reject-${_id}`).showModal()}
                                             className="btn inline-flex h-10 flex-1 items-center justify-center gap-2 justify-self-center whitespace-nowrap rounded bg-emerald-50 px-5 text-sm font-medium tracking-wide text-emerald-500 transition duration-300 hover:bg-emerald-100 hover:text-emerald-600 focus:bg-emerald-200 focus:text-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-100 disabled:text-emerald-400 disabled:shadow-none"
                                         >
                                             <span className="order-2">Reject</span>
@@ -183,7 +185,7 @@ const AppliedTrainerComp = ({trainer, refetch}) => {
                                                 <TbPlayerEjectFilled></TbPlayerEjectFilled>
                                             </span>
                                         </button>
-                                        <dialog id="my_modal_5" className="modal">
+                                        <dialog id={`reject-${_id}`} className="modal">
                                             <div className="modal-box">
                                                 <form method="dialog">
                                                     {/* if there is a button in form, it will close the modal */}
