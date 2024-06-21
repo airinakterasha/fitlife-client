@@ -1,21 +1,33 @@
 import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+//import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useUserSingle from "../../../hooks/useUserSingle";
+import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Profile = () => {
-    const {user} = useAuth();
+    const {user, updateUserProfile} = useAuth();
     const {singleuser} = useUserSingle();
     console.log(singleuser);
     console.log(user);
+    const navigate = useNavigate();
 
     const {register, handleSubmit, reset, control, formState: { errors } } = useForm();
-    const axiosSecure = useAxiosSecure();
+    //const axiosSecure = useAxiosSecure();
 
 
     const onSubmit = (data) => {
         console.log(data);
+        updateUserProfile(data.NameTrainer, data.profileImage)
+        .then(() => {
+          toast('You updated your profile successfully');
+          navigate('/')
+        })
+        .catch(()=>{
+            toast('Your profile is not updated');
+        }) 
     }
   return (
     <>
@@ -44,13 +56,7 @@ const Profile = () => {
                       <input type="text" defaultValue={user?.photoURL} {...register("profileImage", { required: !user?.photoURL })} placeholder="Years of experience" className="input input-bordered w-full" />
                       {!user?.photoURL && errors.profileImage && <p className="text-red-500 capitalize">Profile Image required</p>}
                     </label>
-                    <label className="form-control w-full">
-                      <div className="label">
-                        <span className="label-text capitalize">Role</span>
-                      </div>
-                      <input type="text" defaultValue={singleuser?.role} disabled {...register("role", { required: !user?.role })} className="input input-bordered w-full capitalize" />
-                      {!user?.role && errors.role && <p className="text-red-500 capitalize">Role required</p>}
-                    </label>
+           
                     <label className="form-control w-full">
                       <div className="label">
                         <span className="label-text capitalize">Last Login time</span>
@@ -59,7 +65,7 @@ const Profile = () => {
                       {!user?.metadata.lastSignInTime && errors.lastLogin && <p className="text-red-500 capitalize">Profile Image required</p>}
                     </label>
                     
-                    
+                    <input type="submit" value="Update Profile" className="btn bg-[#F23B3F] text-white mt-5 w-full" />
                 </form>
             </div>
         </div>

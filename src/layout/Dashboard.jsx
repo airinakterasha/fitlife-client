@@ -5,6 +5,8 @@ import useAdmin from "../hooks/useAdmin";
 import useAuth from "../hooks/useAuth";
 import useUserSingle from "../hooks/useUserSingle";
 import useTrainerByEmail from "../hooks/useTrainerByEmail";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Dashboard = () => {
@@ -173,6 +175,7 @@ const Dashboard = () => {
           </div>
           {/* side bar end */}
           <div className="flex-1 p-12">
+            <ToastContainer />
             <Outlet></Outlet>
           </div>
         </div>

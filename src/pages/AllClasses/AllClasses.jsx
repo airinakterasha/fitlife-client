@@ -43,24 +43,24 @@ const AllClasses = () => {
   }, [axiosPublic])
 
   useEffect(() => {
-    if (search) {
-      // If there's a search term, filter locally
-      const filtered = classesall.filter(singleClass =>
-        singleClass.className.toLowerCase().includes(search)
-      );
-      setClasses(filtered);
-    } else {
-      // Otherwise, fetch paginated data
-      axiosPublic(`/class?page=${currentPage}&size=${itemsPerPage}`)
-        .then(res => {
-          console.log(res.data)
-          setClasses(res.data)
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    }
-  }, [axiosPublic, currentPage, itemsPerPage, classesall, search]);
+  if (search) {
+    // If there's a search term, filter locally
+    const filtered = classesall.filter(singleClass =>
+      singleClass.className.toLowerCase().includes(search)
+    );
+    setClasses(filtered);
+  } else {
+    // Otherwise, fetch paginated data
+    axiosPublic(`/class?page=${currentPage}&size=${itemsPerPage}`)
+      .then(res => {
+        console.log(res.data)
+        setClasses(res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+}, [axiosPublic, currentPage, itemsPerPage, classesall, search]);
 
 
 
@@ -84,6 +84,7 @@ const AllClasses = () => {
   }
   // pagination end
 
+ 
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -94,6 +95,8 @@ const AllClasses = () => {
   const filteredClasses = classes.filter(singleClass =>
     singleClass?.className?.toLowerCase().includes(search) || false
   );
+
+
 
 
   return (
