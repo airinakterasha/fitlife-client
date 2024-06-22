@@ -127,12 +127,14 @@ const AllClasses = () => {
             </form>
           </div>
           {/* search */}
-          
-          <div className="grid grid-col-1 lg:grid-cols-2">
-            {
-              filteredClasses.map(singleClass => <AllClassComp key={singleClass._id} singleClass={singleClass}></AllClassComp>)
-            }
+          <div className="container mx-auto">
+            <div className="grid grid-col-1 lg:grid-cols-2">
+              {
+                filteredClasses.map(singleClass => <AllClassComp key={singleClass._id} singleClass={singleClass}></AllClassComp>)
+              }
+            </div>
           </div>
+          
 
           <div className="text-center">
             <Pagination 

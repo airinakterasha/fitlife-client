@@ -56,7 +56,7 @@ const BeTrainer = () => {
             showConfirmButton: false,
             timer: 2500
         });
-
+        navigate('/dashboard/activity-logged');
 
     }
     // if end

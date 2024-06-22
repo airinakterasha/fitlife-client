@@ -51,14 +51,12 @@ const router = createBrowserRouter([
         {
           path: '/all-trainers/:id',
           element: <TrainerDetails></TrainerDetails>,
-          loader: ({params}) => fetch(`http://localhost:5555/betrainer/${params.id}`)
-          //loader: ({params}) => fetch(`https://fitlife-server.vercel.app/betrainer/${params.id}`)
+          loader: ({params}) => fetch(`https://fitlife-server.vercel.app/betrainer/${params.id}`)
         },
         {
           path: '/booked-trainers/:id',
           element: <PrivateRoute><BookedTrainer></BookedTrainer></PrivateRoute> ,
-          loader: ({params}) => fetch(`http://localhost:5555/slot/${params.id}`)
-          // loader: ({params}) => fetch(`https://fitlife-server.vercel.app/${params.id}`)
+          loader: ({params}) => fetch(`https://fitlife-server.vercel.app/slot/${params.id}`)
         },
         {
           path: '/be-a-trainer',
@@ -75,7 +73,7 @@ const router = createBrowserRouter([
         {
           path: '/all-classes/:id',
           element: <ClassDetails></ClassDetails>,
-          loader: ({params}) => fetch(`http://localhost:5555/class/${params.id}`)
+          loader: ({params}) => fetch(`https://fitlife-server.vercel.app/class/${params.id}`)
         },
         {
           path: '/community',
@@ -84,7 +82,7 @@ const router = createBrowserRouter([
         {
           path: '/community/:id',
           element: <CommunityDetails></CommunityDetails>,
-          loader: ({params}) => fetch(`http://localhost:5555/forum/${params.id}`)
+          loader: ({params}) => fetch(`https://fitlife-server.vercel.app/forum/${params.id}`)
         },
         {
           path: '/login',
