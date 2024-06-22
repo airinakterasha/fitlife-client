@@ -201,7 +201,7 @@ const DashBookedTrainerComp = ({cartBooked}) => {
                                 </div>
                                 <textarea name="feedbackText" className="textarea textarea-bordered h-24" placeholder="Feedback"></textarea>
                             </label>
-                            <input type="submit" value="Submit Reject" className="btn bg-[#F23B3F] text-white mt-5 w-full" />
+                            <input type="submit" value="Submit Review" className="btn bg-[#F23B3F] text-white mt-5 w-full" />
                         </form>
                     </div>
                     <div className="modal-action">
