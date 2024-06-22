@@ -4,7 +4,7 @@ import { SlBadge } from "react-icons/sl";
 import { Link } from "react-router-dom";
 
 
-const CommunityComp = ({forum}) => {
+const CommunityComp = ({forum, refetch}) => {
     const {_id, frumAuthor, frumAuthorImage, forumTitle, forumImage, forumDescription, role, forumCreated, upVote, downVote } = forum;
 
     const descriptionWords = forumDescription.split(' ');
@@ -15,7 +15,8 @@ const CommunityComp = ({forum}) => {
     const handleVotingUpdate = (vote) => {
         axiosSecure.patch(`/voting/${_id}`, {vote})
         .then(res => {
-            console.log(res, 'voting')
+            console.log(res, 'voting');
+            refetch();            
         })
         .catch(err =>{
             console.log(err);

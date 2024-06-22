@@ -5,7 +5,7 @@ import useForums from "./../../hooks/useForums"
 
 
 const Community = () => {
-  const [forums] = useForums();
+  const [forums, ,refetch] = useForums();
   
 
   return (
@@ -19,7 +19,7 @@ const Community = () => {
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 pt-10">
               {
-                forums.map(forum => <CommunityComp key={forum._id} forum={forum}></CommunityComp>)
+                forums.map(forum => <CommunityComp key={forum._id} forum={forum} refetch={refetch}></CommunityComp>)
               } 
             </div>
         </div>
