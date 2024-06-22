@@ -7,7 +7,7 @@ import useUserSingle from "../../hooks/useUserSingle";
 const Navbar = () => {
   const {user, logout} = useAuth();
   const {singleuser} = useUserSingle();
-  console.log(singleuser);
+  //console.log(singleuser);
   const [isToggleOpen, setIsToggleOpen] = useState(false);
 
   const handleLogOut = () => {

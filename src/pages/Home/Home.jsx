@@ -7,6 +7,7 @@ import ForumSec from "./ForumSec/ForumSec"
 import Subscribe from "./Subscribe/Subscribe"
 import Team from "./Team/Team"
 import Testimonials from "./Testimonials/Testimonials"
+import FeaturedClass from "./FeaturedClass/FeaturedClass"
 
 
 
@@ -30,6 +31,11 @@ const Home = () => {
       {/* About section */}
       <section>
         <AboutUs></AboutUs>
+      </section>
+
+      {/* featured classes */}
+      <section>
+        <FeaturedClass></FeaturedClass>
       </section>
 
       {/* testimonials */}

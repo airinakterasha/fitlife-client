@@ -12,9 +12,9 @@ import useTrainer from '../../../hooks/useTrainer';
 
 const Team = () => {
     const [betrainer] = useTrainer()
-    console.log(betrainer);
+    //console.log(betrainer);
     const trainersAll = betrainer.filter(trainer => trainer.status === 'approved' && trainer.role === 'trainer');
-    console.log(trainersAll);
+    //console.log(trainersAll);
     // 
     return (
         <>

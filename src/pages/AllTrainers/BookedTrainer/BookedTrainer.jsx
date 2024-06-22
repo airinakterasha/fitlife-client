@@ -20,6 +20,17 @@ const BookedTrainer = () => {
   const bookingTrainer = useLoaderData();
   //console.log(bookingTrainer);
   const {_id, nameTrainer, email, trainerId, slotName, slotDuration, trainerImage, slotTime, classes, availableDay} = bookingTrainer;
+
+  // {
+  //   classes.map((slotClass, index) => {slotClass.label} - {slotClass.value}</p>)
+  // }
+
+  // classssssId = classes.map(clsssssssssssId => {clsssssssssssId.label})
+  // const labels = classes.map(classObj => classObj.label);
+  // const values = classes.map(classObj => classObj.value);
+  console.log(classes);
+  console.log(classes.label);
+  console.log(classes.value);
   const [packages, setPackages] = useState([]);
 
   const [selectedPackage, setSelectedPackage] = useState();
@@ -164,7 +175,7 @@ const BookedTrainer = () => {
                           <span className="mt-1"><BsBookHalf /></span>
                             <p className="">Classes: </p>
                               {
-                                classes.map((slotClass, index) => <p key={index} className="btn btn-sm">{slotClass.label}</p>)
+                                classes.map((slotClass, index) => <p key={index} className="btn btn-sm">{slotClass.label} - {slotClass.value}</p>)
                               }
                           </div>
                         </div>

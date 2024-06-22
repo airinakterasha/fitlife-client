@@ -12,6 +12,7 @@ const AddNewClass = () => {
     const navigate = useNavigate()
     const onSubmit = (data) => {
         console.log(data);
+        data.bookedCount = 0;
         axiosSecure.post('/class', data)
         .then(res=>{
           console.log(res.data)
