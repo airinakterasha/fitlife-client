@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { useLoaderData} from "react-router-dom"
+import { useLoaderData, useNavigate} from "react-router-dom"
 import TitleSection from "../../../components/TitleSection/TitleSection";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -16,6 +16,7 @@ import { BsBookHalf } from "react-icons/bs";
 
 const BookedTrainer = () => {
   const {user} = useAuth();
+  const navigate = useNavigate()
   const bookingTrainer = useLoaderData();
   //console.log(bookingTrainer);
   const {_id, nameTrainer, email, slotName, slotDuration, trainerImage, slotTime, classes, availableDay} = bookingTrainer;
@@ -42,18 +43,26 @@ const BookedTrainer = () => {
     })
   }, [axiosPublic, setPackages])
 
-  const handleSelect = () => {
-    setSelectedPackage(selectedPackage);
-    setSelectedPackageId(packageId);
-    console.log( packageId);
-    console.log( selectedPackage);
-  };
-
-  // const handleSelect = (pkgName, pkgPrice, packageId, packageHr) => {
-  //   setSelectedPackage(pkgName, pkgPrice, packageHr);
+  // const handleSelect = () => {
+  //   setSelectedPackage(selectedPackage);
   //   setSelectedPackageId(packageId);
-  //   console.log(pkgName, pkgPrice, packageId);
+  //   console.log( packageId);
+  //   console.log( selectedPackage);
   // };
+
+  const handleSelect = (pkgName, pkgPrice, packageHr, pkdetails, pkincClass, packageId) => {
+    //setSelectedPackage({pkgName, pkgPrice, packageHr, pkdetails, pkincClass});
+    setSelectedPackage({
+      packageId: packageId,
+      pkgName: pkgName,
+      pkgPrice: pkgPrice,
+      timeDuration: packageHr,
+      details: pkdetails,
+      included_classes: pkincClass
+    });
+    setSelectedPackageId(packageId);
+    console.log(pkgName, pkgPrice, packageId, packageHr, pkdetails, pkincClass, packageId);
+  };
 
   const handleJoinNow = () => {
 
@@ -68,7 +77,7 @@ const BookedTrainer = () => {
           trainerName: nameTrainer,
           trainerEmail: email,
           trainerImage: trainerImage,          
-          class : classes,
+          trainerClass : classes,
           availday: availableDay,
           slotTimeDuration: slotDuration,
 
@@ -79,7 +88,9 @@ const BookedTrainer = () => {
           pacageId: selectedPackage._id,
           packName: selectedPackage.pkgName,
           packPrice: selectedPackage.pkgPrice, 
-          packHour: selectedPackage.timeDuration,      
+          packHour: selectedPackage.timeDuration,    
+          packDetails: selectedPackage.details,
+          packClass: selectedPackage.included_classes
         }
         axiosSecure.post('/carts', cartItem)
           .then(res => {
@@ -99,6 +110,7 @@ const BookedTrainer = () => {
 
 
     } else {
+      navigate(`/booked-trainers/${_id}`)
       Swal.fire({
         title: "You Did Not Select Any Package",
         text: "Please select a package to join!",
@@ -210,7 +222,7 @@ const BookedTrainer = () => {
                             </ul>
                             
                             <button 
-                            onClick={() => handleSelect( packagePrice._id )}
+                            onClick={() => handleSelect( packagePrice.packageName, packagePrice.price, packagePrice.timeDuration, packagePrice.details, packagePrice.included_classes, packagePrice._id)}
                             className="px-4 py-2 mt-4 font-semibold uppercase border rounded-lg md:mt-12 sm:py-3 sm:px-8 dark:border-violet-600"
                             >
                                 Subscribe price {packagePrice.price}
@@ -219,7 +231,7 @@ const BookedTrainer = () => {
                         }
              
                         
-                        {/* Basic package start */}     
+                       
                       </div>
                     </div>
                   </section>

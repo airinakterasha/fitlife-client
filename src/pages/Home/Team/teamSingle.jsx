@@ -35,17 +35,19 @@ const TeamSingle = ({team}) => {
                         </div>
                     </div>
                 </div>
-                <div className="">
-                    <p className="font-bold">Expertise Area: </p>
-                    <p className="font-medium text-slate-700">
-                        <span>Classes: </span>
-                        {
-                            skills.map((skill, index) => <span key={index}>{skill} || </span>)
-                        }
-                    </p>
-                </div>
-                <div className="mt-2">
-                    <p><span className="font-bold">Brief biography: </span>{truncatedDescription}</p> <Link to={`/all-trainers/${_id}`} className="text-[#F23B3F]">More Details...</Link>
+                <div className="px-10 lg:px-1">
+                    <div className="">
+                        <p className="font-bold">Expertise Area: </p>
+                        <p className="font-medium text-slate-700">
+                            <span>Classes: </span>
+                            {
+                                skills.map((skill, index) => <span key={index}>{skill} || </span>)
+                            }
+                        </p>
+                    </div>
+                    <div className="mt-2">
+                        <p><span className="font-bold">Brief biography: </span>{truncatedDescription}</p> <Link to={`/all-trainers/${_id}`} className="text-[#F23B3F]">More Details...</Link>
+                    </div>
                 </div>
             </div>
         </>

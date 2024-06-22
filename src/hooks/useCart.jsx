@@ -7,10 +7,12 @@ const useCart = () => {
   const axiosSecure = useAxiosSecure();
   const {user} = useAuth();
   //tan stack query
+  //console.log(user?.email);
   const { data: cart=[], refetch} = useQuery({
     queryKey: ['cart', user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/cart?email=${user.email}`);
+      //console.log(res.data);
       return res.data;
     }
   })

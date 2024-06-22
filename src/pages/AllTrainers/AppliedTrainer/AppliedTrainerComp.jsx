@@ -15,9 +15,8 @@ const AppliedTrainerComp = ({trainer, refetch}) => {
     const handleConfirm = () => {
         axiosSecure.get(`/betrainer/${_id}`)
         .then((response)=>{
-            console.log(response.data);
-            console.log(response.data.status);
-            axiosSecure.patch(`/betrainer/${_id}`)
+            console.log(response.data.email);
+            axiosSecure.patch(`/betrainer/${_id}`, {email: response.data.email})
             .then(res => {
                 console.log(res, 'update');
                 if(res.data.modifiedCount > 0){

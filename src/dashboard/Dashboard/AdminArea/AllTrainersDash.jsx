@@ -60,9 +60,8 @@ const AllTrainersDash = () => {
                                 <tr>
                                     <th></th>
                                     <th>Name</th>
-                                    <th>Job</th>
-                                    <th>Favorite Color</th>
-                                    <th>Available Slot Time</th>
+                                    <th>Classes</th>
+                                    <th>Class Schedule</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -82,7 +81,7 @@ const AllTrainersDash = () => {
                                             </div>
                                             <div>
                                             <div className="font-bold">{trainer.trainerName}</div>
-                                            <div className="text-sm opacity-50">{trainer.age} years experience</div>
+                                            <div className="text-sm opacity-50">{trainer.age} years old</div>
                                             </div>
                                         </div>
                                     </td>
@@ -100,7 +99,7 @@ const AllTrainersDash = () => {
                                             </span>)
                                         }
                                     </td>
-                                    <td>{trainer.availableTime}</td>
+
                                     
                                     <th>
                                         <button onClick={() => handleDeleteTrainer(trainer)} className="btn btn-ghost btn-xs">

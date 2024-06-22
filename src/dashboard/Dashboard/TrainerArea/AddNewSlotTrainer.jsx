@@ -60,6 +60,7 @@ const AddNewSlotTrainer = () => {
             showConfirmButton: false,
             timer: 2500
         });
+        navigate('/dashboard/manage-slot')
         
       }
     })

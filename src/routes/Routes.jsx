@@ -55,7 +55,7 @@ const router = createBrowserRouter([
         },
         {
           path: '/booked-trainers/:id',
-          element: <BookedTrainer></BookedTrainer>,
+          element: <PrivateRoute><BookedTrainer></BookedTrainer></PrivateRoute> ,
           loader: ({params}) => fetch(`http://localhost:5555/slot/${params.id}`)
           // loader: ({params}) => fetch(`https://fitlife-server.vercel.app/${params.id}`)
         },
@@ -65,7 +65,7 @@ const router = createBrowserRouter([
         },
         {
           path: '/payment',
-          element: <PaymentPage></PaymentPage>,
+          element: <PrivateRoute><PaymentPage></PaymentPage></PrivateRoute> 
         },
         {
           path: '/all-classes',
@@ -98,11 +98,11 @@ const router = createBrowserRouter([
         // member route
         {
           path: 'memberHome',
-          element: <MemberHome></MemberHome>
+          element: <PrivateRoute><MemberHome></MemberHome></PrivateRoute> 
         },
         {
           path: 'activity-logged',
-          element: <ActivityLogged></ActivityLogged>
+          element: <PrivateRoute><ActivityLogged></ActivityLogged></PrivateRoute>
         },
         {
           path: 'profile',
@@ -110,20 +110,20 @@ const router = createBrowserRouter([
         },
         {
           path: 'member-booked-trainer',
-          element: <DashBookedTrainer></DashBookedTrainer>
+          element: <PrivateRoute><DashBookedTrainer></DashBookedTrainer></PrivateRoute> 
         },
         // trainer route
         {
           path: 'trainerHome',
-          element: <TrainerHome></TrainerHome>
+          element: <PrivateRoute><TrainerHome></TrainerHome></PrivateRoute>
         },
         {
           path: 'applied-trainer',
-          element: <AppliedTrainer></AppliedTrainer>
+          element: <PrivateRoute><AppliedTrainer></AppliedTrainer></PrivateRoute>
         },
         {
           path: 'manage-slot',
-          element: <ManageSlot></ManageSlot>
+          element: <PrivateRoute><ManageSlot></ManageSlot></PrivateRoute>
         },
         {
           path: 'add-new-slot-trainer',
@@ -132,35 +132,33 @@ const router = createBrowserRouter([
         // admin routes
         {
           path: 'adminHome',
-          element: <AdminHome></AdminHome>
+          element: <PrivateRoute><AdminHome></AdminHome></PrivateRoute> 
         },
         {
           path: 'subscribers',
-          element: <AllSubscribers></AllSubscribers>
+          element: <PrivateRoute><AllSubscribers></AllSubscribers></PrivateRoute>
         },
         {
           path: 'users',
-          element: <AllUsers></AllUsers>
+          element: <PrivateRoute><AllUsers></AllUsers></PrivateRoute>
         },
         {
           path: 'trainers',
-          element: <AllTrainersDash></AllTrainersDash>
+          element: <PrivateRoute><AllTrainersDash></AllTrainersDash></PrivateRoute>
         },
         {
           path: 'balance',
-          element: <Balance></Balance>
+          element: <PrivateRoute><Balance></Balance></PrivateRoute>
         },
         {
           path: 'add-new-class',
-          element: <AddNewClass></AddNewClass>
+          element: <PrivateRoute><AddNewClass></AddNewClass></PrivateRoute>
         },
         // forum start
         {
           path: 'add-forum',
           element: <PrivateRoute><AddForum></AddForum></PrivateRoute>,
-          // loader: ({params}) => fetch(`http://localhost:5555/allusers/${params.id}`)
         },
-        // profile
         
       ]
     }

@@ -19,8 +19,8 @@ const Team = () => {
     return (
         <>
             <Swiper
-                slidesPerView={3}
-                spaceBetween={30}
+                slidesPerView={2}
+                spaceBetween={10}
                 pagination={{
                 clickable: true,
                 }}

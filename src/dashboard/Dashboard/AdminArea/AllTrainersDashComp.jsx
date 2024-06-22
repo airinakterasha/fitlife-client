@@ -14,13 +14,13 @@ const AllTrainersDashComp = ({trainer, index, handleDeleteTrainer}) => {
                 <td>
                     <div className="flex items-center gap-3">
                         <div className="avatar">
-                        <div className="mask mask-squircle w-12 h-12">
-                            <img src={profileImage} />
-                        </div>
+                            <div className="mask mask-squircle w-12 h-12">
+                                <img src={profileImage} />
+                            </div>
                         </div>
                         <div>
-                        <div className="font-bold">{trainerName}</div>
-                        <div className="text-sm opacity-50">{age} years experience</div>
+                            <div className="font-bold">{trainerName}</div>
+                            <div className="text-sm opacity-50">{age} years old</div>
                         </div>
                     </div>
                 </td>

@@ -6,6 +6,10 @@ import TitleSection from "../../components/TitleSection/TitleSection"
 import ForumSec from "./ForumSec/ForumSec"
 import Subscribe from "./Subscribe/Subscribe"
 import Team from "./Team/Team"
+import Testimonials from "./Testimonials/Testimonials"
+
+
+
 
 const Home = () => {
   return (
@@ -26,6 +30,16 @@ const Home = () => {
       {/* About section */}
       <section>
         <AboutUs></AboutUs>
+      </section>
+
+      {/* testimonials */}
+      <section className="container mx-auto">
+        <div className="py-4 md:py-8">
+            <TitleSection heading={'Testimonials'} subHeading={'Reviews from our member'}></TitleSection>
+        </div> 
+        <div className="">
+          <Testimonials></Testimonials>
+        </div>
       </section>
 
       {/* forum section */}
