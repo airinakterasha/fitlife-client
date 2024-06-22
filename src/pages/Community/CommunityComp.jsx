@@ -2,6 +2,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { RiPoliceBadgeLine } from "react-icons/ri";
 import { SlBadge } from "react-icons/sl";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 const CommunityComp = ({forum, refetch}) => {
@@ -16,7 +17,14 @@ const CommunityComp = ({forum, refetch}) => {
         axiosSecure.patch(`/voting/${_id}`, {vote})
         .then(res => {
             console.log(res, 'voting');
-            refetch();            
+            refetch();  
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Your voting added successfully",
+                showConfirmButton: false,
+                timer: 2500
+            });          
         })
         .catch(err =>{
             console.log(err);

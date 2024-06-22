@@ -151,10 +151,6 @@ const router = createBrowserRouter([
           element: <PrivateRoute><AllTrainersDash></AllTrainersDash></PrivateRoute>
         },
         {
-          path: 'balance',
-          element: <PrivateRoute><Balance></Balance></PrivateRoute>
-        },
-        {
           path: 'add-new-class',
           element: <PrivateRoute><AddNewClass></AddNewClass></PrivateRoute>
         },

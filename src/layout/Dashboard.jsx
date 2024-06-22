@@ -67,14 +67,6 @@ const Dashboard = () => {
                           <p className="capitalize">Applied Trainer</p>
                         </li>
                       </NavLink>
-                      <NavLink to='/dashboard/balance'>
-                        <li className="flex mb-2">
-                          <div className="p-1 mr-1">
-                            <FaUserCog></FaUserCog>
-                          </div>
-                          <p className="capitalize">Balance</p>
-                        </li>
-                      </NavLink>
                       <NavLink to='/dashboard/add-new-class'>
                         <li className="flex mb-2">
                           <div className="p-1 mr-1">
