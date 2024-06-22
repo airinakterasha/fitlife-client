@@ -5,7 +5,7 @@ import { useLoaderData } from "react-router-dom";
 
 const CommunityDetails = () => {
     const forumDetails = useLoaderData();
-    const {_id, frumAuthor, frumAuthorImage, forumTitle, forumImage, forumDescription, role, forumCreated, upVote, downVote } = forumDetails;
+    const {frumAuthor, frumAuthorImage, forumTitle, forumImage, forumDescription, forumCreated } = forumDetails;
 
     return (
         <>
@@ -17,15 +17,19 @@ const CommunityDetails = () => {
                     <div className="">
                         <TitleSection heading={"forum details"} subHeading={`By ${frumAuthor}`}></TitleSection>
                     </div>
-                    <div className="">
+                    <div className="p-10">
                         <div className="max-w-2xl px-6 py-16 mx-auto space-y-12">
                             <article className="space-y-8 dark:bg-gray-100 dark:text-gray-900">
                                 <div className="space-y-6">
-                                    <h1 className="text-4xl font-bold md:tracking-tight md:text-5xl">{forumTitle}.</h1>
+                                    <h1 className="text-4xl font-bold md:tracking-tight md:text-5xl">{forumTitle}</h1>
                                     <div className="flex flex-col items-start justify-between w-full md:flex-row md:items-center dark:text-gray-600">
-                                        <div className="flex items-center md:space-x-2">
+                                        <div className="flex items-center gap-5">
                                             <img src={frumAuthorImage} alt="" className="w-14 h-14 border rounded-full dark:bg-gray-500 dark:border-gray-300" />
-                                            <p className="text-sm">{frumAuthor}• {forumCreated}</p>
+                                            <div className="">
+                                                <p className="text-sm">{frumAuthor}</p>
+                                                <p className="text-sm">{forumCreated}</p>
+                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>

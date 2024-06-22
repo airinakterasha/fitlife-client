@@ -30,6 +30,7 @@ import AdminHome from "../dashboard/Dashboard/AdminArea/AdminHome";
 import TrainerHome from "../dashboard/Dashboard/TrainerArea/TrainerHome";
 import MemberHome from "../dashboard/Dashboard/MemberArea/MemberHome";
 import Profile from "../dashboard/Dashboard/MemberArea/Profile";
+import ClassDetails from "../pages/AllClasses/ClassDetails";
 
 
 
@@ -70,6 +71,11 @@ const router = createBrowserRouter([
         {
           path: '/all-classes',
           element: <AllClasses></AllClasses>
+        },
+        {
+          path: '/all-classes/:id',
+          element: <ClassDetails></ClassDetails>,
+          loader: ({params}) => fetch(`http://localhost:5555/class/${params.id}`)
         },
         {
           path: '/community',

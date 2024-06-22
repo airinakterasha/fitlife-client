@@ -18,11 +18,11 @@ const Dashboard = () => {
   return (
     <>
       <div className="">
-        <div className="flex">
+        <div className="flex flex-col md:flex-row">
           {/* side bar */}
-          <div className="w-72 min-h-screen bg-[#F23B3F] py-10 px-5">
+          <div className="m-10 md:m-0 md:w-72 md:min-h-screen bg-[#F23B3F] py-10 px-5">
             <div className=" text-white">
-              <h1 className="text-3xl font-bold pb-5 text-center">Dashboard</h1>
+              <h1 className="text-xl md:text-3xl font-bold pb-5 text-center">Dashboard</h1>
 
               {
                 isAdmin ? <>
@@ -174,7 +174,7 @@ const Dashboard = () => {
             </div>
           </div>
           {/* side bar end */}
-          <div className="flex-1 p-12">
+          <div className="flex-1 md:p-12">
             <ToastContainer />
             <Outlet></Outlet>
           </div>

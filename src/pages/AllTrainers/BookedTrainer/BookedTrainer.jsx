@@ -19,7 +19,7 @@ const BookedTrainer = () => {
   const navigate = useNavigate()
   const bookingTrainer = useLoaderData();
   //console.log(bookingTrainer);
-  const {_id, nameTrainer, email, slotName, slotDuration, trainerImage, slotTime, classes, availableDay} = bookingTrainer;
+  const {_id, nameTrainer, email, trainerId, slotName, slotDuration, trainerImage, slotTime, classes, availableDay} = bookingTrainer;
   const [packages, setPackages] = useState([]);
 
   const [selectedPackage, setSelectedPackage] = useState();
@@ -74,14 +74,16 @@ const BookedTrainer = () => {
           clientName: user.displayName,
           clientEmail: user.email,
           clientImage: user.photoURL,
+
           trainerName: nameTrainer,
           trainerEmail: email,
-          trainerImage: trainerImage,          
+          trainerImage: trainerImage,  
+          trainerID: trainerId,       
           trainerClass : classes,
           availday: availableDay,
           slotTimeDuration: slotDuration,
 
-          training: 'booked',
+          booked: classes,
           slotId: _id,
           slotName: slotName,
 

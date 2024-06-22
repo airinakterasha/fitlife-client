@@ -17,7 +17,7 @@ const Community = () => {
             <div className="">
                 <TitleSection heading={'All Forum'} subHeading={'We have strong community'}></TitleSection>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 pt-10">
               {
                 forums.map(forum => <CommunityComp key={forum._id} forum={forum}></CommunityComp>)
               } 

@@ -49,7 +49,7 @@ const TrainerDetails = () => {
             <div className="pt-10">
               <TitleSection heading={`About ${trainerName}`} subHeading={`know details about our trainer`}></TitleSection>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-12">
+            <div className="grid grid-cols-1 lg:grid-cols-12">
               <div className="col-span-7 md:px-20">
                 {/* Trainer Information */}
                 <div className="overflow-hidden rounded bg-white text-slate-500 shadow-md shadow-slate-200">
@@ -102,9 +102,9 @@ const TrainerDetails = () => {
               </div>
               {/* Trainer Information end */}
               {/* slot Information start */}
-              <div className="col-span-5">
+              <div className="col-span-5 mx-5">
                 <div className="pt-10">
-                  <span className="font-bold">Slot details:</span>
+                  <span className="font-bold ms-10">Slot details:</span>
                 </div>
                 
                 {/* slot details will here */}

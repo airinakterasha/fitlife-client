@@ -28,7 +28,7 @@ function getRating(rating) {
 
 const DashBookedTrainerComp = ({cartBooked}) => {
     const {user} = useAuth();
-    const {_id, trainerName, trainerEmail, trainerImage, trainerClass, availday, slotTimeDuration, packHour, packName, packPrice} = cartBooked;
+    const { trainerName, trainerEmail, trainerImage, trainerID, trainerClass, availday, slotTimeDuration, packHour, packName, packPrice, booked} = cartBooked;
     // Rating
     const [rating, setRating] = useState(3);
     const [hoveredRating, setHoveredRating] = useState(0);
@@ -67,7 +67,7 @@ const DashBookedTrainerComp = ({cartBooked}) => {
         })
     }
     return (
-        <div className="grid grid-cols-1 md:grid-cols-12 mt-5 overflow-hidden bg-white rounded shadow-md text-slate-500 shadow-slate-200">
+        <div className="grid grid-cols-1 md:grid-cols-12 mt-5 overflow-hidden bg-white rounded shadow-md text-slate-500 shadow-slate-200 p-10 md:p-0 md:space-x-3">
             <div className="col-span-4">
                 <div className="overflow-hidden rounded bg-white text-center text-slate-500 shadow-md shadow-slate-200">
                     {/*  <!-- Image --> */}
@@ -93,10 +93,10 @@ const DashBookedTrainerComp = ({cartBooked}) => {
                     </header>
                     </div>
                     {/*  <!-- Action base sized with lead icon buttons  --> */}
-                    <Link to={`/all-trainers/${_id}`}>
+                    <Link to={`/all-trainers/${trainerID}`}>
                         <div className="flex justify-end gap-2 p-6 pt-0">
                             <button className="inline-flex h-10 flex-1 items-center justify-center gap-2 whitespace-nowrap rounded bg-emerald-500 px-5 text-sm font-medium tracking-wide text-white transition duration-300 hover:bg-emerald-600 focus:bg-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none">
-                                <span className="order-2 capitalize">See details about the trainer</span>
+                                <span className="order-2 capitalize">See details </span>
                                 <span className="relative only:-mx-5">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -143,6 +143,12 @@ const DashBookedTrainerComp = ({cartBooked}) => {
                                 }
                             </div>
                         </div>
+                        <div className="">
+                            <p className="font-bold">Booked: </p>
+                            {
+                                booked.map(bookClass => <p key={bookClass.value} className="">{bookClass.label} </p>)
+                            }
+                        </div>
                     </div>
                     <div className="py-12">
                         <div className="">
@@ -169,10 +175,10 @@ const DashBookedTrainerComp = ({cartBooked}) => {
             </div>
             {/* 2nd col end */}
             {/* 3rd col start */}
-            <div className="col-span-2 flex content-center place-items-center">
+            <div className="col-span-2 md:flex md:content-center md:place-items-center">
                 <button 
                     onClick={()=>document.getElementById('my_modal_4').showModal()}
-                    className="btn bg-[#F23B3F] text-white mt-5 w-full m-10"
+                    className="btn bg-[#F23B3F] text-white mt-5 w-full md:m-10"
                 >
                     Review
                 </button>

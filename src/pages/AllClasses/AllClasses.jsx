@@ -128,7 +128,7 @@ const AllClasses = () => {
           </div>
           {/* search */}
           
-          <div className="grid grid-col-1 md:grid-cols-3">
+          <div className="grid grid-col-1 lg:grid-cols-2">
             {
               filteredClasses.map(singleClass => <AllClassComp key={singleClass._id} singleClass={singleClass}></AllClassComp>)
             }

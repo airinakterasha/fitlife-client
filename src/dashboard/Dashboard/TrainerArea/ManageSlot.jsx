@@ -18,25 +18,17 @@ const ManageSlot = () => {
   const axiosSecure = useAxiosSecure();
 
   const mySlots = slots.filter(slotMine => slotMine.email === user?.email );
-  //console.log({mySlots});
-
-
-  //const mySelectedSlots = cartAll.filter(bookedSlot => bookedSlot.trainerEmail === user?.email && bookedSlot.slotId === mySlots._id);
-
-  
-  //console.log(mySelectedSlots);
-  //console.log(mySelectedSlots.clientName);
   
 
   const handleDeleteSlot = (mySlots) => {
     Swal.fire({
-        title: `Are you sure you want to delete ${mySlots.slotName}?`,
-        text: `You won't be able to revert ${mySlots.slotName}!`,
+        title: `Are you sure you want to delete?`,
+        text: `You won't be able to revert this!`,
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: `Yes, delete ${mySlots.slotName}!`
+        confirmButtonText: `Yes, delete it!`
       }).then((result) => {
         if (result.isConfirmed) { 
           axiosSecure.delete(`/slot/${mySlots._id}`)
@@ -45,7 +37,7 @@ const ManageSlot = () => {
               refetch();
               Swal.fire({
                 title: "Deleted!",
-                text: `${mySlots.slotName} has been deleted.`,
+                text: `Your slot has been deleted.`,
                 icon: "success"
               });
             }
@@ -90,7 +82,7 @@ const ManageSlot = () => {
                         <td>{mySlot.slotTime}</td>
                         <td>
                           {
-                            mySlot.availableDay.map((availday, index) => <button key={index} className="mr-1 btn btn-sm">{availday.label}</button>)
+                            mySlot.availableDay.map((availday, index) => <button key={index} className="mr-1 btn btn-sm my-1">{availday.label}</button>)
                           }
                         </td>
                         <td>
@@ -152,16 +144,9 @@ const ManageSlot = () => {
                           </td>
                           <td>
                             {
-                              client.availday.map((availableday, index) => <button key={index} className="mr-1 btn btn-sm">{availableday.label}</button>)
+                              client.availday.map((availableday, index) => <button key={index} className="mr-1 btn btn-sm my-1">{availableday.label}</button>)
                             }
                           </td>
-                            {/* 
-                          <td>
-                            {mySlot.slotDuration}
-                          </td>
-                          <td>
-                            <button onClick={() => handleDeleteSlot(mySlot)} className="btn btn-sm">Delete</button>
-                          </td> */}
                         </tr>)
                       }
                       

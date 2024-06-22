@@ -9,7 +9,7 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 const AllTrainerComp = ({trainer}) => {
     const [trainerSlot, setTrainerSlot] = useState([]);
     console.log(trainerSlot);
-    const {_id, trainerName, email, age, profileImage} = trainer;
+    const {_id, trainerName, email, experience, profileImage} = trainer;
     const axiosPublic = useAxiosPublic();
     const [slotTotal, setSlotTotal] = useState(0);
 
@@ -33,14 +33,14 @@ const AllTrainerComp = ({trainer}) => {
     
     return (
         <>
-            <div className="">
+            <div className="mx-5">
                 {/* trainer card start */}
                 <div className="rounded-md shadow-md dark:bg-gray-50 dark:text-gray-800">
                     <div className="flex items-center justify-between p-3">
                         <div className="flex items-center space-x-2">
                             <div className="-space-y-1">
                                 <h2 className="text-sm font-semibold leading-none">{trainerName}</h2>
-                                <span className="inline-block text-xs leading-none dark:text-gray-600 capitalize">{age} years experience</span>
+                                <span className="inline-block text-xs leading-none dark:text-gray-600 capitalize">{experience} years experience </span>
                             </div>
                         </div>
                         <Link to={`/all-trainers/${_id}`}>

@@ -23,11 +23,18 @@ const AddNewSlotTrainer = () => {
   const navigate = useNavigate();
 
   const [classes] = useClass();
-  //console.log(classes);
+  console.log(classes);
   //console.log(classes.className);
-  const uniqueClassNames = [...new Set(classes.map(cls => cls.className))].map(className => ({
-    label: className,
-    value: className
+  // const uniqueClassNames = [...new Set(classes.map(cls => cls.className))].map(className => ({
+  //   label: className,
+  //   value: className
+  // }));
+
+  const uniqueClassNames = [...new Set(classes.map(cls =>  JSON.stringify({classId: cls._id, className: cls.className, })))]
+  .map(str => JSON.parse(str))
+  .map(cls => ({
+    label: cls.className,
+    value: cls.classId
   }));
 
 
@@ -39,7 +46,8 @@ const AddNewSlotTrainer = () => {
     const slotTrainerInfo = {
       nameTrainer: trainerOne?.trainerName,
       email: trainerOne?.email,
-      trainerImage:trainerOne?.profileImage,
+      trainerId: trainerOne?._id,
+      trainerImage: trainerOne?.profileImage,
       slotName: data.slotName,
       slotTime: data.slotTime, 
       slotDuration: data.slotDuration,
@@ -101,7 +109,7 @@ const AddNewSlotTrainer = () => {
                             <input type="email" defaultValue={email} readOnly {...register('email')} className="input input-bordered w-full"/>
                         </label>
                       </div>
-                      <div className="flex gap-5">
+                      <div className="flex flex-col lg:flex-row gap-5">
                         <label className="form-control w-full">
                             <div className="label">
                               <span className="label-text capitalize">Slot name (example: morning slot)</span>

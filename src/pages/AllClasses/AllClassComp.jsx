@@ -7,25 +7,27 @@ import {Link} from 'react-router-dom'
 
 
 const AllClassComp = ({singleClass}) => {
-    const {classImage, className, classDetails } = singleClass;
+    const {_id, classImage, className, classDetails } = singleClass;
     const [trainers, setTrainers] = useState([]);
-    console.log(trainers)
+    //console.log(trainers)
     
     const descriptionWords = classDetails.split(' ');
     const shortDescription = descriptionWords.slice(0, 15).join(' ');
-    const truncatedDescription = descriptionWords.length > 15 ? `${shortDescription}...` : shortDescription;
+    const truncatedDescription = descriptionWords.length > 15 ? `${shortDescription}` : shortDescription;
 
     const axiosPublic = useAxiosPublic();
     useEffect(()=>{
         // axios start
         axiosPublic.get('/slot')
         .then(res => {
-            console.log(res.data);
+            //console.log(res.data);
             const slots = res.data;
             const relatedTrainers = slots.filter(slot => slot.classes.some(cls => cls.label === className)).map(slot => {
-                return {image: slot.trainerImage, id:slot.trainerId}
+                console.log(slot);
+                return {trainerImage: slot.trainerImage, trainerId:slot.trainerId}
             });
 
+            console.log(relatedTrainers);
             const uniqueTrainers = Array.from(new Set(relatedTrainers)).slice(0, 5);
             setTrainers(uniqueTrainers);
             
@@ -50,7 +52,7 @@ const AllClassComp = ({singleClass}) => {
                             <h2 className="text-2xl font-semibold">{className}</h2>
                         </div>
                         <div className="">
-                            <p>{truncatedDescription}</p>
+                            <span>{truncatedDescription} </span> <Link to={`/all-classes/${_id}`} className="text-[#F23B3F]">...View More</Link>
                         </div>
                         <div className="space-y-1">
                             <p className="font-bold">Relevent Trainers who took this class:</p>
@@ -59,8 +61,8 @@ const AllClassComp = ({singleClass}) => {
                                     {trainers.length > 0 ? (
                                         trainers.map((trainer, index) => (
                                             <div key={index} className="flex items-start space-x-2">
-                                                <Link to={`/all-trainers/${trainer.id}`}>
-                                                    <img src={trainer.image} 
+                                                <Link to={`/all-trainers/${trainer.trainerId}`}>
+                                                    <img src={trainer.trainerImage} 
                                                     alt="" 
                                                     className="w-12 h-12 rounded-full ring-2 ring-offset-4 dark:bg-gray-500 dark:ring-violet-600 dark:ring-offset-gray-100"/>
                                                 </Link>

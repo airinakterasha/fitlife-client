@@ -9,7 +9,7 @@ const CommunityComp = ({forum}) => {
 
     const descriptionWords = forumDescription.split(' ');
     const shortDescription = descriptionWords.slice(0, 15).join(' ');
-    const truncatedDescription = descriptionWords.length > 15 ? `${shortDescription}...` : shortDescription;
+    const truncatedDescription = descriptionWords.length > 15 ? `${shortDescription}` : shortDescription;
     const axiosSecure = useAxiosSecure()
 
     const handleVotingUpdate = (vote) => {
@@ -26,15 +26,17 @@ const CommunityComp = ({forum}) => {
 
     return (
         <>
-            <Link to={`/community/${_id}`}>
-                <div className="flex flex-col overflow-hidden bg-white rounded shadow-md text-slate-500 shadow-slate-200 sm:flex-row">
+            
+                <div className="flex flex-col overflow-hidden bg-white rounded shadow-md text-slate-500 shadow-slate-200 sm:flex-row p-10 md:p-0">
                     {/*  <!-- Image --> */}
                     <figure className="flex-1">
-                    <img
-                        src={forumImage}
-                        alt="card image"
-                        className="object-cover min-h-full aspect-auto"
-                    />
+                        <Link to={`/community/${_id}`}>
+                            <img
+                                src={forumImage}
+                                alt="card image"
+                                className="object-cover min-h-full aspect-auto"
+                            />
+                        </Link>
                     </figure>
                     {/*  <!-- Body--> */}
                     <div className="flex-1 p-6">
@@ -72,9 +74,9 @@ const CommunityComp = ({forum}) => {
                             
                         </header>
                         <div className="mt-5">
-                            <h2 className="text-3xl">{forumTitle}</h2>
+                            <h2 className="text-xl font-bold"><Link to={`/community/${_id}`}>{forumTitle}</Link></h2>
                             <p className="">
-                                {truncatedDescription}
+                                {truncatedDescription} <Link to={`/community/${_id}`} className="text-[#F23B3F]">See details .... </Link>
                             </p>
                         </div>
                         <div className="flex justify-around mt-5">
@@ -92,7 +94,6 @@ const CommunityComp = ({forum}) => {
                         </div>
                     </div>
                 </div>
-            </Link>
         </>
     )
 }
