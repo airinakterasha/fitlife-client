@@ -31,6 +31,7 @@ import TrainerHome from "../dashboard/Dashboard/TrainerArea/TrainerHome";
 import MemberHome from "../dashboard/Dashboard/MemberArea/MemberHome";
 import Profile from "../dashboard/Dashboard/MemberArea/Profile";
 import ClassDetails from "../pages/AllClasses/ClassDetails";
+import Payment from "../pages/PaymentPage/Payment";
 
 
 
@@ -111,6 +112,10 @@ const router = createBrowserRouter([
         {
           path: 'profile',
           element: <PrivateRoute><Profile></Profile></PrivateRoute> 
+        },
+        {
+          path: 'pay',
+          element: <PrivateRoute><Payment></Payment></PrivateRoute> 
         },
         {
           path: 'member-booked-trainer',

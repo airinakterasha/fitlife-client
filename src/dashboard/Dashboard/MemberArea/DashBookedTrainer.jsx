@@ -2,11 +2,22 @@ import { Helmet } from "react-helmet-async"
 import TitleSection from "../../../components/TitleSection/TitleSection"
 import useCart from "../../../hooks/useCart";
 import DashBookedTrainerComp from "./DashBookedTrainerComp";
+import usePayment from "../../../hooks/usePayment";
 
 
 const DashBookedTrainer = () => {
-  const [cart] = useCart();
-  console.log(cart);
+  const [payments] = usePayment();
+  //const [cart] = useCart();
+  console.log('payment',payments);
+  console.log('card information', payments.cartInformation);
+
+  const cartInfo = payments.map(pay => pay.cartInformation);
+  // console.log('card information', cartInfo);
+  // console.log('card information', cartInfo.flat());
+  //console.log('card information', cartInfo.flat(2));
+  
+
+
   return (
     <>
         <Helmet>
@@ -18,7 +29,7 @@ const DashBookedTrainer = () => {
             </div>
             <div className="">
               {
-                cart.map(cartBooked =><DashBookedTrainerComp key={cartBooked._id} cartBooked={cartBooked}></DashBookedTrainerComp>)
+                cartInfo?.flat()?.map(cartBooked =><DashBookedTrainerComp key={cartBooked._id} cartBooked={cartBooked}></DashBookedTrainerComp>)
               }
             </div>
         </div>
