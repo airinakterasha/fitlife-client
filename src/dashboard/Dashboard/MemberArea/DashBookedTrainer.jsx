@@ -1,6 +1,5 @@
 import { Helmet } from "react-helmet-async"
 import TitleSection from "../../../components/TitleSection/TitleSection"
-import useCart from "../../../hooks/useCart";
 import DashBookedTrainerComp from "./DashBookedTrainerComp";
 import usePayment from "../../../hooks/usePayment";
 

@@ -21,23 +21,15 @@ const BookedTrainer = () => {
   //console.log(bookingTrainer);
   const {_id, nameTrainer, email, trainerId, slotName, slotDuration, trainerImage, slotTime, classes, availableDay} = bookingTrainer;
 
-  // {
-  //   classes.map((slotClass, index) => {slotClass.label} - {slotClass.value}</p>)
-  // }
-
-  // classssssId = classes.map(clsssssssssssId => {clsssssssssssId.label})
-  // const labels = classes.map(classObj => classObj.label);
-  // const values = classes.map(classObj => classObj.value);
   console.log(classes);
   console.log(classes.label);
   console.log(classes.value);
   const [packages, setPackages] = useState([]);
 
   const [selectedPackage, setSelectedPackage] = useState();
-  //const [selectedPackage, setSelectedPackage] = useState(null);
 
   const [selectedPackageId, setSelectedPackageId] = useState(null);
-  //const [selectedPackageId, setSelectedPackageId] = useState(null);
+
   const [, refetch] = useCart();
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
@@ -54,15 +46,8 @@ const BookedTrainer = () => {
     })
   }, [axiosPublic, setPackages])
 
-  // const handleSelect = () => {
-  //   setSelectedPackage(selectedPackage);
-  //   setSelectedPackageId(packageId);
-  //   console.log( packageId);
-  //   console.log( selectedPackage);
-  // };
 
   const handleSelect = (pkgName, pkgPrice, packageHr, pkdetails, pkincClass, packageId) => {
-    //setSelectedPackage({pkgName, pkgPrice, packageHr, pkdetails, pkincClass});
     setSelectedPackage({
       packageId: packageId,
       pkgName: pkgName,
