@@ -6,8 +6,8 @@ Admin username - sima@gmail.com
 Admin password - Sima123
 Live website link - https://fitlife-5c016.web.app/
 And,
-github client repository link - https://github.com/programming-hero-web-course1/b9a12-client-side-airinakterasha
-github server repository link - https://github.com/programming-hero-web-course1/b9a12-server-side-airinakterasha
+github client repository link - https://github.com/airinakterasha/fitlife-client
+github server repository link - https://github.com/airinakterasha/fitlife-server
 Assignment Variant Is: assignment12_category_0010 - Fitness Tracker Project
 
 
@@ -46,7 +46,7 @@ In building FitLife, I utilized various packages to enhance my development proce
 
 ```bash
 
-git clone https://github.com/programming-hero-web-course-4/B9A10-client-side-airinakterasha
+git clone https://github.com/airinakterasha/fitlife-client
 2. Navigate to the project directory:
 cd fitlife-client
 
